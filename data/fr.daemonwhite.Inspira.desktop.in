@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=inspira
+Exec=inspira
+Icon=fr.daemonwhite.Inspira
+Terminal=false
+Type=Application
+Categories=Utility;
+Keywords=GTK;
+StartupNotify=true
+DBusActivatable=true

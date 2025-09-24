@@ -1,0 +1,3 @@
+[D-BUS Service]
+Name=fr.daemonwhite.Inspira
+Exec=@bindir@/inspira --gapplication-service
