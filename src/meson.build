@@ -24,4 +24,6 @@ inspira_sources = [
   'window.py',
 ]
 
+
 install_data(inspira_sources, install_dir: moduledir)
+install_subdir('interfaceAPI', install_dir: moduledir)

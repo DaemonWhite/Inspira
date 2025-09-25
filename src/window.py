@@ -20,6 +20,9 @@
 from gi.repository import Adw
 from gi.repository import Gtk
 
+from .interfaceAPI.nekomoe import NekoMoe
+
+
 @Gtk.Template(resource_path='/fr/daemonwhite/Inspira/ui/window.ui')
 class InspiraWindow(Adw.ApplicationWindow):
     __gtype_name__ = 'InspiraWindow'
@@ -28,3 +31,6 @@ class InspiraWindow(Adw.ApplicationWindow):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+
+        self._neko = NekoMoe()
+        print(self._neko.random([""]));
