@@ -17,8 +17,12 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
+import threading
+
 from gi.repository import Adw
 from gi.repository import Gtk
+from gi.repository import Gdk
+from gi.repository import GLib
 
 from .interfaceAPI.nekomoe import NekoMoe
 
@@ -27,10 +31,31 @@ from .interfaceAPI.nekomoe import NekoMoe
 class InspiraWindow(Adw.ApplicationWindow):
     __gtype_name__ = 'InspiraWindow'
 
-    label = Gtk.Template.Child()
+    image = Gtk.Template.Child()
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
         self._neko = NekoMoe()
-        print(self._neko.random([""]));
+        self.asyncLoadImage()
+
+    def loadImage(self, args):
+        data = self._neko.random([""])
+        content = self._neko.downloads(data)
+
+        if content is not None:
+            GLib.idle_add(self._updateImage, content)
+
+    def _updateImage(self, content):
+        try:
+            bytes_data = GLib.Bytes.new(content)
+            texture = Gdk.Texture.new_from_bytes(bytes_data)
+            print(texture.get_height())
+            self.image.set_from_paintable(texture)
+            self.image.set_pixel_size(self.image.get_allocated_width())
+        except GLib.GError as e:
+            print(f"Error load image: {e}")
+
+    def asyncLoadImage(self, args=None):
+        t = threading.Thread(target=self.loadImage, args=[args])
+        t.start()

@@ -16,8 +16,13 @@ template $InspiraWindow : Adw.ApplicationWindow {
         menu-model: primary_menu ;
       }
     }
-    Gtk.Label label {
-      label: _("Hello, World!");
+    Gtk.Box {
+      vexpand: true;
+      hexpand: true;
+      Gtk.Image image {
+        hexpand: true;
+        vexpand: true;
+      }
     }
   }
 
