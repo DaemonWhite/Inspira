@@ -1,5 +1,6 @@
 from .interfaceAPI import InterfaceAPI
 import requests
+import json
 
 class NekoMoe(InterfaceAPI):
     def __init__(self):
@@ -18,5 +19,15 @@ class NekoMoe(InterfaceAPI):
         r = requests.get(url, timeout=10)
         if r.status_code == 200:
             return r.text
+        else:
+            return None
+
+    def downloads(self, content):
+        data = json.loads(content)
+        url = "https://nekos.moe/image/" + data["images"][0]['id']
+        print(url)
+        r = requests.get(url, timeout=10)
+        if r.status_code == 200:
+            return r.content
         else:
             return None
