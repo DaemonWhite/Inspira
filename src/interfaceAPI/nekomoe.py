@@ -1,4 +1,5 @@
 from .interfaceAPI import InterfaceAPI
+from .capability import Capability
 import requests
 import json
 
@@ -7,14 +8,25 @@ class NekoMoe(InterfaceAPI):
         super()
         self._name = "NekoMoe"
         self._urlAPI = "https://nekos.moe/api/v1/"
-        self._nsfw = True
-        self._supportRandomFilter = False
+
+        self.randomCapability = Capability(
+            present=True,
+            nsfw=True,
+            limit_min=1,
+            limit_max=100
+        )
+        self.searchCapability = Capability(
+            present=True,
+            nsfw=True,
+            limit_min=1,
+            limit_max=20
+        )
 
     def search(self, tags):
         pass
 
     def random(self, tags):
-        url = self._urlAPI + f"/random/image?nsfw={self.nsfw}"
+        url = self._urlAPI + f"/random/image?nsfw={self.randomCapability.nsfw}"
 
         r = requests.get(url, timeout=10)
         if r.status_code == 200:
