@@ -32,11 +32,17 @@ class InspiraWindow(Adw.ApplicationWindow):
     __gtype_name__ = 'InspiraWindow'
 
     image = Gtk.Template.Child()
+    work_box = Gtk.Template.Child()
+    work_spinner = Gtk.Template.Child()
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+        self.get_application().create_action('newpicture', self.on_load_image)
 
         self._neko = NekoMoe()
+        self.asyncLoadImage()
+
+    def on_load_image(self, widget, _):
         self.asyncLoadImage()
 
     def loadImage(self, args):
@@ -46,16 +52,23 @@ class InspiraWindow(Adw.ApplicationWindow):
         if content is not None:
             GLib.idle_add(self._updateImage, content)
 
+    def loadedImage(self):
+        self.work_box.set_visible(False)
+        self.image.set_visible(True)
+
     def _updateImage(self, content):
         try:
             bytes_data = GLib.Bytes.new(content)
             texture = Gdk.Texture.new_from_bytes(bytes_data)
-            print(texture.get_height())
             self.image.set_from_paintable(texture)
-            self.image.set_pixel_size(self.image.get_allocated_width())
+            self.image.set_pixel_size(self.get_allocated_width())
         except GLib.GError as e:
             print(f"Error load image: {e}")
 
+        self.loadedImage()
+
     def asyncLoadImage(self, args=None):
+        self.work_box.set_visible(True)
+        self.image.set_visible(False)
         t = threading.Thread(target=self.loadImage, args=[args])
         t.start()

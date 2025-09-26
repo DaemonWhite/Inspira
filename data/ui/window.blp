@@ -20,9 +20,34 @@ template $InspiraWindow : Adw.ApplicationWindow {
       vexpand: true;
       hexpand: true;
       Gtk.Image image {
+        visible: false;
         hexpand: true;
         vexpand: true;
       }
+      Gtk.Box work_box {
+        hexpand: true;
+        vexpand: true;
+        orientation: vertical;
+        spacing: 12;
+
+        Gtk.Label {
+          valign: center;
+          halign: center;
+          justify: center;
+          label: "Load New Image";
+          styles ["title-1"]
+        }
+
+        Adw.Spinner work_spinner {
+          valign: center;
+          halign: center;
+
+          width-request: 100;
+          height-request: 100;
+        }
+
+      }
+
     }
   }
 
@@ -37,6 +62,10 @@ menu primary_menu {
     item {
       label: _("_Keyboard Shortcuts");
       action: "app.shortcuts";
+    }
+    item {
+      label: _("_Load New Picture");
+      action: "app.newpicture";
     }
     item {
       label: _("_About Inspira");
