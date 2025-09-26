@@ -47,7 +47,7 @@ class InspiraWindow(Adw.ApplicationWindow):
 
     def loadImage(self, args):
         data = self._neko.random([""])
-        content = self._neko.downloads(data)
+        content = self._neko.download(data)
 
         if content is not None:
             GLib.idle_add(self._updateImage, content)

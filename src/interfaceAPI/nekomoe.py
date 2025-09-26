@@ -27,19 +27,10 @@ class NekoMoe(InterfaceAPI):
 
     def random(self, tags):
         url = self._urlAPI + f"/random/image?nsfw={self.randomCapability.nsfw}"
+        return self._download_text(url, self.randomCapability.timeout)
 
-        r = requests.get(url, timeout=10)
-        if r.status_code == 200:
-            return r.text
-        else:
-            return None
-
-    def downloads(self, content):
+    def download(self, content):
         data = json.loads(content)
         url = "https://nekos.moe/image/" + data["images"][0]['id']
-        print(url)
-        r = requests.get(url, timeout=10)
-        if r.status_code == 200:
-            return r.content
-        else:
-            return None
+        return self._download_bytes(url)
+
