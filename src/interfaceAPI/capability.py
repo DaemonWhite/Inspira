@@ -5,6 +5,7 @@ class Capability:
     present: bool = False
     nsfw: bool = False
     know_tags: list = field(default_factory=list)
+    tags: bool = False
     limit_min: int = 1
     limit_max: int = 1
     timeout: int = 5

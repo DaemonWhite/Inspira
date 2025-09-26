@@ -22,6 +22,7 @@ class WaifuIm(InterfaceAPI):
             present=True,
             nsfw=True,
             know_tags=knowTag,
+            tags=True,
             limit_min=1,
             limit_max=100
         )

@@ -18,6 +18,7 @@ class NekoMoe(InterfaceAPI):
         self.searchCapability = Capability(
             present=True,
             nsfw=True,
+            tags=True,
             limit_min=1,
             limit_max=20
         )
