@@ -1,7 +1,7 @@
 from .interfaceAPI import InterfaceAPI
 from .capability import Capability
-import requests
 import json
+
 
 class NekoMoe(InterfaceAPI):
     def __init__(self):

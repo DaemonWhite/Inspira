@@ -3,6 +3,7 @@ from typing import Optional
 
 from .capability import Capability
 
+
 class InterfaceAPI:
     def __init__(self):
         self._name: str = "Unknown"

@@ -43,11 +43,8 @@ class WaifuIm(InterfaceAPI):
         url = self._urlAPI + f"search?is_nsfw={nsfw}"
         if count > 1:
             url += f"&&limit={count}"
-        print(url)
         return self._download_text(url, self.randomCapability.timeout)
 
     def download(self, content):
-        print(content)
         data = json.loads(content)
-        print(data)
         return self._download_bytes(data['images'][0]['url'])
