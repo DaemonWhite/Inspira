@@ -36,7 +36,7 @@ class Manager(object):
 
     def random(self, plugins_name: str, count: int=-1, nsfw: bool=False, tags: list[str]= []):
         plugin = self.plugins[plugins_name]["instance"]
-        count = plugin.clamp(count, plugin.randomCapability)
+        count = InterfaceAPI.clamp(count, plugin.randomCapability)
         return plugin.random(count, nsfw, tags)
 
     def download(self, plugins_name: str, data) -> bytes:

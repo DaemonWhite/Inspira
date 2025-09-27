@@ -18,7 +18,18 @@ class InterfaceAPI:
     def search(self, count: int, nsfw: bool, tags: list):
         raise NotImplementedError("Search must be overridden")
 
-    def clamp(self, count: int, capability: Capability):
+    @staticmethod
+    def str_bool(boolean: bool) -> str:
+        return f"{boolean}".lower()
+
+    @staticmethod
+    def int_bool(boolean: bool) -> int:
+        if boolean:
+            return 1
+        return 0
+
+    @staticmethod
+    def clamp(count: int, capability: Capability):
         if count < capability.limit_min:
             count = capability.limit_min
         elif count > capability.limit_max:
