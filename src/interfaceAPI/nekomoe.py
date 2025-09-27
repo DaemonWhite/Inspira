@@ -27,8 +27,18 @@ class NekoMoe(InterfaceAPI):
         pass
 
     def random(self, count: int, nsfw: bool, tags: list):
-        url = self._urlAPI + f"/random/image?nsfw={InterfaceAPI.str_bool(nsfw)}&&count={count}"
-        return self._download_text(url, self.randomCapability.timeout)
+        url = self._urlAPI + "/random/image"
+
+        params = {}
+        params["nsfw"] = InterfaceAPI.str_bool(nsfw)
+        params["count"] = count
+
+        return self._download_text(
+            url,
+            params,
+            self.randomCapability.timeout
+        )
+
 
     def download(self, content):
         data = json.loads(content)

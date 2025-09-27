@@ -1,7 +1,7 @@
 from .interfaceAPI import InterfaceAPI
 from .capability import Capability
-import requests
 import json
+
 
 class WaifuIm(InterfaceAPI):
     def __init__(self):
@@ -40,10 +40,18 @@ class WaifuIm(InterfaceAPI):
     def random(self, count: int, nsfw: bool, tags: list):
         count = self.clamp(count, self.randomCapability)
 
-        url = self._urlAPI + f"search?is_nsfw={nsfw}"
+        url = self._urlAPI + "search"
+
+        params = {}
+        params["is_nsfw"] = nsfw
+
         if count > 1:
-            url += f"&&limit={count}"
-        return self._download_text(url, self.randomCapability.timeout)
+            params['limit'] = count
+        return self._download_text(
+            url,
+            params,
+            self.randomCapability.timeout
+        )
 
     def download(self, content):
         data = json.loads(content)
