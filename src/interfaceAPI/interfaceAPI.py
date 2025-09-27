@@ -14,10 +14,17 @@ class InterfaceAPI:
     def name(self) -> str:
         return self._name
 
-    def search(self, tags):
+    def search(self, count: int, nsfw: bool, tags: list):
         raise NotImplementedError("Search must be overridden")
 
-    def random(self, tags):
+    def clamp(self, count: int, capability: Capability):
+        if count < capability.limit_min:
+            count = capability.limit_min
+        elif count > capability.limit_max:
+            count = capability.limit_max
+        return count
+
+    def random(self, count: int, nsfw: bool, tags: list[str]):
         raise NotImplementedError("random must be overridden")
 
     def download(self, content) -> Optional[bytes]:

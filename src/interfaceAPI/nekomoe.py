@@ -23,15 +23,19 @@ class NekoMoe(InterfaceAPI):
             limit_max=20
         )
 
-    def search(self, tags):
+    def search(self, count: int, nsfw: bool, tags: list):
         pass
 
-    def random(self, tags):
-        url = self._urlAPI + f"/random/image?nsfw={self.randomCapability.nsfw}"
+    def random(self, count: int, nsfw: bool, tags: list):
+        count = self.clamp(count, self.randomCapability)
+
+        url = self._urlAPI + f"/random/image?nsfw={nsfw}&&count={count}"
         return self._download_text(url, self.randomCapability.timeout)
 
     def download(self, content):
         data = json.loads(content)
+
         url = "https://nekos.moe/image/" + data["images"][0]['id']
         return self._download_bytes(url)
+
 

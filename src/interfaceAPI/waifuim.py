@@ -8,7 +8,8 @@ class WaifuIm(InterfaceAPI):
         super()
         self._name = "Waifu.im"
         self._urlAPI = "https://api.waifu.im/"
-        knowTag = ["maid",
+        knowTag = [
+            "maid",
             "waifu",
             "marin-kitagawa",
             "mori-calliope",
@@ -24,7 +25,7 @@ class WaifuIm(InterfaceAPI):
             know_tags=knowTag,
             tags=True,
             limit_min=1,
-            limit_max=100
+            limit_max=30
         )
         self.searchCapability = Capability(
             present=False,
@@ -33,13 +34,20 @@ class WaifuIm(InterfaceAPI):
             limit_max=30
         )
 
-    def search(self, tags):
+    def search(self, count: int, nsfw: bool, tags: list):
         pass
 
-    def random(self, tags):
-        url = self._urlAPI + f"/search?is_nsfw={self.randomCapability.nsfw}"
+    def random(self, count: int, nsfw: bool, tags: list):
+        count = self.clamp(count, self.randomCapability)
+
+        url = self._urlAPI + f"search?is_nsfw={nsfw}"
+        if count > 1:
+            url += f"&&limit={count}"
+        print(url)
         return self._download_text(url, self.randomCapability.timeout)
 
     def download(self, content):
+        print(content)
         data = json.loads(content)
+        print(data)
         return self._download_bytes(data['images'][0]['url'])
