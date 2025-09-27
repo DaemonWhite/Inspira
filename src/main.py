@@ -28,7 +28,7 @@ from .window import InspiraWindow
 
 from .core.manager import Manager
 
-from config import NAME, pkgdatadir
+from config import VERSION, NAME, pkgdatadir
 from .utils.load_apis import load_apis
 
 class InspiraApplication(Adw.Application):
@@ -65,10 +65,10 @@ class InspiraApplication(Adw.Application):
 
     def on_about_action(self, *args):
         """Callback for the app.about action."""
-        about = Adw.AboutDialog(application_name='inspira',
+        about = Adw.AboutDialog(application_name=NAME,
                                 application_icon='fr.daemonwhite.Inspira',
                                 developer_name='DaemonWhite',
-                                version='0.1.0',
+                                version=VERSION,
                                 developers=['DaemonWhite'],
                                 copyright='© 2025 DaemonWhite')
         # Translators: Replace "translator-credits" with your name/username, and optionally an email or URL.

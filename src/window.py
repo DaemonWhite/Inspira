@@ -25,6 +25,8 @@ from gi.repository import Gdk
 from gi.repository import GLib
 from gi.repository import Gio
 
+from config import devel
+
 
 @Gtk.Template(resource_path='/fr/daemonwhite/Inspira/ui/window.ui')
 class InspiraWindow(Adw.ApplicationWindow):
@@ -47,6 +49,9 @@ class InspiraWindow(Adw.ApplicationWindow):
             self.on_load_image,
             ['<primary>r']
         )
+        print(devel)
+        if devel:
+            self.add_css_class("devel")
 
         self.store = Gio.ListStore.new(Gtk.StringObject)
         for plugin in self.app.manager.list_plugins():
