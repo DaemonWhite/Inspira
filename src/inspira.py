@@ -25,15 +25,13 @@ import signal
 import locale
 import gettext
 
-VERSION = '@VERSION@'
-pkgdatadir = '@pkgdatadir@'
-localedir = '@localedir@'
+from config import NAME, VERSION, pkgdatadir, localedir
 
 sys.path.insert(1, pkgdatadir)
 signal.signal(signal.SIGINT, signal.SIG_DFL)
-locale.bindtextdomain('inspira', localedir)
-locale.textdomain('inspira')
-gettext.install('inspira', localedir)
+locale.bindtextdomain(NAME, localedir)
+locale.textdomain(NAME)
+gettext.install(NAME, localedir)
 
 if __name__ == '__main__':
     import gi

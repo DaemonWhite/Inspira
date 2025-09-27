@@ -28,9 +28,8 @@ from .window import InspiraWindow
 
 from .core.manager import Manager
 
-from .apis.nekomoe import NekoMoe
-from .apis.waifuim import WaifuIm
-
+from config import NAME, pkgdatadir
+from .utils.load_apis import load_apis
 
 class InspiraApplication(Adw.Application):
     """The main application singleton class."""
@@ -43,15 +42,15 @@ class InspiraApplication(Adw.Application):
         self.create_action('about', self.on_about_action)
         self.create_action('preferences', self.on_preferences_action)
 
-
-
         self.win = None
         self.manager = Manager()
         self.load_apis()
 
     def load_apis(self):
-        self.manager.register(NekoMoe(), True)
-        self.manager.register(WaifuIm(), True)
+        apis = load_apis(f"{pkgdatadir}/{NAME}/apis", NAME)
+
+        for api in apis:
+            self.manager.register(api, True)
 
     def do_activate(self):
         """Called when the application is activated.
