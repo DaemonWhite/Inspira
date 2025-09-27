@@ -23,38 +23,64 @@ from gi.repository import Adw
 from gi.repository import Gtk
 from gi.repository import Gdk
 from gi.repository import GLib
-
-from .interfaceAPI.nekomoe import NekoMoe
+from gi.repository import Gio
 
 
 @Gtk.Template(resource_path='/fr/daemonwhite/Inspira/ui/window.ui')
 class InspiraWindow(Adw.ApplicationWindow):
     __gtype_name__ = 'InspiraWindow'
 
-    image = Gtk.Template.Child()
-    work_box = Gtk.Template.Child()
-    work_spinner = Gtk.Template.Child()
+    search_box: Gtk.Box = Gtk.Template.Child()
+    search_nsfw: Adw.ToggleGroup = Gtk.Template.Child()
+    image: Gtk.Image = Gtk.Template.Child()
+    image_box: Gtk.Box = Gtk.Template.Child()
+    image_drop_down: Gtk.DropDown = Gtk.Template.Child()
+    work_box: Gtk.Box = Gtk.Template.Child()
+    work_spinner: Adw.Spinner = Gtk.Template.Child()
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.get_application().create_action('newpicture', self.on_load_image)
+        self.app = self.get_application()
+        self.lock_load_image = False
+        self.app.create_action(
+            'newpicture',
+            self.on_load_image,
+            ['<primary>r']
+        )
 
-        self._neko = NekoMoe()
+        self.store = Gio.ListStore.new(Gtk.StringObject)
+        for plugin in self.app.manager.list_plugins():
+            if plugin["active"]:
+                self.store.append(Gtk.StringObject.new(plugin["name"]))
+
+        self.image_drop_down.set_model(self.store)
+        self.is_nsfw_enabled()
         self.asyncLoadImage()
 
     def on_load_image(self, widget, _):
         self.asyncLoadImage()
 
+    def is_nsfw_enabled(self) -> bool:
+        if "nsfw" == self.search_nsfw.get_active_name():
+            return True
+        return False
+
     def loadImage(self, args):
-        data = self._neko.random([""])
-        content = self._neko.download(data)
+        selected_api = self.image_drop_down.get_selected_item().get_string()
+        data = self.app.manager.random(
+            selected_api,
+            nsfw=self.is_nsfw_enabled()
+        )
+        content = self.app.manager.download(selected_api, data)
 
         if content is not None:
             GLib.idle_add(self._updateImage, content)
 
     def loadedImage(self):
         self.work_box.set_visible(False)
-        self.image.set_visible(True)
+        self.image_box.set_visible(True)
+        self.search_box.set_sensitive(True)
+        self.lock_load_image = False
 
     def _updateImage(self, content):
         try:
@@ -68,7 +94,12 @@ class InspiraWindow(Adw.ApplicationWindow):
         self.loadedImage()
 
     def asyncLoadImage(self, args=None):
+        if self.lock_load_image:
+            return None
+
+        self.lock_load_image = True
         self.work_box.set_visible(True)
-        self.image.set_visible(False)
+        self.image_box.set_visible(False)
+        self.search_box.set_sensitive(False)
         t = threading.Thread(target=self.loadImage, args=[args])
         t.start()

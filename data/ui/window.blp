@@ -19,11 +19,42 @@ template $InspiraWindow : Adw.ApplicationWindow {
     Gtk.Box {
       vexpand: true;
       hexpand: true;
-      Gtk.Image image {
-        visible: false;
-        hexpand: true;
+      spacing: 12;
+      orientation: vertical;
+      Gtk.Box search_box {
+          halign: center;
+          spacing: 5;
+          Gtk.DropDown image_drop_down {
+          }
+          Adw.ToggleGroup search_nsfw {
+            active-name: "sfw";
+            Adw.Toggle {
+              label: "sfw";
+              name: "sfw";
+              tooltip: "SFW";
+            }
+            Adw.Toggle {
+              label: "nsfw";
+              name: "nsfw";
+              tooltip: "NSFW";
+            }
+          }
+          Gtk.Button {
+            label: _("rechercher");
+            action-name: "app.newpicture";
+          }
+
+        }
+      Gtk.Box image_box {
         vexpand: true;
+        hexpand: true;
+
+        Gtk.Image image {
+          hexpand: true;
+          vexpand: true;
+        }
       }
+
       Gtk.Box work_box {
         hexpand: true;
         vexpand: true;

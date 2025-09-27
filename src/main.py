@@ -26,6 +26,10 @@ gi.require_version('Adw', '1')
 from gi.repository import Gtk, Gio, Adw
 from .window import InspiraWindow
 
+from .interfaceAPI.manager import Manager
+from .interfaceAPI.nekomoe import NekoMoe
+from .interfaceAPI.waifuim import WaifuIm
+
 
 class InspiraApplication(Adw.Application):
     """The main application singleton class."""
@@ -38,16 +42,24 @@ class InspiraApplication(Adw.Application):
         self.create_action('about', self.on_about_action)
         self.create_action('preferences', self.on_preferences_action)
 
+        self.win = None
+        self.manager = Manager()
+        self.load_apis()
+
+    def load_apis(self):
+        self.manager.register(NekoMoe(), True)
+        self.manager.register(WaifuIm(), True)
+
     def do_activate(self):
         """Called when the application is activated.
 
         We raise the application's main window, creating it if
         necessary.
         """
-        win = self.props.active_window
-        if not win:
-            win = InspiraWindow(application=self)
-        win.present()
+        self.win = self.props.active_window
+        if not self.win:
+            self.win = InspiraWindow(application=self)
+        self.win.present()
 
     def on_about_action(self, *args):
         """Callback for the app.about action."""
