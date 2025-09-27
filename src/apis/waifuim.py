@@ -1,9 +1,9 @@
-from .interfaceAPI import InterfaceAPI
-from .capability import Capability
+from ..core.ApiInterface import ApiInterface
+from ..core.capability import Capability
 import json
 
 
-class WaifuIm(InterfaceAPI):
+class WaifuIm(ApiInterface):
     def __init__(self):
         super()
         self._name = "Waifu.im"

@@ -1,13 +1,13 @@
 from gi.repository import GLib
 
-from .interfaceAPI import InterfaceAPI
+from .ApiInterface import ApiInterface
 
 
 class Manager(object):
     def __init__(self):
         self.plugins: Dict[str, Dict[str, object]] = {}
 
-    def register(self, plugin: InterfaceAPI, active: bool = False):
+    def register(self, plugin: ApiInterface, active: bool = False):
         self.plugins[plugin.name] = {
             "instance": plugin,
             "active": True
@@ -36,7 +36,7 @@ class Manager(object):
 
     def random(self, plugins_name: str, count: int=-1, nsfw: bool=False, tags: list[str]= []):
         plugin = self.plugins[plugins_name]["instance"]
-        count = InterfaceAPI.clamp(count, plugin.randomCapability)
+        count = ApiInterface.clamp(count, plugin.randomCapability)
         return plugin.random(count, nsfw, tags)
 
     def download(self, plugins_name: str, data) -> bytes:

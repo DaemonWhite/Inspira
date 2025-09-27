@@ -26,9 +26,10 @@ gi.require_version('Adw', '1')
 from gi.repository import Gtk, Gio, Adw
 from .window import InspiraWindow
 
-from .interfaceAPI.manager import Manager
-from .interfaceAPI.nekomoe import NekoMoe
-from .interfaceAPI.waifuim import WaifuIm
+from .core.manager import Manager
+
+from .apis.nekomoe import NekoMoe
+from .apis.waifuim import WaifuIm
 
 
 class InspiraApplication(Adw.Application):
@@ -41,6 +42,8 @@ class InspiraApplication(Adw.Application):
         self.create_action('quit', lambda *_: self.quit(), ['<primary>q'])
         self.create_action('about', self.on_about_action)
         self.create_action('preferences', self.on_preferences_action)
+
+
 
         self.win = None
         self.manager = Manager()

@@ -5,7 +5,7 @@ from .capability import Capability
 
 
 ## TODO Ajouter Info data
-class InterfaceAPI:
+class ApiInterface:
     def __init__(self):
         self._name: str = "Unknown"
         self._urlAPI: str = "https://nekos.moe/api/v1/"

@@ -1,9 +1,9 @@
-from .interfaceAPI import InterfaceAPI
-from .capability import Capability
+from ..core.ApiInterface import ApiInterface
+from ..core.capability import Capability
 import json
 
 
-class NekoMoe(InterfaceAPI):
+class NekoMoe(ApiInterface):
     def __init__(self):
         super()
         self._name = "NekoMoe"
@@ -30,7 +30,7 @@ class NekoMoe(InterfaceAPI):
         url = self._urlAPI + "/random/image"
 
         params = {}
-        params["nsfw"] = InterfaceAPI.str_bool(nsfw)
+        params["nsfw"] = ApiInterface.str_bool(nsfw)
         params["count"] = count
 
         return self._download_text(
