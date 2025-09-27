@@ -68,7 +68,13 @@ class ApiInterface:
                 timeout: int = 10,
                 is_get: bool = True,
             ) -> Optional[bytes]:
-        r = requests.get(url, timeout=timeout)
+        r = None
+
+        if is_get:
+            r = requests.get(url, params=params, timeout=timeout)
+        else:
+            r = requests.post(url, params=params, timeout=timeout)
+
         if r.status_code == 200:
             return r.content
         return None
