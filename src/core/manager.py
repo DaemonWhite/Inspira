@@ -1,7 +1,7 @@
 from gi.repository import GLib
 
 from .ApiInterface import ApiInterface
-
+from ..utils import add_without_duplicate
 
 class Manager(object):
     def __init__(self):
@@ -41,3 +41,14 @@ class Manager(object):
 
     def download(self, plugins_name: str, data) -> bytes:
         return self.plugins[plugins_name]["instance"].download(data)
+
+    def get_all_tags(self) -> list:
+        tags: list = []
+        for name, plugin in self.plugins.items():
+            know_tags = plugin['instance'].get_know_tags()
+            if len(know_tags) <= 0:
+                continue
+
+            for tag in know_tags:
+                add_without_duplicate(tags, tag)
+        return tags

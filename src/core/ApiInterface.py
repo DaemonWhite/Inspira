@@ -43,6 +43,9 @@ class ApiInterface:
     def download(self, content) -> Optional[bytes]:
         raise NotImplementedError("random must be overridden")
 
+    def get_know_tags(self):
+        return self.randomCapability.know_tags
+
     def _download_text(
                 self,
                 url: str,
