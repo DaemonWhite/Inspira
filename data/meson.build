@@ -4,8 +4,9 @@ pkgdatadir = get_option('prefix') / get_option('datadir') / meson.project_name()
 
 blueprints = custom_target('blueprints',
   input: files(
+    'ui/widgets/search_tag_autocomplet.blp',
     'ui/shortcuts-dialog.blp',
-    'ui/window.blp'
+    'ui/window.blp',
   ),
   output: '.',
   command: [find_program('blueprint-compiler'), 'batch-compile', '@OUTPUT@', '@CURRENT_SOURCE_DIR@', '@INPUT@'],

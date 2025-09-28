@@ -1,0 +1,13 @@
+using Gtk 4.0;
+
+template $SearchTagAutocomplet : Gtk.SearchEntry {
+    Gtk.Popover popover {
+      has-arrow: false;
+      autohide: false;
+      default-widget: template;
+      Gtk.ListView popover_list {
+        single-click-activate: true;
+        styles ["navigation-sidebar"]
+      }
+    }
+}

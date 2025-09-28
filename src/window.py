@@ -27,6 +27,8 @@ from gi.repository import Gio
 
 from config import devel
 
+from .widgets.search_tag_autocomplet import SearchTagAutocomplet
+
 
 @Gtk.Template(resource_path='/fr/daemonwhite/Inspira/ui/window.ui')
 class InspiraWindow(Adw.ApplicationWindow):
@@ -34,6 +36,7 @@ class InspiraWindow(Adw.ApplicationWindow):
 
     search_box: Gtk.Box = Gtk.Template.Child()
     search_nsfw: Adw.ToggleGroup = Gtk.Template.Child()
+    search_tag_entry: SearchTagAutocomplet = Gtk.Template.Child()
     image: Gtk.Image = Gtk.Template.Child()
     image_box: Gtk.Box = Gtk.Template.Child()
     image_drop_down: Gtk.DropDown = Gtk.Template.Child()
@@ -49,7 +52,7 @@ class InspiraWindow(Adw.ApplicationWindow):
             self.on_load_image,
             ['<primary>r']
         )
-        print(devel)
+
         if devel:
             self.add_css_class("devel")
 
@@ -57,6 +60,8 @@ class InspiraWindow(Adw.ApplicationWindow):
         for plugin in self.app.manager.list_plugins():
             if plugin["active"]:
                 self.store.append(Gtk.StringObject.new(plugin["name"]))
+
+        self.search_tag_entry.add_tags(self.app.manager.get_all_tags())
 
         self.image_drop_down.set_model(self.store)
         self.is_nsfw_enabled()
@@ -74,7 +79,8 @@ class InspiraWindow(Adw.ApplicationWindow):
         selected_api = self.image_drop_down.get_selected_item().get_string()
         data = self.app.manager.random(
             selected_api,
-            nsfw=self.is_nsfw_enabled()
+            nsfw=self.is_nsfw_enabled(),
+            tags=self.search_tag_entry.get_text().rsplit(",")
         )
         content = self.app.manager.download(selected_api, data)
 

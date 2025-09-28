@@ -39,6 +39,17 @@ template $InspiraWindow : Adw.ApplicationWindow {
               tooltip: "NSFW";
             }
           }
+
+          Gtk.Box {
+            styles ["linked"]
+            $SearchTagAutocomplet search_tag_entry {
+            }
+            Gtk.Button search_add_tags {
+              label: _("+ Add");
+            }
+          }
+
+
           Gtk.Button {
             label: _("rechercher");
             action-name: "app.newpicture";
