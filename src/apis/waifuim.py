@@ -47,6 +47,10 @@ class WaifuIm(ApiInterface):
 
         if count > 1:
             params['limit'] = count
+
+        if len(tags) > 0:
+            params['included_tags'] = tags
+
         return self._download_text(
             url,
             params,
