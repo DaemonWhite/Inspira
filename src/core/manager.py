@@ -3,9 +3,10 @@ from gi.repository import GLib
 from .ApiInterface import ApiInterface
 from ..utils import add_without_duplicate
 
+
 class Manager(object):
     def __init__(self):
-        self.plugins: Dict[str, Dict[str, object]] = {}
+        self.plugins: dict[str, dict[str, object]] = {}
 
     def register(self, plugin: ApiInterface, active: bool = False):
         self.plugins[plugin.name] = {
