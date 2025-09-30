@@ -68,12 +68,6 @@ class InspiraWindow(Adw.ApplicationWindow):
 
         self.search_tags_entry.add_tags(self.app.manager.get_all_tags())
 
-        btn = Gtk.Label(label="coucou")
-        box = Gtk.Box()
-        box.add_css_class("tag")
-        box.append(btn)
-        self.wrap_tags.add_tag("teste")
-
         self.image_drop_down.set_model(self.store)
         self.is_nsfw_enabled()
         self.asyncLoadImage()
