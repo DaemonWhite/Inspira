@@ -49,16 +49,18 @@ template $InspiraWindow : Adw.ApplicationWindow {
               label: _("+ Add");
             }
           }
-          $WrapTags wrap_tags {
-
-          }
 
           Gtk.Button {
             label: _("rechercher");
             action-name: "app.newpicture";
           }
 
-        }
+      }
+      $WrapTags wrap_tags {
+
+      halign: center;
+
+      }
       Gtk.Box image_box {
         vexpand: true;
         hexpand: true;
