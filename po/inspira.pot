@@ -1,0 +1,105 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-09-30 08:27+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: data/fr.daemonwhite.Inspira.desktop.in:2
+msgid "inspira"
+msgstr ""
+
+#: data/fr.daemonwhite.Inspira.desktop.in:8
+msgid "GTK;"
+msgstr ""
+
+#: data/fr.daemonwhite.Inspira.metainfo.xml.in:7 data/ui/window.blp:5
+msgid "Inspira"
+msgstr ""
+
+#: data/fr.daemonwhite.Inspira.metainfo.xml.in:8
+msgid "Keep the summary shorter, between 10 and 35 characters"
+msgstr ""
+
+#: data/fr.daemonwhite.Inspira.metainfo.xml.in:10
+msgid "No description"
+msgstr ""
+
+#: data/fr.daemonwhite.Inspira.metainfo.xml.in:52
+#: data/fr.daemonwhite.Inspira.metainfo.xml.in:56
+msgid "A caption"
+msgstr ""
+
+#: data/fr.daemonwhite.Inspira.metainfo.xml.in:64
+msgid "Release description"
+msgstr ""
+
+#: data/fr.daemonwhite.Inspira.metainfo.xml.in:66
+#: data/fr.daemonwhite.Inspira.metainfo.xml.in:67
+msgid "List of changes"
+msgstr ""
+
+#: data/ui/window.blp:15
+msgid "Main Menu"
+msgstr ""
+
+#: data/ui/window.blp:46
+msgid "Ex: tag1,tag2"
+msgstr ""
+
+#: data/ui/window.blp:49
+msgid "+ Add"
+msgstr ""
+
+#: data/ui/window.blp:57
+msgid "rechercher"
+msgstr ""
+
+#: data/ui/window.blp:104
+msgid "_Preferences"
+msgstr ""
+
+#: data/ui/window.blp:108
+msgid "_Keyboard Shortcuts"
+msgstr ""
+
+#: data/ui/window.blp:112
+msgid "_Load New Picture"
+msgstr ""
+
+#: data/ui/window.blp:116
+msgid "_About Inspira"
+msgstr ""
+
+#: data/ui/shortcuts-dialog.blp:6
+msgid "Shortcuts"
+msgstr ""
+
+#: data/ui/shortcuts-dialog.blp:8
+msgid "Show Shortcuts"
+msgstr ""
+
+#: data/ui/shortcuts-dialog.blp:12
+msgid "Load New Image"
+msgstr ""
+
+#: data/ui/shortcuts-dialog.blp:16
+msgid "Quit"
+msgstr ""
+
+#. Translators: Replace "translator-credits" with your name/username, and optionally an email or URL.
+#: src/main.py:75
+msgid "translator-credits"
+msgstr ""
