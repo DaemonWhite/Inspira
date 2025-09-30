@@ -28,6 +28,7 @@ from gi.repository import Gio
 from config import devel
 
 from .widgets.search_tag_autocomplet import SearchTagAutocomplet
+from .widgets.wrap_tags import WrapTags
 
 
 @Gtk.Template(resource_path='/fr/daemonwhite/Inspira/ui/window.ui')
@@ -36,7 +37,9 @@ class InspiraWindow(Adw.ApplicationWindow):
 
     search_box: Gtk.Box = Gtk.Template.Child()
     search_nsfw: Adw.ToggleGroup = Gtk.Template.Child()
-    search_tag_entry: SearchTagAutocomplet = Gtk.Template.Child()
+    search_tags_entry: SearchTagAutocomplet = Gtk.Template.Child()
+    search_add_tags: Gtk.Button = Gtk.Template.Child()
+    wrap_tags: WrapTags = Gtk.Template.Child()
     image: Gtk.Image = Gtk.Template.Child()
     image_box: Gtk.Box = Gtk.Template.Child()
     image_drop_down: Gtk.DropDown = Gtk.Template.Child()
@@ -53,6 +56,8 @@ class InspiraWindow(Adw.ApplicationWindow):
             ['<primary>r']
         )
 
+        self.search_add_tags.connect("clicked", self._on_add_tags)
+
         if devel:
             self.add_css_class("devel")
 
@@ -61,11 +66,20 @@ class InspiraWindow(Adw.ApplicationWindow):
             if plugin["active"]:
                 self.store.append(Gtk.StringObject.new(plugin["name"]))
 
-        self.search_tag_entry.add_tags(self.app.manager.get_all_tags())
+        self.search_tags_entry.add_tags(self.app.manager.get_all_tags())
+
+        btn = Gtk.Label(label="coucou")
+        box = Gtk.Box()
+        box.add_css_class("tag")
+        box.append(btn)
+        self.wrap_tags.add_tag("teste")
 
         self.image_drop_down.set_model(self.store)
         self.is_nsfw_enabled()
         self.asyncLoadImage()
+
+    def _on_add_tags(self, _):
+        self.wrap_tags.add_tags(self.search_tags_entry.get_searched_tag())
 
     def on_load_image(self, widget, _):
         self.asyncLoadImage()
@@ -77,10 +91,11 @@ class InspiraWindow(Adw.ApplicationWindow):
 
     def loadImage(self, args):
         selected_api = self.image_drop_down.get_selected_item().get_string()
+
         data = self.app.manager.random(
             selected_api,
             nsfw=self.is_nsfw_enabled(),
-            tags=self.search_tag_entry.get_text().rsplit(",")
+            tags=self.wrap_tags.get_tags()
         )
         content = self.app.manager.download(selected_api, data)
 

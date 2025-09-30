@@ -1,8 +1,0 @@
-# List of source files containing translatable strings.
-# Please keep this file sorted alphabetically.
-data/fr.daemonwhite.Inspira.desktop.in
-data/fr.daemonwhite.Inspira.metainfo.xml.in
-data/fr.daemonwhite.Inspira.gschema.xml
-src/main.py
-src/window.py
-src/window.ui

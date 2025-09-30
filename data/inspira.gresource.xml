@@ -4,5 +4,9 @@
     <file preprocess="xml-stripblanks">ui/window.ui</file>
     <file preprocess="xml-stripblanks" alias="shortcuts-dialog.ui">ui/shortcuts-dialog.ui</file>
     <file preprocess="xml-stripblanks">ui/widgets/search_tag_autocomplet.ui</file>
+    <file preprocess="xml-stripblanks">ui/widgets/wrap_tags.ui</file>
+    <file preprocess="xml-stripblanks">ui/widgets/tag.ui</file>
+    <file alias="style.css">css/style.css</file>
+    <file alias="style-dark.css">css/style-dark.css</file>
   </gresource>
 </gresources>

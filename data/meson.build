@@ -4,6 +4,8 @@ pkgdatadir = get_option('prefix') / get_option('datadir') / meson.project_name()
 
 blueprints = custom_target('blueprints',
   input: files(
+		'ui/widgets/wrap_tags.blp',
+		'ui/widgets/tag.blp',
     'ui/widgets/search_tag_autocomplet.blp',
     'ui/shortcuts-dialog.blp',
     'ui/window.blp',

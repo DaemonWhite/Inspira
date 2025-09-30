@@ -42,14 +42,16 @@ template $InspiraWindow : Adw.ApplicationWindow {
 
           Gtk.Box {
             styles ["linked"]
-            $SearchTagAutocomplet search_tag_entry {
+            $SearchTagAutocomplet search_tags_entry {
               placeholder-text: _("Ex: tag1,tag2");
             }
             Gtk.Button search_add_tags {
               label: _("+ Add");
             }
           }
+          $WrapTags wrap_tags {
 
+          }
 
           Gtk.Button {
             label: _("rechercher");

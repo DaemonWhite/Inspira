@@ -1,0 +1,11 @@
+using Gtk 4.0;
+
+template $Tag : Gtk.Box {
+  styles ["tag"]
+  Gtk.Label tag_name {
+  }
+  Gtk.Button close {
+    icon-name: "window-close-symbolic";
+    styles ["flat", "circular"]
+  }
+}
