@@ -30,6 +30,14 @@ class SearchTagAutocomplet(Gtk.SearchEntry):
         for tag in tags:
             self.tags.append(tag)
 
+    def get_searched_tag(self) -> list[str]:
+        tags: list = []
+
+        for tag in self.get_text().rsplit(","):
+            tags.append(tag.strip())
+
+        return tags
+
     def on_setup(self, factory, item: Gtk.ListItem):
         item.set_child(Gtk.Label(xalign=0))
 
