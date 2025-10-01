@@ -1,5 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist gettext-domain="inspira">
 	<schema id="fr.daemonwhite.Inspira" path="/fr/daemonwhite/Inspira/">
+	  <key name="auto-save-tags" type="b">
+      <default>false</default>
+      <summary>Save no know tags for autocomplets</summary>
+      <description></description>
+    </key>
+	  <key name="global-nsfw" type="b">
+      <default>false</default>
+      <summary>Display posibility to enabled nsfw</summary>
+      <description></description>
+    </key>
+	  <key name="timeout-download" type="i">
+      <default>-1</default>
+      <summary>Delay in seconds. Use -1 for API default timeout</summary>
+      <description></description>
+	    <range min="-1" max="100"/>
+    </key>
 	</schema>
 </schemalist>

@@ -1,0 +1,63 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $PreferencesModal : Adw.PreferencesDialog {
+
+  Adw.PreferencesPage {
+    title: _("Main");
+    icon-name: "wrench-wide-symbolic";
+    Adw.PreferencesGroup {
+      title: _("Filter display");
+git
+      Adw.SwitchRow global_nsfw {
+        title: _("Activate NSFW content");
+        subtitle: _("Display posibility to enabled nsfw");
+      }
+
+    }
+
+    Adw.PreferencesGroup {
+      title: _("Downloads options");
+
+      Adw.SpinRow timeout_spin {
+        title: _("Timeout for download");
+        subtitle: _("Delay in seconds. Use -1 for API default timeout");
+        digits: 0;
+        adjustment: Gtk.Adjustment {
+          value: -1;
+          lower: -1;
+          upper: 100;
+          step-increment: 5;
+          page-increment: 5;
+          page-size: 0;
+        };
+      }
+
+      Adw.SwitchRow auto_save_tags_switch {
+        title: _("Auto Save Tags");
+        subtitle: _("Save no know tags for autocomplets");
+      }
+
+    }
+  }
+
+  Adw.PreferencesPage {
+    title: _("APIs");
+    icon-name: "puzzle-piece-symbolic";
+    Adw.PreferencesGroup apis_group {
+      title: _("List API");
+      description: _("Enable/Disable API and view capabilities");
+    }
+  }
+
+  Adw.PreferencesPage {
+    title: _("Tags");
+    icon-name: "tag-symbolic";
+
+    Adw.PreferencesGroup tags_group {
+      title: _("List Know Tags");
+      description: _("Add or delete tags");
+    }
+  }
+
+}

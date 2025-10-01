@@ -5,7 +5,9 @@ data/fr.daemonwhite.Inspira.metainfo.xml.in
 data/fr.daemonwhite.Inspira.gschema.xml
 
 data/ui/window.blp
+data/ui/widgets/modals/preferences.blp
 data/ui/shortcuts-dialog.blp
 
 src/main.py
 src/window.py
+src/widgets/modals/preferences.py

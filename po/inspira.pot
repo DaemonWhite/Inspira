@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-30 08:27+0200\n"
+"POT-Creation-Date: 2025-10-01 23:07+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -51,8 +51,31 @@ msgstr ""
 msgid "List of changes"
 msgstr ""
 
+#: data/fr.daemonwhite.Inspira.gschema.xml:6
+#: data/ui/widgets/modals/preferences.blp:38
+msgid "Save no know tags for autocomplets"
+msgstr ""
+
+#: data/fr.daemonwhite.Inspira.gschema.xml:11
+#: data/ui/widgets/modals/preferences.blp:14
+msgid "Display posibility to enabled nsfw"
+msgstr ""
+
+#: data/fr.daemonwhite.Inspira.gschema.xml:16
+#: data/ui/widgets/modals/preferences.blp:24
+msgid "Delay in seconds. Use -1 for API default timeout"
+msgstr ""
+
 #: data/ui/window.blp:15
 msgid "Main Menu"
+msgstr ""
+
+#: data/ui/window.blp:34
+msgid "Safe For Work (no adult content)"
+msgstr ""
+
+#: data/ui/window.blp:39
+msgid "No Safe For Work (no adult content)"
 msgstr ""
 
 #: data/ui/window.blp:46
@@ -60,27 +83,79 @@ msgid "Ex: tag1,tag2"
 msgstr ""
 
 #: data/ui/window.blp:49
-msgid "+ Add"
+msgid "Add"
 msgstr ""
 
-#: data/ui/window.blp:57
-msgid "rechercher"
+#: data/ui/window.blp:51
+msgid "Add tags filter"
 msgstr ""
 
-#: data/ui/window.blp:104
-msgid "_Preferences"
+#: data/ui/window.blp:56 src/widgets/modals/preferences.py:85
+msgid "Search"
 msgstr ""
 
 #: data/ui/window.blp:108
-msgid "_Keyboard Shortcuts"
+msgid "_Preferences"
 msgstr ""
 
 #: data/ui/window.blp:112
-msgid "_Load New Picture"
+msgid "_Keyboard Shortcuts"
 msgstr ""
 
 #: data/ui/window.blp:116
+msgid "_Load New Picture"
+msgstr ""
+
+#: data/ui/window.blp:120
 msgid "_About Inspira"
+msgstr ""
+
+#: data/ui/widgets/modals/preferences.blp:7
+msgid "Main"
+msgstr ""
+
+#: data/ui/widgets/modals/preferences.blp:10
+msgid "Filter display"
+msgstr ""
+
+#: data/ui/widgets/modals/preferences.blp:13
+msgid "Activate NSFW content"
+msgstr ""
+
+#: data/ui/widgets/modals/preferences.blp:20
+msgid "Downloads options"
+msgstr ""
+
+#: data/ui/widgets/modals/preferences.blp:23
+msgid "Timeout for download"
+msgstr ""
+
+#: data/ui/widgets/modals/preferences.blp:37
+msgid "Auto Save Tags"
+msgstr ""
+
+#: data/ui/widgets/modals/preferences.blp:45
+msgid "APIs"
+msgstr ""
+
+#: data/ui/widgets/modals/preferences.blp:48
+msgid "List API"
+msgstr ""
+
+#: data/ui/widgets/modals/preferences.blp:49
+msgid "Enable/Disable API and view capabilities"
+msgstr ""
+
+#: data/ui/widgets/modals/preferences.blp:54
+msgid "Tags"
+msgstr ""
+
+#: data/ui/widgets/modals/preferences.blp:58
+msgid "List Know Tags"
+msgstr ""
+
+#: data/ui/widgets/modals/preferences.blp:59
+msgid "Add or delete tags"
 msgstr ""
 
 #: data/ui/shortcuts-dialog.blp:6
@@ -100,6 +175,10 @@ msgid "Quit"
 msgstr ""
 
 #. Translators: Replace "translator-credits" with your name/username, and optionally an email or URL.
-#: src/main.py:75
+#: src/main.py:82
 msgid "translator-credits"
+msgstr ""
+
+#: src/widgets/modals/preferences.py:82
+msgid "Random"
 msgstr ""

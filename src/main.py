@@ -26,10 +26,13 @@ gi.require_version('Adw', '1')
 from gi.repository import Gio, Adw
 from .window import InspiraWindow
 
+from .widgets.modals.preferences import PreferencesModal
+
 from .core.manager import Manager
 
 from config import VERSION, NAME, pkgdatadir
 from .utils.load_apis import load_apis
+from .utils.gtk_settings import InspiraSettings
 
 class InspiraApplication(Adw.Application):
     """The main application singleton class."""
@@ -40,7 +43,11 @@ class InspiraApplication(Adw.Application):
                          resource_base_path='/fr/daemonwhite/Inspira')
         self.create_action('quit', lambda *_: self.quit(), ['<primary>q'])
         self.create_action('about', self.on_about_action)
-        self.create_action('preferences', self.on_preferences_action)
+        self.create_action(
+            'preferences', self.on_preferences_action, ['<primary>p']
+        )
+
+        self.setting = InspiraSettings()
 
         self.win = None
         self.manager = Manager()
@@ -77,7 +84,8 @@ class InspiraApplication(Adw.Application):
 
     def on_preferences_action(self, widget, _):
         """Callback for the app.preferences action."""
-        print('app.preferences action activated')
+        pref = PreferencesModal(self)
+        pref.present(self.props.active_window)
 
     def create_action(self, name, callback, shortcuts=None):
         """Add an application action.

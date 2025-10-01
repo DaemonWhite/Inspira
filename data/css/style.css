@@ -7,9 +7,7 @@
   background-color: alpha(black, 0.07);
 }
 
-.tag>button {
-  all: unset;
+.tag > label {
   margin-left: 6px;
+  margin-right: 6px;
 }
-
-

@@ -47,8 +47,8 @@ class Manager(object):
                 "name": n,
                 "active": data["active"],
                 "capabilities": {
-                    "random": data["instance"].randomCapability.present,
-                    "search": data["instance"].searchCapability.present,
+                    "random": data["instance"].randomCapability,
+                    "search": data["instance"].searchCapability,
                 }
             }
             for n, data in self.plugins.items()
