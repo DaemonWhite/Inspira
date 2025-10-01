@@ -91,10 +91,16 @@ class InspiraWindow(Adw.ApplicationWindow):
             nsfw=self.is_nsfw_enabled(),
             tags=self.wrap_tags.get_tags()
         )
-        content = self.app.manager.download(selected_api, data)
+        print(data)
+        if data["success"]:
 
-        if content is not None:
-            GLib.idle_add(self._updateImage, content)
+            content = self.app.manager.download(selected_api, data)
+
+            if content is not None:
+                GLib.idle_add(self._updateImage, content)
+        else:
+            self.loadedImage()
+            print(data["error"])
 
     def loadedImage(self):
         self.work_box.set_visible(False)

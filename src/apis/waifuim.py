@@ -1,6 +1,5 @@
 from ..core.ApiInterface import ApiInterface
-from ..core.capability import Capability
-import json
+from ..core.capability import EndPointCapability, TagCapability
 
 
 class WaifuIm(ApiInterface):
@@ -8,26 +7,39 @@ class WaifuIm(ApiInterface):
         super()
         self._name = "Waifu.im"
         self._urlAPI = "https://api.waifu.im/"
-        knowTag = [
-            "maid",
-            "waifu",
-            "marin-kitagawa",
-            "mori-calliope",
-            "raiden-shogun",
-            "oppai",
-            "selfies",
-            "uniform",
-            "kamisato-ayaka"
-        ]
-        self.randomCapability = Capability(
+
+        tag = TagCapability(
+            present=True,
+            know=[
+                "maid",
+                "waifu",
+                "marin-kitagawa",
+                "mori-calliope",
+                "raiden-shogun",
+                "oppai",
+                "selfies",
+                "uniform",
+                "kamisato-ayaka"
+            ],
+            know_nsfw=[
+                "ass",
+                "hentai",
+                "milf",
+                "oral",
+                "paizuri",
+                "ecchi",
+                "ero"
+            ]
+        )
+
+        self.randomCapability = EndPointCapability(
             present=True,
             nsfw=True,
-            know_tags=knowTag,
-            tags=True,
+            tag=tag,
             limit_min=1,
             limit_max=30
         )
-        self.searchCapability = Capability(
+        self.searchCapability = EndPointCapability(
             present=False,
             nsfw=True,
             limit_min=1,
@@ -51,12 +63,15 @@ class WaifuIm(ApiInterface):
         if len(tags) > 0:
             params['included_tags'] = tags
 
-        return self._download_text(
+        data, error = self._safe_request(
             url,
             params,
-            self.randomCapability.timeout
+            self.randomCapability.timeout,
+            True
         )
 
+        return self._make_response(tags, params, data, error)
+
     def download(self, content):
-        data = json.loads(content)
-        return self._download_bytes(data['images'][0]['url'])
+        print(content)
+        return self._download_bytes(content["data"]['images'][0]['url'])

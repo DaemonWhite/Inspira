@@ -1,6 +1,5 @@
 from ..core.ApiInterface import ApiInterface
-from ..core.capability import Capability
-import json
+from ..core.capability import EndPointCapability, TagCapability
 
 
 class NekoMoe(ApiInterface):
@@ -9,16 +8,16 @@ class NekoMoe(ApiInterface):
         self._name = "NekoMoe"
         self._urlAPI = "https://nekos.moe/api/v1/"
 
-        self.randomCapability = Capability(
+        self.randomCapability = EndPointCapability(
             present=True,
             nsfw=True,
             limit_min=1,
             limit_max=100
         )
-        self.searchCapability = Capability(
+        self.searchCapability = EndPointCapability(
             present=True,
             nsfw=True,
-            tags=True,
+            tag=TagCapability(present=True),
             limit_min=1,
             limit_max=20
         )
@@ -33,17 +32,18 @@ class NekoMoe(ApiInterface):
         params["nsfw"] = ApiInterface.str_bool(nsfw)
         params["count"] = count
 
-        return self._download_text(
+        data, error = self._safe_request(
             url,
             params,
-            self.randomCapability.timeout
+            self.randomCapability.timeout,
+            True
         )
+
+        return self._make_response(tags, params, data, error)
 
 
     def download(self, content):
-        data = json.loads(content)
-
-        url = "https://nekos.moe/image/" + data["images"][0]['id']
+        url = "https://nekos.moe/image/" + content["data"]["images"][0]['id']
         return self._download_bytes(url)
 
 
