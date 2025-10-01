@@ -1,4 +1,23 @@
-from gi.repository import GLib
+# manager.py
+#
+# Copyright 2025 DaemonWhite
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+
+from .infoRequest import InfoRequest
 
 from .ApiInterface import ApiInterface
 from ..utils import add_without_duplicate
@@ -35,13 +54,16 @@ class Manager(object):
             for n, data in self.plugins.items()
         ]
 
-    def random(self, plugins_name: str, count: int=-1, nsfw: bool=False, tags: list[str]= []):
+    def random(
+            self,
+            plugins_name: str,
+            count: int = -1,
+            nsfw: bool = False,
+            tags: list[str] = []
+        ) -> InfoRequest:
         plugin = self.plugins[plugins_name]["instance"]
         count = ApiInterface.clamp(count, plugin.randomCapability)
         return plugin.random(count, nsfw, tags)
-
-    def download(self, plugins_name: str, data) -> bytes:
-        return self.plugins[plugins_name]["instance"].download(data)
 
     def get_all_tags(self) -> list:
         tags: list = []

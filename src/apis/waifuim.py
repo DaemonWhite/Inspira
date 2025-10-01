@@ -1,5 +1,26 @@
+# waifuim.py
+#
+# Copyright 2025 DaemonWhite
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 from ..core.ApiInterface import ApiInterface
 from ..core.capability import EndPointCapability, TagCapability
+from ..core.infoRequest import InfoRequest
+from ..core.imgData import ImgData
 
 
 class WaifuIm(ApiInterface):
@@ -46,10 +67,10 @@ class WaifuIm(ApiInterface):
             limit_max=30
         )
 
-    def search(self, count: int, nsfw: bool, tags: list):
+    def search(self, count: int, nsfw: bool, tags: list) -> InfoRequest:
         pass
 
-    def random(self, count: int, nsfw: bool, tags: list):
+    def random(self, count: int, nsfw: bool, tags: list) -> InfoRequest:
         count = self.clamp(count, self.randomCapability)
 
         url = self._urlAPI + "search"
@@ -72,6 +93,18 @@ class WaifuIm(ApiInterface):
 
         return self._make_response(tags, params, data, error)
 
-    def download(self, content):
-        print(content)
-        return self._download_bytes(content["data"]['images'][0]['url'])
+    def _img_format(self, info_request: InfoRequest) -> ImgData:
+        imgs: list[ImgData] = []
+
+        for value in info_request.data['images']:
+            autor = value["artist"]["name"] if value.get("artist") else None
+            img = ImgData(
+                info_request=info_request.data,
+                img_tags=[item["name"] for item in value["tags"]],
+                img_url=value['url'],
+                autor=autor,
+                timeout=10
+            )
+            imgs.append(img)
+
+        return imgs

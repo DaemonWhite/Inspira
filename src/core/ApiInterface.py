@@ -2,12 +2,14 @@ import requests
 from typing import Optional
 
 from .capability import EndPointCapability
+from .infoRequest import InfoRequest
+from .imgData import ImgData
 
 
 class ApiInterface:
     def __init__(self):
         self._name: str = "Unknown"
-        self._urlAPI: str = "https://nekos.moe/api/v1/"
+        self._urlAPI: str = "https://example.com/api/v1/"
         self.randomCapability = EndPointCapability()
         self.searchCapability = EndPointCapability()
 
@@ -29,17 +31,14 @@ class ApiInterface:
         return 0
 
     @staticmethod
-    def clamp(count: int, capability: EndPointCapability):
+    def clamp(count: int, capability: EndPointCapability) -> int:
         if count < capability.limit_min:
             count = capability.limit_min
         elif count > capability.limit_max:
             count = capability.limit_max
         return count
 
-    def random(self, count: int, nsfw: bool, tags: list[str]):
-        raise NotImplementedError("random must be overridden")
-
-    def download(self, content) -> Optional[bytes]:
+    def random(self, count: int, nsfw: bool, tags: list[str]) -> InfoRequest:
         raise NotImplementedError("random must be overridden")
 
     def get_know_tags(self, nsfw=False):
@@ -53,17 +52,20 @@ class ApiInterface:
                 tags: list,
                 params: dict,
                 data: dict | None,
-                error: str |
-                None = None
-            ) -> dict:
-        return {
-            "name": self._name,
-            "tags": tags,
-            "request": params,
-            "success": error is None,
-            "error": error,
-            "data": data if data else {}
-        }
+                error: str | None = None
+            ) -> InfoRequest:
+        return InfoRequest(
+            api_name=self._name,
+            search_tags=tags,
+            request=params,
+            success=error is None,
+            error=error,
+            data=data,
+            handler_extact_request=self._img_format
+        )
+
+    def _img_format(self, info_request: InfoRequest) -> ImgData:
+        raise NotImplementedError("random must be overridden")
 
     def _safe_request(
                 self,

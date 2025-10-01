@@ -1,6 +1,6 @@
 # window.py
 #
-# Copyright 2025 Mathéo
+# Copyright 2025 DaemonWhite
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -91,16 +91,19 @@ class InspiraWindow(Adw.ApplicationWindow):
             nsfw=self.is_nsfw_enabled(),
             tags=self.wrap_tags.get_tags()
         )
-        print(data)
-        if data["success"]:
 
-            content = self.app.manager.download(selected_api, data)
+        if data.success:
+            imgs = data.extact_imgs_request()
+            content = imgs[0].download()
 
-            if content is not None:
+            if imgs[0].success:
                 GLib.idle_add(self._updateImage, content)
+            else:
+                self.loadedImage()
+                print(imgs[0].error)
         else:
             self.loadedImage()
-            print(data["error"])
+            print(data.error)
 
     def loadedImage(self):
         self.work_box.set_visible(False)
