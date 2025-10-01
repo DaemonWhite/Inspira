@@ -29,14 +29,14 @@ template $InspiraWindow : Adw.ApplicationWindow {
           Adw.ToggleGroup search_nsfw {
             active-name: "sfw";
             Adw.Toggle {
-              label: "sfw";
+              label: "SFW";
               name: "sfw";
-              tooltip: "SFW";
+              tooltip: _("Safe For Work (no adult content)");
             }
             Adw.Toggle {
-              label: "nsfw";
+              label: "NSFW";
               name: "nsfw";
-              tooltip: "NSFW";
+              tooltip: _("No Safe For Work (no adult content)");
             }
           }
 
@@ -46,12 +46,14 @@ template $InspiraWindow : Adw.ApplicationWindow {
               placeholder-text: _("Ex: tag1,tag2");
             }
             Gtk.Button search_add_tags {
-              label: _("+ Add");
+              label: _("Add");
+              icon-name: "tag-outline-add-symbolic";
+              tooltip-text: _("Add tags filter");
             }
           }
 
           Gtk.Button {
-            label: _("rechercher");
+            label: _("Search");
             action-name: "app.newpicture";
           }
 

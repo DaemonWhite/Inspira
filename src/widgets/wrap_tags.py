@@ -2,6 +2,7 @@ from gi.repository import Gtk, Adw, GLib
 
 from .tag import Tag
 
+
 @Gtk.Template(resource_path='/fr/daemonwhite/Inspira/ui/widgets/wrap_tags.ui')
 class WrapTags(Adw.WrapBox):
     __gtype_name__ = 'WrapTags'
@@ -27,8 +28,8 @@ class WrapTags(Adw.WrapBox):
             self._know_tags.remove(tag_name)
         except ValueError as e:
             print(f"WARNING: {e} x={tag.tag_name.get_label()} not exist ")
-            
+
         self.remove(tag)
-        
+
     def get_tags(self) -> list[str]:
         return self._know_tags.copy()

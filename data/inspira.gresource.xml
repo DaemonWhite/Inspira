@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gresources>
+  <gresource prefix="/fr/daemonwhite/Inspira/icons/scalable/actions/">
+    <file preprocess="xml-stripblanks" alias="tag-outline-add-symbolic.svg">icons/scalable/actions/tag-outline-add-symbolic.svg</file>
+  </gresource>
   <gresource prefix="/fr/daemonwhite/Inspira">
     <file preprocess="xml-stripblanks">ui/window.ui</file>
     <file preprocess="xml-stripblanks" alias="shortcuts-dialog.ui">ui/shortcuts-dialog.ui</file>
