@@ -33,7 +33,6 @@ class ImgData(object):
                 autor: str,
                 timeout: int
             ):
-        print("kk", info_request)
         self._info_request: "InfoRequest" = info_request
         self._img_tags: list[str] = img_tags
         self._autor: str = autor
