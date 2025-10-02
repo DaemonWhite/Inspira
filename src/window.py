@@ -27,6 +27,7 @@ from gi.repository import Gio
 
 from config import devel
 
+from .widgets.infos_image import InfosImage
 from .widgets.search_tag_autocomplet import SearchTagAutocomplet
 from .widgets.wrap_tags import WrapTags
 
@@ -40,9 +41,14 @@ class InspiraWindow(Adw.ApplicationWindow):
     search_tags_entry: SearchTagAutocomplet = Gtk.Template.Child()
     search_add_tags: Gtk.Button = Gtk.Template.Child()
     wrap_tags: WrapTags = Gtk.Template.Child()
+
     image: Gtk.Image = Gtk.Template.Child()
     image_box: Gtk.Box = Gtk.Template.Child()
     image_drop_down: Gtk.DropDown = Gtk.Template.Child()
+
+    overlay_image: Adw.OverlaySplitView = Gtk.Template.Child()
+    infos_image: InfosImage = Gtk.Template.Child()
+
     work_box: Gtk.Box = Gtk.Template.Child()
     work_spinner: Adw.Spinner = Gtk.Template.Child()
 
@@ -95,7 +101,7 @@ class InspiraWindow(Adw.ApplicationWindow):
         if data.success:
             imgs = data.extact_imgs_request()
             content = imgs[0].download()
-
+            self.infos_image.set_infos_image(imgs[0])
             if imgs[0].success:
                 GLib.idle_add(self._updateImage, content)
             else:

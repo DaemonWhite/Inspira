@@ -11,3 +11,22 @@
   margin-left: 6px;
   margin-right: 6px;
 }
+
+.state_icon {
+  border-radius: 99px;
+}
+
+.state_icon.error {
+  color: @error_color;
+  background-color: alpha(@error_color, .25);
+}
+
+.state_icon.neutral {
+  color: @light_5;
+  background-color: alpha(@light_5, .25);
+}
+
+.state_icon.success {
+  color: @success_color;
+  background-color: alpha(@success_color, .25);
+}

@@ -67,9 +67,12 @@ template $InspiraWindow : Adw.ApplicationWindow {
         vexpand: true;
         hexpand: true;
 
-        Gtk.Image image {
-          hexpand: true;
-          vexpand: true;
+        Adw.OverlaySplitView overlay_image {
+          sidebar: $InfosImage infos_image {};
+          content: Gtk.Image image {
+            hexpand: true;
+            vexpand: true;
+          } ;
         }
       }
 

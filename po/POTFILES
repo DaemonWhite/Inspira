@@ -4,10 +4,12 @@ data/fr.daemonwhite.Inspira.desktop.in
 data/fr.daemonwhite.Inspira.metainfo.xml.in
 data/fr.daemonwhite.Inspira.gschema.xml
 
+data/ui/widgets/infos_image.blp
 data/ui/window.blp
 data/ui/widgets/modals/preferences.blp
 data/ui/shortcuts-dialog.blp
 
 src/main.py
+src/core/imgData.py
 src/window.py
 src/widgets/modals/preferences.py

@@ -1,0 +1,19 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $StatesRow : Adw.ActionRow {
+  [suffix]
+  Gtk.Box color {
+    valign: center;
+    halign: center;
+    styles ["state_icon", "error"]
+    Gtk.Image icon {
+      margin-top: 5;
+      margin-bottom: 5;
+      margin-end: 5;
+      margin-start: 5;
+      icon-name: "minus-large-circle-outline-symbolic";
+      icon-size: large;
+    }
+  }
+}

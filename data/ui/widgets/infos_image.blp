@@ -1,0 +1,84 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $InfosImage : Adw.Bin {
+
+  Gtk.ScrolledWindow {
+    hscrollbar-policy: never;
+    margin-end: 5;
+    margin-start: 5;
+    Adw.PreferencesPage {
+      Adw.PreferencesGroup   {
+        title: _("Infos Image");
+        $StatesRow nswf_image_row {
+          title: _("NSFW");
+        }
+        Adw.ActionRow url_image_row {
+          title: _("url");
+        }
+        Adw.ActionRow autor_image_row {
+          title: _("Author");
+        }
+
+        Adw.ExpanderRow {
+          title: _("tags");
+          [suffix]
+          Gtk.Label len_tags_image_row {
+            label: _("0");
+          }
+          Gtk.ScrolledWindow {
+              vexpand: true;
+              hexpand: true;
+
+              min-content-height: 300;
+              max-content-height: 400;
+              hscrollbar-policy: never;
+              vscrollbar-policy: automatic;
+              Adw.WrapBox tags_image_row {
+                hexpand: true;
+                vexpand: true;
+                height-request: 300;
+                line-spacing: 2;
+                child-spacing: 2;
+              }
+          }
+        }
+      }
+
+      Adw.PreferencesGroup {
+        title: _("Info API Request");
+        Adw.ActionRow api_tag_row {
+          title: _("API Name");
+        }
+        $StatesRow nswf_tag_row {
+          title: _("NSFW");
+        }
+
+        Adw.ExpanderRow {
+          title: _("tags");
+          [suffix]
+          Gtk.Label len_tags_api_row {
+            label: _("0");
+          }
+          Gtk.ScrolledWindow {
+              vexpand: true;
+              hexpand: true;
+
+              min-content-height: 300;
+              max-content-height: 400;
+              hscrollbar-policy: never;
+              vscrollbar-policy: automatic;
+              Adw.WrapBox tags_api_row {
+                hexpand: true;
+                vexpand: true;
+                height-request: 300;
+                line-spacing: 2;
+                child-spacing: 2;
+              }
+          }
+        }
+
+      }
+    }
+  }
+}

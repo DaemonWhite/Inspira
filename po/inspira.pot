@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-01 23:07+0200\n"
+"POT-Creation-Date: 2025-10-02 21:27+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -66,6 +66,38 @@ msgstr ""
 msgid "Delay in seconds. Use -1 for API default timeout"
 msgstr ""
 
+#: data/ui/widgets/infos_image.blp:12
+msgid "Infos Image"
+msgstr ""
+
+#: data/ui/widgets/infos_image.blp:14 data/ui/widgets/infos_image.blp:54
+msgid "NSFW"
+msgstr ""
+
+#: data/ui/widgets/infos_image.blp:17
+msgid "url"
+msgstr ""
+
+#: data/ui/widgets/infos_image.blp:20
+msgid "Author"
+msgstr ""
+
+#: data/ui/widgets/infos_image.blp:24 data/ui/widgets/infos_image.blp:58
+msgid "tags"
+msgstr ""
+
+#: data/ui/widgets/infos_image.blp:27 data/ui/widgets/infos_image.blp:61
+msgid "0"
+msgstr ""
+
+#: data/ui/widgets/infos_image.blp:49
+msgid "Info API Request"
+msgstr ""
+
+#: data/ui/widgets/infos_image.blp:51
+msgid "API Name"
+msgstr ""
+
 #: data/ui/window.blp:15
 msgid "Main Menu"
 msgstr ""
@@ -94,19 +126,19 @@ msgstr ""
 msgid "Search"
 msgstr ""
 
-#: data/ui/window.blp:108
+#: data/ui/window.blp:111
 msgid "_Preferences"
 msgstr ""
 
-#: data/ui/window.blp:112
+#: data/ui/window.blp:115
 msgid "_Keyboard Shortcuts"
 msgstr ""
 
-#: data/ui/window.blp:116
+#: data/ui/window.blp:119
 msgid "_Load New Picture"
 msgstr ""
 
-#: data/ui/window.blp:120
+#: data/ui/window.blp:123
 msgid "_About Inspira"
 msgstr ""
 
@@ -177,6 +209,10 @@ msgstr ""
 #. Translators: Replace "translator-credits" with your name/username, and optionally an email or URL.
 #: src/main.py:82
 msgid "translator-credits"
+msgstr ""
+
+#: src/core/imgData.py:38
+msgid "Unknown"
 msgstr ""
 
 #: src/widgets/modals/preferences.py:82
