@@ -30,12 +30,12 @@ class ImgData(object):
                 info_request: "InfoRequest",
                 img_tags: list[str],
                 img_url: str,
-                autor: str,
+                author: str,
                 timeout: int
             ):
         self._info_request: "InfoRequest" = info_request
         self._img_tags: list[str] = img_tags
-        self._autor: str = autor
+        self._author: str = author if author is not None else _("Unknown")
         self._img_url: str = img_url
         self._timeout: int = timeout
 
@@ -44,8 +44,8 @@ class ImgData(object):
         self._img: bytes = None
 
     @property
-    def autor(self) -> str:
-        return self._autor
+    def author(self) -> str:
+        return self._author
 
     @property
     def api_name(self) -> str:
@@ -75,6 +75,10 @@ class ImgData(object):
     def url(self) -> str:
         return self._img_url
 
+    @property
+    def request(self):
+        return self._info_request
+
     def __str__(self):
         return f"ImgData(\n\t\
 success={self.success},\n\t\
@@ -82,7 +86,7 @@ img_url={self._img_url},\n\t\
 timeout={self._timeout},\n\t\
 error={self._error},\n\t\
 img_tags={self._img_tags},\n\t\
-autor={self._autor},\n\t\
+autor={self._author},\n\t\
 info_request={self._info_request},\n\
 )"
 

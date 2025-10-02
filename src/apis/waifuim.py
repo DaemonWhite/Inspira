@@ -97,12 +97,12 @@ class WaifuIm(ApiInterface):
         imgs: list[ImgData] = []
 
         for value in info_request.data['images']:
-            autor = value["artist"]["name"] if value.get("artist") else None
+            author = value["artist"]["name"] if value.get("artist") else None
             img = ImgData(
                 info_request=info_request,
                 img_tags=[item["name"] for item in value["tags"]],
                 img_url=value['url'],
-                autor=autor,
+                author=author,
                 timeout=10
             )
             imgs.append(img)

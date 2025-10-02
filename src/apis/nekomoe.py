@@ -70,7 +70,7 @@ class NekoMoe(ApiInterface):
                 info_request=info_request,
                 img_tags=value['tags'],
                 img_url=f"{self._downloadUrl}/{value['id']}",
-                autor=value['artist'],
+                author=value['artist'],
                 timeout=10
             )
             imgs.append(img)
