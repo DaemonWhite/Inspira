@@ -25,6 +25,7 @@ class InfoRequest(object):
                 self, api_name: str,
                 search_tags: list[str],
                 request: dict,
+                nsfw: bool,
                 success: bool,
                 error: list[str],
                 data: dict,
@@ -33,6 +34,7 @@ class InfoRequest(object):
         self._name: str = api_name
         self._search_tags: list[str] = search_tags
         self._request: dict = request
+        self._nsfw: bool = nsfw
         self._success: bool = success
         self._error: list[str] = error
         self._data: dict = data
@@ -41,6 +43,10 @@ class InfoRequest(object):
     @property
     def api_name(self) -> str:
         return self._name
+
+    @property
+    def nsfw(self) -> bool:
+        return self._nsfw
 
     @property
     def data(self) -> dict:
@@ -72,6 +78,7 @@ class InfoRequest(object):
         return f"InfoRequest(api_name={self.api_name},\
  search_tags={self.search_tags},\
  request={self.request},\
+ nsfw={self.nsfw},\
  success={self._success},\
  error={self.error},\
  data={self._data})"

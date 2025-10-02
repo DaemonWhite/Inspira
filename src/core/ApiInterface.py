@@ -51,6 +51,7 @@ class ApiInterface:
                 self,
                 tags: list,
                 params: dict,
+                nsfw: bool,
                 data: dict | None,
                 error: str | None = None
             ) -> InfoRequest:
@@ -58,6 +59,7 @@ class ApiInterface:
             api_name=self._name,
             search_tags=tags,
             request=params,
+            nsfw=nsfw,
             success=error is None,
             error=error,
             data=data,

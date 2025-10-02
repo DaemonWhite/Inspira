@@ -91,7 +91,7 @@ class WaifuIm(ApiInterface):
             True
         )
 
-        return self._make_response(tags, params, data, error)
+        return self._make_response(tags, params, nsfw, data, error)
 
     def _img_format(self, info_request: InfoRequest) -> ImgData:
         imgs: list[ImgData] = []
@@ -99,7 +99,7 @@ class WaifuIm(ApiInterface):
         for value in info_request.data['images']:
             autor = value["artist"]["name"] if value.get("artist") else None
             img = ImgData(
-                info_request=info_request.data,
+                info_request=info_request,
                 img_tags=[item["name"] for item in value["tags"]],
                 img_url=value['url'],
                 autor=autor,
