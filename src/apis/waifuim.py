@@ -102,6 +102,7 @@ class WaifuIm(ApiInterface):
                 info_request=info_request,
                 img_tags=[item["name"] for item in value["tags"]],
                 img_url=value['url'],
+                nsfw=value['is_nsfw'],
                 author=author,
                 timeout=10
             )

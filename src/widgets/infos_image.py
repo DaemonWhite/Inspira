@@ -50,7 +50,7 @@ class InfosImage(Adw.Bin):
 
         # InfosImage
 
-        self.nswf_image_row.set_active(image_data.request.nsfw)
+        self.nswf_image_row.set_active(image_data.nsfw)
         self.url_image_row.set_subtitle(image_data.url)
         self.autor_image_row.set_subtitle(image_data.author)
 

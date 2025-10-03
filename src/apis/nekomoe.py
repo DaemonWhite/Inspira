@@ -69,7 +69,8 @@ class NekoMoe(ApiInterface):
             img = ImgData(
                 info_request=info_request,
                 img_tags=value['tags'],
-                img_url=f"{self._downloadUrl}/{value['id']}",
+                img_url=f"{self._downloadUrl}{value['id']}",
+                nsfw=value['nsfw'],
                 author=value['artist'],
                 timeout=10
             )

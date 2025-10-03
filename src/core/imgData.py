@@ -32,13 +32,15 @@ class ImgData(object):
                 info_request: "InfoRequest",
                 img_tags: list[str],
                 img_url: str,
-                author: str,
+                author: str | None,
+                nsfw: bool,
                 timeout: int
             ):
         self._info_request: "InfoRequest" = info_request
         self._img_tags: list[str] = img_tags
         self._author: str = author if author is not None else _("Unknown")
         self._img_url: str = img_url
+        self._nsfw: bool = nsfw
         self._timeout: int = timeout
 
         self._success: bool = False
@@ -74,6 +76,10 @@ class ImgData(object):
         return None
 
     @property
+    def nsfw(self):
+        return self._nsfw
+
+    @property
     def url(self) -> str:
         return self._img_url
 
@@ -97,6 +103,7 @@ timeout={self._timeout},\n\t\
 error={self._error},\n\t\
 img_tags={self._img_tags},\n\t\
 author={self._author},\n\t\
+nsfw={self._nsfw},\n\t\
 info_request={self._info_request},\n\
 )"
 
@@ -109,6 +116,7 @@ success={self.success},\
  img_tags={self._img_tags},\
  author={self._author},\
  info_request={self._info_request},\
+ nsfw={self._nsfw},\
  img={self._img})"
 
     def download(self) -> bytes | None:
