@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE_VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-03 11:44+0200\n"
+"POT-Creation-Date: 2025-10-03 15:43+0200\n"
 "PO-Revision-Date: 2025-10-01 23:18+0200\n"
 "Last-Translator: DaemonWhite <daemonwhites@vivaldi.net>\n"
 "Language-Team: French\n"
@@ -53,17 +53,17 @@ msgstr ""
 msgid "List of changes"
 msgstr "List des changement"
 
-#: data/fr.daemonwhite.Inspira.gschema.xml:6
+#: data/fr.daemonwhite.Inspira.gschema.xml.in:6
 #: data/ui/widgets/modals/preferences.blp:38
 msgid "Save no know tags for autocomplets"
 msgstr "Sauvegarde les tags non connue pour l'autocomplétion"
 
-#: data/fr.daemonwhite.Inspira.gschema.xml:11
+#: data/fr.daemonwhite.Inspira.gschema.xml.in:11
 #: data/ui/widgets/modals/preferences.blp:14
 msgid "Display posibility to enabled nsfw"
 msgstr "Affiche la possibilité d'activer le contenu NSFW"
 
-#: data/fr.daemonwhite.Inspira.gschema.xml:16
+#: data/fr.daemonwhite.Inspira.gschema.xml.in:16
 #: data/ui/widgets/modals/preferences.blp:24
 msgid "Delay in seconds. Use -1 for API default timeout"
 msgstr ""
@@ -133,7 +133,7 @@ msgstr "Ajouter"
 msgid "Add tags filter"
 msgstr "Ajoute un tag de filtrage"
 
-#: data/ui/window.blp:54 src/widgets/modals/preferences.py:85
+#: data/ui/window.blp:54 src/widgets/modals/preferences.py:87
 msgid "Search"
 msgstr "Rechercher"
 
@@ -226,7 +226,7 @@ msgstr "DaemonWhite"
 msgid "Unknown"
 msgstr ""
 
-#: src/widgets/modals/preferences.py:82
+#: src/widgets/modals/preferences.py:84
 msgid "Random"
 msgstr "Aléatoire"
 

@@ -2,7 +2,7 @@
 # Please keep this file sorted alphabetically.
 data/fr.daemonwhite.Inspira.desktop.in
 data/fr.daemonwhite.Inspira.metainfo.xml.in
-data/fr.daemonwhite.Inspira.gschema.xml
+data/fr.daemonwhite.Inspira.gschema.xml.in
 
 data/ui/widgets/infos_image.blp
 data/ui/widgets/overlay_picture.blp
