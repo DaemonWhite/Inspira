@@ -19,8 +19,10 @@
 
 from gi.repository import Gtk, Adw
 
+from config import URI_PATH
 
-@Gtk.Template(resource_path='/fr/daemonwhite/Inspira/ui/widgets/states_row.ui')
+
+@Gtk.Template(resource_path=URI_PATH+'/ui/widgets/states_row.ui')
 class StatesRow(Adw.ActionRow):
     __gtype_name__ = 'StatesRow'
 

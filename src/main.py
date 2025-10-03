@@ -1,6 +1,6 @@
 # main.py
 #
-# Copyright 2025 Mathéo
+# Copyright 2025 DaemonWhite
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -30,7 +30,7 @@ from .widgets.modals.preferences import PreferencesModal
 
 from .core.manager import Manager
 
-from config import VERSION, NAME, pkgdatadir
+from config import VERSION, NAME, pkgdatadir, URI, URI_PATH
 from .utils.load_apis import load_apis
 from .utils.gtk_settings import InspiraSettings
 
@@ -38,9 +38,9 @@ class InspiraApplication(Adw.Application):
     """The main application singleton class."""
 
     def __init__(self):
-        super().__init__(application_id='fr.daemonwhite.Inspira',
+        super().__init__(application_id=URI,
                          flags=Gio.ApplicationFlags.DEFAULT_FLAGS,
-                         resource_base_path='/fr/daemonwhite/Inspira')
+                         resource_base_path=URI_PATH)
         self.create_action('quit', lambda *_: self.quit(), ['<primary>q'])
         self.create_action('about', self.on_about_action)
         self.create_action(
@@ -73,7 +73,7 @@ class InspiraApplication(Adw.Application):
     def on_about_action(self, *args):
         """Callback for the app.about action."""
         about = Adw.AboutDialog(application_name=NAME,
-                                application_icon='fr.daemonwhite.Inspira',
+                                application_icon=URI,
                                 developer_name='DaemonWhite',
                                 version=VERSION,
                                 developers=['DaemonWhite'],

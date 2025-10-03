@@ -1,7 +1,7 @@
 [Desktop Entry]
 Name=inspira
 Exec=inspira
-Icon=fr.daemonwhite.Inspira
+Icon=@URI@
 Terminal=false
 Type=Application
 Categories=Utility;

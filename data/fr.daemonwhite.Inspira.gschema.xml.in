@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist gettext-domain="inspira">
-	<schema id="fr.daemonwhite.Inspira" path="/fr/daemonwhite/Inspira/">
+	<schema id="@URI@" path="@URI_PATH@/">
 	  <key name="auto-save-tags" type="b">
       <default>false</default>
       <summary>Save no know tags for autocomplets</summary>

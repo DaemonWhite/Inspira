@@ -25,7 +25,7 @@ from gi.repository import Gdk
 from gi.repository import GLib
 from gi.repository import Gio
 
-from config import devel
+from config import devel, URI_PATH
 
 from .widgets.infos_image import InfosImage
 from .widgets.overlay_picture import OverlayPicture
@@ -33,7 +33,7 @@ from .widgets.search_tag_autocomplet import SearchTagAutocomplet
 from .widgets.wrap_tags import WrapTags
 
 
-@Gtk.Template(resource_path='/fr/daemonwhite/Inspira/ui/window.ui')
+@Gtk.Template(resource_path=URI_PATH+'/ui/window.ui')
 class InspiraWindow(Adw.ApplicationWindow):
     __gtype_name__ = 'InspiraWindow'
 

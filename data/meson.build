@@ -19,17 +19,34 @@ blueprints = custom_target('blueprints',
   command: [find_program('blueprint-compiler'), 'batch-compile', '@OUTPUT@', '@CURRENT_SOURCE_DIR@', '@INPUT@'],
 )
 
+conf = configuration_data()
+conf.set('URI', uri)
+conf.set('URI_PATH', uri_path)
+
+gresource = configure_file(
+  input: 'inspira.gresource.xml.in',
+  output: 'inspira.gresource.xml',
+  configuration: conf,
+  install_dir: get_option('datadir') / 'dbus-1' / 'services'
+)
+
 gnome.compile_resources('inspira',
-  'inspira.gresource.xml',
+  gresource,
   dependencies: blueprints,
   gresource_bundle: true,
   install: true,
   install_dir: pkgdatadir,
 )
 
+desktop_file_generated = configure_file(
+  input: 'fr.daemonwhite.Inspira.desktop.in',
+  output: uri + '.desktop.in',
+  configuration: conf,
+)
+
 desktop_file = i18n.merge_file(
-        input: 'fr.daemonwhite.Inspira.desktop.in',
-       output: 'fr.daemonwhite.Inspira.desktop',
+        input: desktop_file_generated,
+       output: uri + '.desktop',
          type: 'desktop',
        po_dir: '../po',
       install: true,
@@ -53,8 +70,11 @@ appstreamcli = find_program('appstreamcli', required: false, disabler: true)
 test('Validate appstream file', appstreamcli,
      args: ['validate', '--no-net', '--explain', appstream_file])
 
-install_data('fr.daemonwhite.Inspira.gschema.xml',
-  install_dir: get_option('datadir') / 'glib-2.0' / 'schemas'
+configure_file(
+  input: 'fr.daemonwhite.Inspira.gschema.xml.in',
+  output: uri + '.gschema.xml',
+  configuration: conf,
+  install_dir: get_option('datadir') / 'glib-2.0' / 'schemas',
 )
 
 compile_schemas = find_program('glib-compile-schemas', required: false, disabler: true)
@@ -65,9 +85,10 @@ test('Validate schema file',
 
 service_conf = configuration_data()
 service_conf.set('bindir', get_option('prefix') / get_option('bindir'))
+service_conf.set('URI', uri)
 configure_file(
   input: 'fr.daemonwhite.Inspira.service.in',
-  output: 'fr.daemonwhite.Inspira.service',
+  output: uri + '.service',
   configuration: service_conf,
   install_dir: get_option('datadir') / 'dbus-1' / 'services'
 )

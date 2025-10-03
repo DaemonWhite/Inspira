@@ -21,13 +21,15 @@ from gi.repository import Adw
 from gi.repository import Gtk
 from gi.repository import Gio
 
+from config import URI_PATH
+
 from ...core.manager import Manager
 from ..switch_info_row import SwitchInfoRow
 
 from ...utils.gtk_settings import InspiraSettings
 
 
-@Gtk.Template(resource_path='/fr/daemonwhite/Inspira/ui/widgets/modals/preferences.ui')
+@Gtk.Template(resource_path=URI_PATH+'/ui/widgets/modals/preferences.ui')
 class PreferencesModal(Adw.PreferencesDialog):
     __gtype_name__ = "PreferencesModal"
 

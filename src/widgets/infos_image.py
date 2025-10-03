@@ -19,12 +19,14 @@
 
 from gi.repository import Gtk, Adw
 
+from config import URI_PATH
+
 from ..core.imgData import ImgData
 from .tag import Tag
 from .states_row import StatesRow
 
 
-@Gtk.Template(resource_path='/fr/daemonwhite/Inspira/ui/widgets/infos_image.ui')
+@Gtk.Template(resource_path=URI_PATH+'/ui/widgets/infos_image.ui')
 class InfosImage(Adw.Bin):
     __gtype_name__ = 'InfosImage'
 

@@ -1,5 +1,5 @@
 {
-	"id" : "fr.daemonwhite.Inspira",
+	"id" : "fr.daemonwhite.Inspira.devel",
 	"runtime" : "org.gnome.Platform",
 	"runtime-version" : "49",
 	"sdk" : "org.gnome.Sdk",
@@ -47,7 +47,7 @@
 				}
 			],
 			"config-opts" : [
-				"-Ddevel=false"
+				"-Ddevel=true"
 		    ]
 		}
 	]

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gresources>
-  <gresource prefix="/fr/daemonwhite/Inspira/icons/scalable/actions/">
+  <gresource prefix="@URI_PATH@/icons/scalable/actions/">
     <file preprocess="xml-stripblanks" alias="folder-download-symbolic.svg">icons/scalable/actions/folder-download-symbolic.svg</file>
     <file preprocess="xml-stripblanks" alias="info-outline-symbolic.svg">icons/scalable/actions/info-outline-symbolic.svg</file>
     <file preprocess="xml-stripblanks" alias="minus-large-circle-outline-symbolic.svg">icons/scalable/actions/minus-large-circle-outline-symbolic.svg</file>
@@ -10,7 +10,7 @@
     <file preprocess="xml-stripblanks" alias="puzzle-piece-symbolic.svg">icons/scalable/actions/puzzle-piece-symbolic.svg</file>
     <file preprocess="xml-stripblanks" alias="wrench-wide-symbolic.svg">icons/scalable/actions/wrench-wide-symbolic.svg</file>
   </gresource>
-  <gresource prefix="/fr/daemonwhite/Inspira">
+  <gresource prefix="@URI_PATH@">
     <file preprocess="xml-stripblanks">ui/widgets/modals/preferences.ui</file>
     <file preprocess="xml-stripblanks">ui/widgets/infos_image.ui</file>
     <file preprocess="xml-stripblanks">ui/widgets/overlay_picture.ui</file>

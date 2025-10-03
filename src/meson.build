@@ -11,6 +11,9 @@ conf.set('devel', get_option('devel'))
 conf.set('localedir', get_option('prefix') / get_option('localedir'))
 conf.set('pkgdatadir', pkgdatadir)
 
+conf.set('URI', uri)
+conf.set('URI_PATH', uri_path)
+
 configure_file(
   input: 'inspira.py',
   output: 'inspira',

@@ -1,5 +1,8 @@
 VERSION = '@VERSION@'
 NAME = '@NAME@'
-devel = '@devel@'
+devel = @devel@
 pkgdatadir = '@pkgdatadir@'
 localedir = '@localedir@'
+
+URI = '@URI@'
+URI_PATH = '@URI_PATH@'

@@ -1,7 +1,8 @@
 from gi.repository import Adw, Gtk, Gio, GObject
 
+from config import URI_PATH
 
-@Gtk.Template(resource_path='/fr/daemonwhite/Inspira/ui/widgets/switch_info_row.ui')
+@Gtk.Template(resource_path=URI_PATH+'/ui/widgets/switch_info_row.ui')
 class SwitchInfoRow(Adw.PreferencesRow):
     __gtype_name__ = "SwitchInfoRow"
     __gobject_init__ = "SwitchInfoRow"

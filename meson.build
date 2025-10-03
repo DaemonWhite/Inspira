@@ -7,8 +7,16 @@ project('inspira',
 i18n = import('i18n')
 gnome = import('gnome')
 
+uri_base = ['fr', 'daemonwhite','Inspira']
 
+if get_option('devel')
+	uri_base += ['devel']
+endif
 
+uri = '.'.join(uri_base)
+uri_path = '/' + '/'.join(uri_base)
+
+message('URI: ' + uri)
 
 subdir('data')
 subdir('src')

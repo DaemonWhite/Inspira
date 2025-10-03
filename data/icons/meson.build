@@ -1,4 +1,4 @@
-application_id = 'fr.daemonwhite.Inspira'
+application_id = uri
 
 scalable_dir = 'hicolor' / 'scalable' / 'apps'
 install_data(
