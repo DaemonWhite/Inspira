@@ -51,7 +51,7 @@ class OverlayPicture(Gtk.Overlay):
             return
 
         file_dialog = Gtk.FileDialog()
-        file_dialog.set_initial_name("image.png")
+        file_dialog.set_initial_name(f"image.{self.__image.img_format}")
         file_dialog.save(self.get_root(), None, self.on_save_response)
 
     def on_save_response(self, dialog, res):

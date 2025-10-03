@@ -17,11 +17,13 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
+import io
 import requests
 from typing import TYPE_CHECKING
+from PIL import Image
 
 if TYPE_CHECKING:
-    from .infoRequest import InfoReques
+    from .infoRequest import InfoRequest
 
 
 class ImgData(object):
@@ -52,24 +54,24 @@ class ImgData(object):
         return self._info_request.api_name
 
     @property
-    def search_tags(self) -> list[str]:
-        return self._info_request.search_tags
-
-    @property
-    def success(self) -> bool:
-        return self._success
-
-    @property
     def error(self) -> list[str]:
         return self._error
 
     @property
-    def img_tags(self) -> "InfoReques":
+    def img_tags(self) -> list[str]:
         return self._img_tags
 
     @property
     def img(self) -> bytes:
         return self._img
+
+    @property
+    def img_format(self) -> str | None:
+        if self._img:
+            img = Image.open(io.BytesIO(self._img))
+            return img.format.lower()
+
+        return None
 
     @property
     def url(self) -> str:
@@ -79,6 +81,14 @@ class ImgData(object):
     def request(self):
         return self._info_request
 
+    @property
+    def search_tags(self) -> list[str]:
+        return self._info_request.search_tags
+
+    @property
+    def success(self) -> bool:
+        return self._success
+
     def __str__(self):
         return f"ImgData(\n\t\
 success={self.success},\n\t\
@@ -86,7 +96,7 @@ img_url={self._img_url},\n\t\
 timeout={self._timeout},\n\t\
 error={self._error},\n\t\
 img_tags={self._img_tags},\n\t\
-autor={self._author},\n\t\
+author={self._author},\n\t\
 info_request={self._info_request},\n\
 )"
 
@@ -97,7 +107,7 @@ success={self.success},\
  timeout={self._timeout},\
  error={self._error},\
  img_tags={self._img_tags},\
- autor={self._autor},\
+ author={self._author},\
  info_request={self._info_request},\
  img={self._img})"
 

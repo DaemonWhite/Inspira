@@ -24,6 +24,7 @@
 	],
 	"modules" : [
 		"plugins/python3-requests.json",
+		"plugins/python3-pillow.json",
 		{
 		  "name": "blueprint-compiler",
 		  "buildsystem": "meson",
