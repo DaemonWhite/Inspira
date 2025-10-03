@@ -27,6 +27,8 @@ from gi.repository import Gio
 
 from config import devel, URI_PATH
 
+from .items.image import ImageItem
+
 from .widgets.infos_image import InfosImage
 from .widgets.overlay_picture import OverlayPicture
 from .widgets.search_tag_autocomplet import SearchTagAutocomplet
@@ -64,6 +66,7 @@ class InspiraWindow(Adw.ApplicationWindow):
         )
 
         self.bind_events()
+        self.image.set_store(self.app.store_images)
 
         self.search_add_tags.connect("clicked", self._on_add_tags)
 
@@ -83,6 +86,11 @@ class InspiraWindow(Adw.ApplicationWindow):
 
     def bind_events(self):
         self.image.info.connect("clicked", self.on_view_info_image)
+        self.image.lists_image.connect(
+            "page_changed", lambda _, index: self.infos_image.set_infos_image(
+                self.app.store_images.get_item(index).data
+            )
+        )
 
     def _on_add_tags(self, _):
         self.wrap_tags.add_tags(self.search_tags_entry.get_searched_tag())
@@ -111,7 +119,6 @@ class InspiraWindow(Adw.ApplicationWindow):
 
         if data.success:
             imgs = data.extact_imgs_request()
-            self.infos_image.set_infos_image(imgs[0])
             imgs[0].download()
             if imgs[0].success:
                 GLib.idle_add(self._updateImage, imgs[0])
@@ -130,7 +137,7 @@ class InspiraWindow(Adw.ApplicationWindow):
 
     def _updateImage(self, content):
         try:
-            self.image.set_image(content)
+            self.app.store_images.append(ImageItem(content))
         except GLib.GError as e:
             print(f"Error load image: {e}")
 

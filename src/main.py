@@ -29,6 +29,7 @@ from .window import InspiraWindow
 from .widgets.modals.preferences import PreferencesModal
 
 from .core.manager import Manager
+from .core.imgData import ImgData
 
 from config import VERSION, NAME, pkgdatadir, URI, URI_PATH
 from .utils.load_apis import load_apis
@@ -48,6 +49,8 @@ class InspiraApplication(Adw.Application):
         )
 
         self.setting = InspiraSettings()
+
+        self.store_images: Gio.ListStore = Gio.ListStore()
 
         self.win = None
         self.manager = Manager()

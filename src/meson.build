@@ -41,5 +41,6 @@ inspira_sources = [
 install_data(inspira_sources, install_dir: moduledir)
 install_subdir('core', install_dir: moduledir)
 install_subdir('apis', install_dir: moduledir)
+install_subdir('items', install_dir: moduledir)
 install_subdir('utils', install_dir: moduledir)
 install_subdir('widgets', install_dir: moduledir)

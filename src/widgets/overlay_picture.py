@@ -17,7 +17,7 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-from gi.repository import Gtk, GLib, Gdk
+from gi.repository import Adw, Gtk, GLib, Gdk, Gio, GObject
 
 from config import URI_PATH
 
@@ -28,7 +28,13 @@ from ..core.imgData import ImgData
 class OverlayPicture(Gtk.Overlay):
     __gtype_name__ = "OverlayPicture"
 
-    image: Gtk.Picture = Gtk.Template.Child()
+    # TODO Singals 
+    # TODO Auto Switch Last position
+    __gsignals__ = {
+        "mon-signal": (GObject.SignalFlags.RUN_FIRST, None, (str,))
+    }
+
+    lists_image: Adw.Carousel = Gtk.Template.Child()
     main_overlay: Gtk.Box = Gtk.Template.Child()
     download: Gtk.Button = Gtk.Template.Child()
     info: Gtk.Button = Gtk.Template.Child()
@@ -36,32 +42,44 @@ class OverlayPicture(Gtk.Overlay):
     def __init__(self):
         super().__init__()
 
-        self.__image: ImgData = None
-
+        self.store: Gio.ListStore = None
         self.download.connect("clicked", lambda _: self.save_image())
 
-    def set_image(self, image_data: ImgData):
+    def set_store(self, store: Gio.ListStore):
+        if self.store is None:
+            self.store = store
+            self.store.connect(
+                "items_changed",
+                lambda _store, position, _removed, _added : self.append_images(
+                    self.store.get_item(position).data
+                )
+            )
+
+    def append_images(self, image_data: ImgData):
         bytes_data = GLib.Bytes.new(image_data.img)
         texture = Gdk.Texture.new_from_bytes(bytes_data)
-        self.__image = image_data
-        self.image.set_paintable(texture)
+        self.lists_image.append(Gtk.Picture.new_for_paintable(texture))
+
+        if self.lists_image.get_n_pages() == 1:
+            self.lists_image.scroll_to(
+                self.lists_image.get_nth_page(0), True
+            )
 
     def save_image(self):
-        if self.__image is None:
-            return
-
+        image = self.store.get_item(self.lists_image.get_position()).data
         file_dialog = Gtk.FileDialog()
-        file_dialog.set_initial_name(f"image.{self.__image.img_format}")
+        file_dialog.set_initial_name(f"image.{image.img_format}")
         file_dialog.save(self.get_root(), None, self.on_save_response)
 
     def on_save_response(self, dialog, res):
+        image = self.store.get_item(self.lists_image.get_position()).data
         try:
             file = dialog.save_finish(res)
             if file:
                 path = file.get_path()
                 if path:
                     with open(path, "wb") as f:
-                        f.write(self.__image.img)
+                        f.write(image.img)
                     print(f"Img save in {path}")
         except Exception as e:
             print("Save cancel or error :", e)

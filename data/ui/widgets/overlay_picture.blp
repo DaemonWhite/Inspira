@@ -1,8 +1,17 @@
 using Gtk 4.0;
-
+using Adw 1;
 template $OverlayPicture : Gtk.Overlay {
-  Gtk.Picture image {
+  
+  Gtk.Box {
+    orientation: vertical;
+    Adw.Carousel lists_image {
+    
+    }
+    Adw.CarouselIndicatorDots{
+      carousel: lists_image;
+    }
   }
+  
   [overlay]
   Gtk.Box main_overlay {
   vexpand: false;
