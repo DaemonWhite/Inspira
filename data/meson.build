@@ -6,6 +6,7 @@ blueprints = custom_target('blueprints',
   input: files(
   		'ui/widgets/modals/preferences.blp',
   		'ui/widgets/infos_image.blp',
+  		'ui/widgets/overlay_picture.blp',
     'ui/widgets/search_tag_autocomplet.blp',
     'ui/widgets/states_row.blp',
     'ui/widgets/switch_info_row.blp',

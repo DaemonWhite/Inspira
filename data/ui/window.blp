@@ -39,7 +39,6 @@ template $InspiraWindow : Adw.ApplicationWindow {
               tooltip: _("No Safe For Work (no adult content)");
             }
           }
-
           Gtk.Box {
             styles ["linked"]
             $SearchTagAutocomplet search_tags_entry {
@@ -51,28 +50,26 @@ template $InspiraWindow : Adw.ApplicationWindow {
               tooltip-text: _("Add tags filter");
             }
           }
-
           Gtk.Button {
             label: _("Search");
             action-name: "app.newpicture";
           }
-
       }
       $WrapTags wrap_tags {
-
-      halign: center;
-
+        halign: center;
       }
       Gtk.Box image_box {
         vexpand: true;
         hexpand: true;
 
         Adw.OverlaySplitView overlay_image {
+          sidebar-position: end;
+          show-sidebar: false;
           sidebar: $InfosImage infos_image {};
-          content: Gtk.Image image {
+          content: $OverlayPicture  image {
             hexpand: true;
             vexpand: true;
-          } ;
+          };
         }
       }
 
@@ -86,7 +83,7 @@ template $InspiraWindow : Adw.ApplicationWindow {
           valign: center;
           halign: center;
           justify: center;
-          label: "Load New Image";
+          label: _("Load New Image");
           styles ["title-1"]
         }
 
@@ -97,12 +94,9 @@ template $InspiraWindow : Adw.ApplicationWindow {
           width-request: 100;
           height-request: 100;
         }
-
       }
-
     }
   }
-
 }
 
 menu primary_menu {
@@ -124,5 +118,4 @@ menu primary_menu {
       action: "app.about";
     }
   }
-
 }

@@ -1,0 +1,29 @@
+using Gtk 4.0;
+
+template $OverlayPicture : Gtk.Overlay {
+  Gtk.Picture image {
+  }
+  [overlay]
+  Gtk.Box main_overlay {
+  vexpand: false;
+  hexpand: false;
+  valign: start;
+  halign: end;
+  spacing: 2;
+  margin-end: 5;
+  margin-start: 5;
+  margin-top: 5;
+  margin-bottom: 5;
+  orientation: vertical;
+    Gtk.Button info {
+      label: _("Info");
+      icon-name: "info-outline-symbolic";
+      styles ["osd", "circular"]
+    }
+    Gtk.Button download {
+      label: _("Download");
+      icon-name: "folder-download-symbolic";
+      styles ["osd", "circular"]
+    }
+  }
+}

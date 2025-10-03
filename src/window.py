@@ -28,6 +28,7 @@ from gi.repository import Gio
 from config import devel
 
 from .widgets.infos_image import InfosImage
+from .widgets.overlay_picture import OverlayPicture
 from .widgets.search_tag_autocomplet import SearchTagAutocomplet
 from .widgets.wrap_tags import WrapTags
 
@@ -42,7 +43,7 @@ class InspiraWindow(Adw.ApplicationWindow):
     search_add_tags: Gtk.Button = Gtk.Template.Child()
     wrap_tags: WrapTags = Gtk.Template.Child()
 
-    image: Gtk.Image = Gtk.Template.Child()
+    image: OverlayPicture = Gtk.Template.Child()
     image_box: Gtk.Box = Gtk.Template.Child()
     image_drop_down: Gtk.DropDown = Gtk.Template.Child()
 
@@ -62,6 +63,8 @@ class InspiraWindow(Adw.ApplicationWindow):
             ['<primary>r']
         )
 
+        self.bind_events()
+
         self.search_add_tags.connect("clicked", self._on_add_tags)
 
         if devel:
@@ -78,11 +81,19 @@ class InspiraWindow(Adw.ApplicationWindow):
         self.is_nsfw_enabled()
         self.asyncLoadImage()
 
+    def bind_events(self):
+        self.image.info.connect("clicked", self.on_view_info_image)
+
     def _on_add_tags(self, _):
         self.wrap_tags.add_tags(self.search_tags_entry.get_searched_tag())
 
     def on_load_image(self, widget, _):
         self.asyncLoadImage()
+
+    def on_view_info_image(self, widget):
+        self.overlay_image.set_show_sidebar(
+            not self.overlay_image.get_show_sidebar()
+        )
 
     def is_nsfw_enabled(self) -> bool:
         if "nsfw" == self.search_nsfw.get_active_name():
@@ -100,10 +111,10 @@ class InspiraWindow(Adw.ApplicationWindow):
 
         if data.success:
             imgs = data.extact_imgs_request()
-            content = imgs[0].download()
             self.infos_image.set_infos_image(imgs[0])
+            imgs[0].download()
             if imgs[0].success:
-                GLib.idle_add(self._updateImage, content)
+                GLib.idle_add(self._updateImage, imgs[0])
             else:
                 self.loadedImage()
                 print(imgs[0].error)
@@ -119,10 +130,7 @@ class InspiraWindow(Adw.ApplicationWindow):
 
     def _updateImage(self, content):
         try:
-            bytes_data = GLib.Bytes.new(content)
-            texture = Gdk.Texture.new_from_bytes(bytes_data)
-            self.image.set_from_paintable(texture)
-            self.image.set_pixel_size(self.get_allocated_width())
+            self.image.set_image(content)
         except GLib.GError as e:
             print(f"Error load image: {e}")
 

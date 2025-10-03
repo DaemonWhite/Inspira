@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE_VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-02 21:26+0200\n"
+"POT-Creation-Date: 2025-10-03 11:44+0200\n"
 "PO-Revision-Date: 2025-10-01 23:18+0200\n"
 "Last-Translator: DaemonWhite <daemonwhites@vivaldi.net>\n"
 "Language-Team: French\n"
@@ -101,6 +101,14 @@ msgstr ""
 msgid "API Name"
 msgstr ""
 
+#: data/ui/widgets/overlay_picture.blp:19
+msgid "Info"
+msgstr ""
+
+#: data/ui/widgets/overlay_picture.blp:24
+msgid "Download"
+msgstr ""
+
 #: data/ui/window.blp:15
 msgid "Main Menu"
 msgstr "Menu principal"
@@ -113,35 +121,39 @@ msgstr "Safe For Work (pas de contenu mature)"
 msgid "No Safe For Work (no adult content)"
 msgstr "No Safe For Work (contenu mature)"
 
-#: data/ui/window.blp:46
+#: data/ui/window.blp:45
 msgid "Ex: tag1,tag2"
 msgstr "Ex: tag1,tag2"
 
-#: data/ui/window.blp:49
+#: data/ui/window.blp:48
 msgid "Add"
 msgstr "Ajouter"
 
-#: data/ui/window.blp:51
+#: data/ui/window.blp:50
 msgid "Add tags filter"
 msgstr "Ajoute un tag de filtrage"
 
-#: data/ui/window.blp:56 src/widgets/modals/preferences.py:85
+#: data/ui/window.blp:54 src/widgets/modals/preferences.py:85
 msgid "Search"
 msgstr "Rechercher"
 
-#: data/ui/window.blp:111
+#: data/ui/window.blp:86 data/ui/shortcuts-dialog.blp:12
+msgid "Load New Image"
+msgstr "Chargement Nouvelle Image"
+
+#: data/ui/window.blp:105
 msgid "_Preferences"
 msgstr "Préfèrences"
 
-#: data/ui/window.blp:115
+#: data/ui/window.blp:109
 msgid "_Keyboard Shortcuts"
 msgstr "Raccourcis clavier"
 
-#: data/ui/window.blp:119
+#: data/ui/window.blp:113
 msgid "_Load New Picture"
 msgstr "Chargement de la nouvelle Image"
 
-#: data/ui/window.blp:123
+#: data/ui/window.blp:117
 msgid "_About Inspira"
 msgstr "À propos d'Inspira"
 
@@ -200,10 +212,6 @@ msgstr "Raccourcis"
 #: data/ui/shortcuts-dialog.blp:8
 msgid "Show Shortcuts"
 msgstr "Voir les raccourcis"
-
-#: data/ui/shortcuts-dialog.blp:12
-msgid "Load New Image"
-msgstr "Chargement Nouvelle Image"
 
 #: data/ui/shortcuts-dialog.blp:16
 msgid "Quit"
