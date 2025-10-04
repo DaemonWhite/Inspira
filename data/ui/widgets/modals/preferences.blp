@@ -17,6 +17,16 @@ template $PreferencesModal : Adw.PreferencesDialog {
     }
 
     Adw.PreferencesGroup {
+      title: _("Image control");
+
+      Adw.SwitchRow switch_last_add_image {
+        title: _("Focus on last image add");
+        subtitle: _("Directly displays the last downloaded image");
+      }
+
+    }
+
+    Adw.PreferencesGroup {
       title: _("Downloads options");
 
       Adw.SpinRow timeout_spin {

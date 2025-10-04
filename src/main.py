@@ -48,7 +48,7 @@ class InspiraApplication(Adw.Application):
             'preferences', self.on_preferences_action, ['<primary>p']
         )
 
-        self.setting = InspiraSettings()
+        self.settings = InspiraSettings()
 
         self.store_images: Gio.ListStore = Gio.ListStore()
 

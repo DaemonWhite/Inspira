@@ -43,6 +43,14 @@ class InspiraSettings(Gio.Settings):
         self.set_boolean("global-nsfw")
 
     @property
+    def switch_last_add_image(self):
+        return self.get_boolean("switch-last-add-image")
+
+    @switch_last_add_image.setter
+    def switch_last_add_image(self, enable: bool):
+        self.set_boolean("switch-last-add-image", enable)
+
+    @property
     def timeout_download(self) -> int:
         return self.get_int("timeout-download")
 

@@ -91,6 +91,12 @@ class InspiraWindow(Adw.ApplicationWindow):
                 self.app.store_images.get_item(index).data
             )
         )
+        self.app.settings.bind(
+            "switch-last-add-image",
+            self.image,
+            "switch_last_add_image",
+            Gio.SettingsBindFlags.GET
+        )
 
     def _on_add_tags(self, _):
         self.wrap_tags.add_tags(self.search_tags_entry.get_searched_tag())

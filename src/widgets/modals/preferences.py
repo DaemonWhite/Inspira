@@ -35,6 +35,8 @@ class PreferencesModal(Adw.PreferencesDialog):
 
     global_nsfw: Adw.SwitchRow = Gtk.Template.Child()
 
+    switch_last_add_image: Adw.SwitchRow = Gtk.Template.Child()
+
     timeout_spin: Adw.SpinRow = Gtk.Template.Child()
     auto_save_tags_switch: Adw.SwitchRow = Gtk.Template.Child()
 
@@ -46,7 +48,7 @@ class PreferencesModal(Adw.PreferencesDialog):
     def __init__(self, app, **kwargs):
         super().__init__(**kwargs)
         self.__manger: Manager = app.manager
-        self.__settings: InspiraSettings = app.setting
+        self.__settings: InspiraSettings = app.settings
 
         self._binding()
 
@@ -64,6 +66,13 @@ class PreferencesModal(Adw.PreferencesDialog):
         self.__settings.bind(
             "global-nsfw",
             self.global_nsfw,
+            "active",
+            Gio.SettingsBindFlags.DEFAULT
+        )
+
+        self.__settings.bind(
+            "switch-last-add-image",
+            self.switch_last_add_image,
             "active",
             Gio.SettingsBindFlags.DEFAULT
         )

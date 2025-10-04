@@ -28,8 +28,9 @@ from ..core.imgData import ImgData
 class OverlayPicture(Gtk.Overlay):
     __gtype_name__ = "OverlayPicture"
 
-    # TODO Singals 
-    # TODO Auto Switch Last position
+    switch_last_add_image = GObject.Property(type=bool, default=False)
+
+    # TODO Singals
     __gsignals__ = {
         "mon-signal": (GObject.SignalFlags.RUN_FIRST, None, (str,))
     }
@@ -60,7 +61,12 @@ class OverlayPicture(Gtk.Overlay):
         texture = Gdk.Texture.new_from_bytes(bytes_data)
         self.lists_image.append(Gtk.Picture.new_for_paintable(texture))
 
-        if self.lists_image.get_n_pages() == 1:
+        if self.switch_last_add_image:
+            pos = self.lists_image.get_n_pages() - 1
+            self.lists_image.scroll_to(
+                self.lists_image.get_nth_page(pos), True
+            )
+        elif self.lists_image.get_n_pages() == 1:
             self.lists_image.scroll_to(
                 self.lists_image.get_nth_page(0), True
             )

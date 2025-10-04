@@ -11,6 +11,11 @@
       <summary>Display posibility to enabled nsfw</summary>
       <description></description>
     </key>
+	  <key name="switch-last-add-image" type="b">
+      <default>true</default>
+      <summary>Focus on last image download</summary>
+      <description></description>
+    </key>
 	  <key name="timeout-download" type="i">
       <default>-1</default>
       <summary>Delay in seconds. Use -1 for API default timeout</summary>
