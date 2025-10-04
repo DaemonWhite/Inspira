@@ -24,6 +24,11 @@ template $OverlayPicture : Gtk.Overlay {
   margin-top: 5;
   margin-bottom: 5;
   orientation: vertical;
+    Gtk.Button delete {
+      label: _("Delete");
+      icon-name: "user-trash-symbolic";
+      styles ["osd", "circular", "error"]
+    }
     Gtk.Button info {
       label: _("Info");
       icon-name: "info-outline-symbolic";

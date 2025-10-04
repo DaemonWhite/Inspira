@@ -8,6 +8,7 @@
     <file preprocess="xml-stripblanks" alias="tag-outline-add-symbolic.svg">icons/scalable/actions/tag-outline-add-symbolic.svg</file>
     <file preprocess="xml-stripblanks" alias="test-pass-symbolic.svg">icons/scalable/actions/test-pass-symbolic.svg</file>
     <file preprocess="xml-stripblanks" alias="puzzle-piece-symbolic.svg">icons/scalable/actions/puzzle-piece-symbolic.svg</file>
+    <file preprocess="xml-stripblanks" alias="user-trash-symbolic.svg">icons/scalable/actions/user-trash-symbolic.svg</file>
     <file preprocess="xml-stripblanks" alias="wrench-wide-symbolic.svg">icons/scalable/actions/wrench-wide-symbolic.svg</file>
   </gresource>
   <gresource prefix="@URI_PATH@">

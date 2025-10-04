@@ -12,6 +12,10 @@
   margin-right: 6px;
 }
 
+.osd.error image {
+  color: #ff938c;
+}
+
 .state_icon {
   border-radius: 99px;
 }

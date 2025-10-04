@@ -37,6 +37,7 @@ class OverlayPicture(Gtk.Overlay):
 
     lists_image: Adw.Carousel = Gtk.Template.Child()
     main_overlay: Gtk.Box = Gtk.Template.Child()
+    delete: Gtk.Button = Gtk.Template.Child()
     download: Gtk.Button = Gtk.Template.Child()
     info: Gtk.Button = Gtk.Template.Child()
 
@@ -44,16 +45,15 @@ class OverlayPicture(Gtk.Overlay):
         super().__init__()
 
         self.store: Gio.ListStore = None
-        self.download.connect("clicked", lambda _: self.save_image())
+        self.delete.connect("clicked", lambda _: self.delete_image_selected())
+        self.download.connect("clicked", lambda _: self.save_image_selected())
 
     def set_store(self, store: Gio.ListStore):
         if self.store is None:
             self.store = store
             self.store.connect(
                 "items_changed",
-                lambda _store, position, _removed, _added : self.append_images(
-                    self.store.get_item(position).data
-                )
+                self._on_store_images_changed
             )
 
     def append_images(self, image_data: ImgData):
@@ -71,14 +71,35 @@ class OverlayPicture(Gtk.Overlay):
                 self.lists_image.get_nth_page(0), True
             )
 
-    def save_image(self):
-        image = self.store.get_item(self.lists_image.get_position()).data
+    def get_image_selected(self) -> ImgData | None:
+        if self.store is not None:
+            return self.store.get_item(self.lists_image.get_position()).data
+
+        return None
+
+    def save_image_selected(self):
+        image = self.get_image_selected()
+        if image is None:
+            return
+
         file_dialog = Gtk.FileDialog()
         file_dialog.set_initial_name(f"image.{image.img_format}")
         file_dialog.save(self.get_root(), None, self.on_save_response)
 
+    def delete_image_selected(self):
+        if self.store is None:
+            return
+
+        self.store.remove(self.lists_image.get_position())
+
+    def _on_store_images_changed(self, _, position, removed, added):
+        if added > 0:
+            self.append_images(self.store.get_item(position).data)
+        elif removed > 0:
+            self.lists_image.remove(self.lists_image.get_nth_page(position))
+
     def on_save_response(self, dialog, res):
-        image = self.store.get_item(self.lists_image.get_position()).data
+        image = self.get_image_selected()
         try:
             file = dialog.save_finish(res)
             if file:
