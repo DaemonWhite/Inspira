@@ -65,7 +65,12 @@ template $InspiraWindow : Adw.ApplicationWindow {
         Adw.OverlaySplitView overlay_image {
           sidebar-position: end;
           show-sidebar: false;
-          sidebar: $InfosImage infos_image {};
+          max-sidebar-width: 280;
+          min-sidebar-width: 280;
+          sidebar: $InfosImage infos_image {
+            vexpand: true;
+            hexpand: true;
+          };
           content: $OverlayPicture  image {
             hexpand: true;
             vexpand: true;
