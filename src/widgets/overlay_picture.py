@@ -28,7 +28,7 @@ from ..core.imgData import ImgData
 class OverlayPicture(Gtk.Overlay):
     __gtype_name__ = "OverlayPicture"
 
-    switch_last_add_image = GObject.Property(type=bool, default=False)
+    switch_last_add_image: GObject.Property = GObject.Property(type=bool, default=False)
 
     # TODO Singals
     __gsignals__ = {
@@ -36,10 +36,14 @@ class OverlayPicture(Gtk.Overlay):
     }
 
     lists_image: Adw.Carousel = Gtk.Template.Child()
+    box_lists_image: Gtk.Box = Gtk.Template.Child()
+    dots_lists_image: Adw.CarouselIndicatorDots = Gtk.Template.Child()
     main_overlay: Gtk.Box = Gtk.Template.Child()
     delete: Gtk.Button = Gtk.Template.Child()
     download: Gtk.Button = Gtk.Template.Child()
     info: Gtk.Button = Gtk.Template.Child()
+
+    _vertical = False
 
     def __init__(self):
         super().__init__()
@@ -47,6 +51,30 @@ class OverlayPicture(Gtk.Overlay):
         self.store: Gio.ListStore = None
         self.delete.connect("clicked", lambda _: self.delete_image_selected())
         self.download.connect("clicked", lambda _: self.save_image_selected())
+
+
+    @GObject.Property
+    def vertical(self):
+        "Read only property."
+        return False
+
+    @GObject.Property(type=bool, default=False)
+    def vertical_mode(self):
+        "Read-write integer property."
+        return self._vertical
+
+    @vertical_mode.setter
+    def vertical_mode(self, value):
+        self._vertical = value
+        if self._vertical:
+            self.box_lists_image.set_orientation(Gtk.Orientation.HORIZONTAL)
+            self.dots_lists_image.set_orientation(Gtk.Orientation.VERTICAL)
+            self.lists_image.set_orientation(Gtk.Orientation.VERTICAL)
+        else:
+            self.box_lists_image.set_orientation(Gtk.Orientation.VERTICAL)
+            self.dots_lists_image.set_orientation(Gtk.Orientation.HORIZONTAL)
+            self.lists_image.set_orientation(Gtk.Orientation.HORIZONTAL)
+
 
     def set_store(self, store: Gio.ListStore):
         if self.store is None:

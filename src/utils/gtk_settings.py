@@ -32,7 +32,15 @@ class InspiraSettings(Gio.Settings):
 
     @auto_save_tags.setter
     def auto_save_tags(self, enable: bool):
-        self.set_boolean("auto-save-tags")
+        self.set_boolean("auto-save-tags", enable)
+
+    @property
+    def carousel_images_is_vertical(self) -> bool:
+        return self.get_boolean("carousel-images-is-vertical")
+
+    @carousel_images_is_vertical.setter
+    def carousel_images_is_vertical(self, enable: bool):
+        self.set_boolean("carousel-images-is-vertical", enable)
 
     @property
     def global_nsfw(self) -> bool:
@@ -40,10 +48,10 @@ class InspiraSettings(Gio.Settings):
 
     @global_nsfw.setter
     def global_nsfw(self, enable: bool):
-        self.set_boolean("global-nsfw")
+        self.set_boolean("global-nsfw", enable)
 
     @property
-    def switch_last_add_image(self):
+    def switch_last_add_image(self) -> bool:
         return self.get_boolean("switch-last-add-image")
 
     @switch_last_add_image.setter

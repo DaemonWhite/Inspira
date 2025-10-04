@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE_VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-03 15:43+0200\n"
+"POT-Creation-Date: 2025-10-04 23:15+0200\n"
 "PO-Revision-Date: 2025-10-01 23:18+0200\n"
 "Last-Translator: DaemonWhite <daemonwhites@vivaldi.net>\n"
 "Language-Team: French\n"
@@ -54,17 +54,26 @@ msgid "List of changes"
 msgstr "List des changement"
 
 #: data/fr.daemonwhite.Inspira.gschema.xml.in:6
-#: data/ui/widgets/modals/preferences.blp:38
+#: data/ui/widgets/modals/preferences.blp:53
 msgid "Save no know tags for autocomplets"
 msgstr "Sauvegarde les tags non connue pour l'autocomplétion"
 
 #: data/fr.daemonwhite.Inspira.gschema.xml.in:11
+#: data/ui/widgets/modals/preferences.blp:29
+msgid "If the image scrolling is horizontal or vertical. False=horizontal"
+msgstr ""
+
+#: data/fr.daemonwhite.Inspira.gschema.xml.in:16
 #: data/ui/widgets/modals/preferences.blp:14
 msgid "Display posibility to enabled nsfw"
 msgstr "Affiche la possibilité d'activer le contenu NSFW"
 
-#: data/fr.daemonwhite.Inspira.gschema.xml.in:16
-#: data/ui/widgets/modals/preferences.blp:24
+#: data/fr.daemonwhite.Inspira.gschema.xml.in:21
+msgid "Focus on last image download"
+msgstr ""
+
+#: data/fr.daemonwhite.Inspira.gschema.xml.in:26
+#: data/ui/widgets/modals/preferences.blp:39
 msgid "Delay in seconds. Use -1 for API default timeout"
 msgstr ""
 "Délai en secondes. Utiliser -1 pour prendre la valeur par défaut de l'API"
@@ -101,11 +110,15 @@ msgstr ""
 msgid "API Name"
 msgstr ""
 
-#: data/ui/widgets/overlay_picture.blp:19
+#: data/ui/widgets/overlay_picture.blp:31
+msgid "Delete"
+msgstr ""
+
+#: data/ui/widgets/overlay_picture.blp:36
 msgid "Info"
 msgstr ""
 
-#: data/ui/widgets/overlay_picture.blp:24
+#: data/ui/widgets/overlay_picture.blp:41
 msgid "Download"
 msgstr ""
 
@@ -133,27 +146,27 @@ msgstr "Ajouter"
 msgid "Add tags filter"
 msgstr "Ajoute un tag de filtrage"
 
-#: data/ui/window.blp:54 src/widgets/modals/preferences.py:87
+#: data/ui/window.blp:54 src/widgets/modals/preferences.py:104
 msgid "Search"
 msgstr "Rechercher"
 
-#: data/ui/window.blp:86 data/ui/shortcuts-dialog.blp:12
+#: data/ui/window.blp:87 data/ui/shortcuts-dialog.blp:12
 msgid "Load New Image"
 msgstr "Chargement Nouvelle Image"
 
-#: data/ui/window.blp:105
+#: data/ui/window.blp:106
 msgid "_Preferences"
 msgstr "Préfèrences"
 
-#: data/ui/window.blp:109
+#: data/ui/window.blp:110
 msgid "_Keyboard Shortcuts"
 msgstr "Raccourcis clavier"
 
-#: data/ui/window.blp:113
+#: data/ui/window.blp:114
 msgid "_Load New Picture"
 msgstr "Chargement de la nouvelle Image"
 
-#: data/ui/window.blp:117
+#: data/ui/window.blp:118
 msgid "_About Inspira"
 msgstr "À propos d'Inspira"
 
@@ -170,38 +183,54 @@ msgid "Activate NSFW content"
 msgstr "Activer le contenu NSFW"
 
 #: data/ui/widgets/modals/preferences.blp:20
+msgid "Image control"
+msgstr ""
+
+#: data/ui/widgets/modals/preferences.blp:23
+msgid "Focus on last image add"
+msgstr ""
+
+#: data/ui/widgets/modals/preferences.blp:24
+msgid "Directly displays the last downloaded image"
+msgstr ""
+
+#: data/ui/widgets/modals/preferences.blp:28
+msgid "Carousel Image is vertical"
+msgstr ""
+
+#: data/ui/widgets/modals/preferences.blp:35
 msgid "Downloads options"
 msgstr "Options de télèchargement"
 
-#: data/ui/widgets/modals/preferences.blp:23
+#: data/ui/widgets/modals/preferences.blp:38
 msgid "Timeout for download"
 msgstr "Délai de télèchargement"
 
-#: data/ui/widgets/modals/preferences.blp:37
+#: data/ui/widgets/modals/preferences.blp:52
 msgid "Auto Save Tags"
 msgstr "Sauvegarde Auto des Tags"
 
-#: data/ui/widgets/modals/preferences.blp:45
+#: data/ui/widgets/modals/preferences.blp:60
 msgid "APIs"
 msgstr "APIs"
 
-#: data/ui/widgets/modals/preferences.blp:48
+#: data/ui/widgets/modals/preferences.blp:63
 msgid "List API"
 msgstr "Liste des APIs"
 
-#: data/ui/widgets/modals/preferences.blp:49
+#: data/ui/widgets/modals/preferences.blp:64
 msgid "Enable/Disable API and view capabilities"
 msgstr "Active/Désactive API et c'est capacité"
 
-#: data/ui/widgets/modals/preferences.blp:54
+#: data/ui/widgets/modals/preferences.blp:69
 msgid "Tags"
 msgstr "Tags"
 
-#: data/ui/widgets/modals/preferences.blp:58
+#: data/ui/widgets/modals/preferences.blp:73
 msgid "List Know Tags"
 msgstr "Liste des tags connu"
 
-#: data/ui/widgets/modals/preferences.blp:59
+#: data/ui/widgets/modals/preferences.blp:74
 msgid "Add or delete tags"
 msgstr "Ajoute ou supprime des tags"
 
@@ -218,15 +247,15 @@ msgid "Quit"
 msgstr "Quitter"
 
 #. Translators: Replace "translator-credits" with your name/username, and optionally an email or URL.
-#: src/main.py:82
+#: src/main.py:85
 msgid "translator-credits"
 msgstr "DaemonWhite"
 
-#: src/core/imgData.py:38
+#: src/core/imgData.py:41
 msgid "Unknown"
 msgstr ""
 
-#: src/widgets/modals/preferences.py:84
+#: src/widgets/modals/preferences.py:101
 msgid "Random"
 msgstr "Aléatoire"
 

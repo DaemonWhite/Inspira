@@ -98,6 +98,13 @@ class InspiraWindow(Adw.ApplicationWindow):
             Gio.SettingsBindFlags.GET
         )
 
+        self.app.settings.bind(
+            "carousel-images-is-vertical",
+            self.image,
+            "vertical_mode",
+            Gio.SettingsBindFlags.GET
+        )
+
     def _on_add_tags(self, _):
         self.wrap_tags.add_tags(self.search_tags_entry.get_searched_tag())
 

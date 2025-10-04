@@ -6,6 +6,11 @@
       <summary>Save no know tags for autocomplets</summary>
       <description></description>
     </key>
+	  <key name="carousel-images-is-vertical" type="b">
+      <default>false</default>
+      <summary>If the image scrolling is horizontal or vertical. False=horizontal</summary>
+      <description></description>
+    </key>
 	  <key name="global-nsfw" type="b">
       <default>false</default>
       <summary>Display posibility to enabled nsfw</summary>
