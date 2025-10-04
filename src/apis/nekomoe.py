@@ -66,12 +66,13 @@ class NekoMoe(ApiInterface):
     def _img_format(self, info_request: InfoRequest) -> ImgData:
         imgs: list[ImgData] = []
         for value in info_request.data['images']:
+            author = value["artist"] if value.get("artist") else None
             img = ImgData(
                 info_request=info_request,
                 img_tags=value['tags'],
                 img_url=f"{self._downloadUrl}{value['id']}",
                 nsfw=value['nsfw'],
-                author=value['artist'],
+                author=author,
                 timeout=10
             )
             imgs.append(img)
