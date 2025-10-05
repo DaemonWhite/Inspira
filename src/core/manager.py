@@ -30,7 +30,7 @@ class Manager(object):
     def register(self, plugin: ApiInterface, active: bool = False):
         self.plugins[plugin.name] = {
             "instance": plugin,
-            "active": True
+            "active": active
         }
 
     def enable(self, name: str):
