@@ -51,7 +51,7 @@ class PreferencesModal(Adw.PreferencesDialog):
     def __init__(self, app, **kwargs):
         super().__init__(**kwargs)
         self.__app = app
-        self.__manger: Manager = app.manager
+        self.__manager: Manager = app.manager
         self.__settings: InspiraSettings = app.settings
         self.connect("closed", self.on_close_request)
 
@@ -99,7 +99,7 @@ class PreferencesModal(Adw.PreferencesDialog):
         )
 
     def _load_apis(self):
-        for api in self.__manger.list_plugins():
+        for api in self.__manager.list_plugins():
             api_row = SwitchInfoRow()
             api_row.set_title(title=api['name'])
             api_row.set_active(api['active'])
@@ -116,11 +116,11 @@ class PreferencesModal(Adw.PreferencesDialog):
 
     def on_switch_api(self, switch_api: Adw.SwitchRow, state):
         if switch_api.get_active():
-            self.__manger.enable(
+            self.__manager.enable(
                 switch_api.get_title(),
             )
         else:
-            self.__manger.disable(
+            self.__manager.disable(
                 switch_api.get_title(),
             )
 
@@ -128,6 +128,6 @@ class PreferencesModal(Adw.PreferencesDialog):
         pass
 
     def on_close_request(self, _):
-        save_config_api(self.__manger.list_plugins())
+        save_config_api(self.__manager.list_plugins())
         self.__app.load_apis()
 
