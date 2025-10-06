@@ -21,6 +21,8 @@ from gi.repository import Adw
 from gi.repository import Gtk
 from gi.repository import Gio
 
+from ...utils.load_apis import save_config_api
+
 from config import URI_PATH
 
 from ...core.manager import Manager
@@ -48,8 +50,12 @@ class PreferencesModal(Adw.PreferencesDialog):
 
     def __init__(self, app, **kwargs):
         super().__init__(**kwargs)
+        self.__app = app
         self.__manger: Manager = app.manager
         self.__settings: InspiraSettings = app.settings
+        self.connect("closed", self.on_close_request)
+
+        print("je suis créer")
 
         self._binding()
 
@@ -96,6 +102,7 @@ class PreferencesModal(Adw.PreferencesDialog):
         for api in self.__manger.list_plugins():
             api_row = SwitchInfoRow()
             api_row.set_title(title=api['name'])
+            api_row.set_active(api['active'])
 
             if api["capabilities"]["random"].present:
                 api_row.create_tag(_("Random"))
@@ -103,7 +110,24 @@ class PreferencesModal(Adw.PreferencesDialog):
             if api["capabilities"]["search"].present:
                 api_row.create_tag(_("Search"))
 
+            api_row.connect("activated", self.on_switch_api)
+
             self.apis_group.add(api_row)
+
+    def on_switch_api(self, switch_api: Adw.SwitchRow, state):
+        if switch_api.get_active():
+            self.__manger.enable(
+                switch_api.get_title(),
+            )
+        else:
+            self.__manger.disable(
+                switch_api.get_title(),
+            )
 
     def _load_tags(self):
         pass
+
+    def on_close_request(self, _):
+        save_config_api(self.__manger.list_plugins())
+        self.__app.load_apis()
+

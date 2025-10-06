@@ -23,7 +23,7 @@ import gi
 gi.require_version('Gtk', '4.0')
 gi.require_version('Adw', '1')
 
-from gi.repository import Gio, Adw
+from gi.repository import Gio, Adw, GObject
 from .window import InspiraWindow
 
 from .widgets.modals.preferences import PreferencesModal
@@ -32,11 +32,15 @@ from .core.manager import Manager
 from .core.imgData import ImgData
 
 from config import VERSION, NAME, pkgdatadir, URI, URI_PATH
-from .utils.load_apis import load_apis
+from .utils.load_apis import load_apis, creat_config_path, load_config_api, save_config_api
 from .utils.gtk_settings import InspiraSettings
 
 class InspiraApplication(Adw.Application):
     """The main application singleton class."""
+
+    __gsignals__ = {
+        "loaded_api": (GObject.SIGNAL_RUN_LAST, None, ()),
+    }
 
     def __init__(self):
         super().__init__(application_id=URI,
@@ -48,6 +52,8 @@ class InspiraApplication(Adw.Application):
             'preferences', self.on_preferences_action, ['<primary>p']
         )
 
+        self.__pref = None
+
         self.settings = InspiraSettings()
 
         self.store_images: Gio.ListStore = Gio.ListStore()
@@ -57,10 +63,24 @@ class InspiraApplication(Adw.Application):
         self.load_apis()
 
     def load_apis(self):
+        creat_config_path()
         apis = load_apis(f"{pkgdatadir}/{NAME}/apis", NAME)
 
+        conf_api = load_config_api()
+
         for api in apis:
-            self.manager.register(api, True)
+            activate = True
+            if api.name in conf_api.keys():
+                activate = conf_api[api.name]
+
+            self.manager.register(api, activate)
+
+        list_plugin = self.manager.list_plugins()
+
+        if not len(list_plugin) == len(conf_api):
+            save_config_api(self.manager.list_plugins())
+
+        self.emit("loaded_api")
 
     def do_activate(self):
         """Called when the application is activated.
@@ -87,8 +107,10 @@ class InspiraApplication(Adw.Application):
 
     def on_preferences_action(self, widget, _):
         """Callback for the app.preferences action."""
-        pref = PreferencesModal(self)
-        pref.present(self.props.active_window)
+        if self.__pref is None:
+            self.__pref = PreferencesModal(self)
+
+        self.__pref.present(self.props.active_window)
 
     def create_action(self, name, callback, shortcuts=None):
         """Add an application action.

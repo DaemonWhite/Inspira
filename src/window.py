@@ -73,14 +73,13 @@ class InspiraWindow(Adw.ApplicationWindow):
         if devel:
             self.add_css_class("devel")
 
-        self.store = Gio.ListStore.new(Gtk.StringObject)
-        for plugin in self.app.manager.list_plugins():
-            if plugin["active"]:
-                self.store.append(Gtk.StringObject.new(plugin["name"]))
+        self.api_store = Gio.ListStore.new(Gtk.StringObject)
+
+        self._on_load_api()
+        self.app.connect("loaded_api", lambda _: self._on_load_api())
 
         self.search_tags_entry.add_tags(self.app.manager.get_all_tags())
 
-        self.image_drop_down.set_model(self.store)
         self.is_nsfw_enabled()
         self.asyncLoadImage()
 
@@ -104,6 +103,14 @@ class InspiraWindow(Adw.ApplicationWindow):
             "vertical_mode",
             Gio.SettingsBindFlags.GET
         )
+
+    def _on_load_api(self):
+        self.api_store.remove_all()
+        for plugin in self.app.manager.list_plugins():
+            if plugin["active"]:
+                self.api_store.append(Gtk.StringObject.new(plugin["name"]))
+
+        self.image_drop_down.set_model(self.api_store)
 
     def _on_add_tags(self, _):
         self.wrap_tags.add_tags(self.search_tags_entry.get_searched_tag())
