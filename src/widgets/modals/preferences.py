@@ -46,7 +46,6 @@ class PreferencesModal(Adw.PreferencesDialog):
     apis_group: Adw.PreferencesGroup = Gtk.Template.Child()
     tags_group: Adw.PreferencesGroup = Gtk.Template.Child()
     ## TODO Create Tags Manager
-    ## Todo Create Save Systeme for apis
 
     def __init__(self, app, **kwargs):
         super().__init__(**kwargs)
