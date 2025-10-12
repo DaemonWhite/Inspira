@@ -17,10 +17,18 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-from gi.repository import Gtk, Adw
+from enum import Enum
+
+from gi.repository import Gtk, Adw, GObject
 
 from config import URI_PATH
 
+
+class RowState(Enum):
+    ERROR = 0
+    WARNING = 1
+    SUCCESS = 2
+    NEUTRAL = -1
 
 @Gtk.Template(resource_path=URI_PATH+'/ui/widgets/states_row.ui')
 class StatesRow(Adw.ActionRow):
@@ -29,20 +37,49 @@ class StatesRow(Adw.ActionRow):
     color: Gtk.Box = Gtk.Template.Child()
     icon: Gtk.Image = Gtk.Template.Child()
 
-    def __init__(self, activate: bool=False):
+    _state = -1
+
+    def __init__(self, activate: bool = False):
         super().__init__()
-        self.__activate = activate
+        self._update_state()
 
-        self.set_active(self.__activate)
+    @GObject.Property(type=int)
+    def state(self) -> RowState:
+        return RowState(self._state)
 
-    def set_active(self, activate: bool):
-        self.__activate = activate
+    @state.setter
+    def state(self, value):
+        self._state = value
+        if self.do_realize:
+            self._update_state()
 
-        if self.__activate:
-            self.icon.set_from_icon_name("test-pass-symbolic")
-            self.color.remove_css_class("error")
-            self.color.add_css_class("success")
-        else:
-            self.icon.set_from_icon_name("minus-large-circle-outline-symbolic")
-            self.color.remove_css_class("success")
-            self.color.add_css_class("error")
+    def _update_state(self):
+        state = self.state
+        icon = ""
+        css_class = ""
+
+        CSS_LIST = [
+            "error",
+            "warning",
+            "success",
+            "neutral"
+        ]
+
+        for css in CSS_LIST:
+            self.color.remove_css_class(css)
+
+        if state == RowState.ERROR:
+            css_class = "error"
+            icon = "minus-large-circle-outline-symbolic"
+        elif state == RowState.WARNING:
+            css_class = "warning"
+            icon = "warning-outline-symbolic"
+        elif state == RowState.SUCCESS:
+            css_class = "success"
+            icon = "test-pass-symbolic"
+        elif state == RowState.NEUTRAL:
+            css_class = "neutral"
+            icon = "info-outline-symbolic"
+
+        self.color.add_css_class(css_class)
+        self.icon.set_from_icon_name(icon)

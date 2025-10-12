@@ -23,7 +23,7 @@ from config import URI_PATH
 
 from ..core.imgData import ImgData
 from .tag import Tag
-from .states_row import StatesRow
+from .states_row import StatesRow, RowState
 
 
 @Gtk.Template(resource_path=URI_PATH+'/ui/widgets/infos_image.ui')
@@ -49,8 +49,7 @@ class InfosImage(Adw.Bin):
         self.clear()
 
         # InfosImage
-
-        self.nswf_image_row.set_active(image_data.nsfw)
+        self.nswf_image_row.state = self.__state_row_nsfw(image_data.nsfw)
         self.url_image_row.set_subtitle(image_data.url)
         self.autor_image_row.set_subtitle(image_data.author)
 
@@ -63,7 +62,7 @@ class InfosImage(Adw.Bin):
         # InfosApi
 
         self.api_tag_row.set_title(image_data.api_name)
-        self.nswf_tag_row.set_active(image_data.request.nsfw)
+        self.nswf_tag_row.state = self.__state_row_nsfw(image_data.request.nsfw)
 
         for tag in image_data.request.search_tags:
             self.tags_api_row.append(Tag(label=tag))
@@ -73,13 +72,19 @@ class InfosImage(Adw.Bin):
 
     def clear(self):
         # InfosImage
-        self.nswf_image_row.set_active(False)
+        self.nswf_image_row.state = self.__state_row_nsfw(False)
         self.url_image_row.set_subtitle("")
         self.autor_image_row.set_subtitle("")
         self.tags_image_row.remove_all()
         self.len_tags_image_row.set_label("0")
 
         # InfosApi
-        self.nswf_tag_row.set_active(False)
+        self.nswf_tag_row.state = self.__state_row_nsfw(False)
         self.tags_api_row.remove_all()
         self.len_tags_api_row.set_label("0")
+
+    def __state_row_nsfw(self, is_nsfw: bool) -> RowState:
+        state = RowState.ERROR.value
+        if is_nsfw:
+            state = RowState.SUCCESS.value
+        return state

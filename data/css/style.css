@@ -25,6 +25,11 @@
   background-color: alpha(@error_color, .25);
 }
 
+.state_icon.warning {
+  color: @warning_color;
+  background-color: alpha(@warning_color, .25);
+}
+
 .state_icon.neutral {
   color: @light_5;
   background-color: alpha(@light_5, .25);
