@@ -30,6 +30,7 @@ class RowState(Enum):
     SUCCESS = 2
     NEUTRAL = -1
 
+
 @Gtk.Template(resource_path=URI_PATH+'/ui/widgets/states_row.ui')
 class StatesRow(Adw.ActionRow):
     __gtype_name__ = 'StatesRow'
