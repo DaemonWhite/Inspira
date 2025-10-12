@@ -21,23 +21,23 @@
 }
 
 .state_icon.error {
-  color: @error_color;
-  background-color: alpha(@error_color, .25);
+  color: var(--error-color);
+  background-color: alpha(var(--error-color), .25);
 }
 
 .state_icon.warning {
-  color: @warning_color;
-  background-color: alpha(@warning_color, .25);
+  color: var(--warning-color);
+  background-color: alpha(var(--warning-color), .25);
 }
 
 .state_icon.neutral {
-  color: @light_5;
-  background-color: alpha(@light_5, .25);
+  color: var(--light-5);
+  background-color: alpha(var(--light-5), .25);
 }
 
 .state_icon.success {
-  color: @success_color;
-  background-color: alpha(@success_color, .25);
+  color: var(--success-color);
+  background-color: alpha(var(--success-color), .25);
 }
 
 .state_icon.accent {
