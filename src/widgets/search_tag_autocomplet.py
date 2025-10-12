@@ -21,6 +21,7 @@ from gi.repository import Gtk
 
 from config import URI_PATH
 
+
 @Gtk.Template(resource_path=URI_PATH+'/ui/widgets/search_tag_autocomplet.ui')
 class SearchTagAutocomplet(Gtk.SearchEntry):
     __gtype_name__ = 'SearchTagAutocomplet'
@@ -82,7 +83,6 @@ class SearchTagAutocomplet(Gtk.SearchEntry):
                 break
 
             start_pos += len(frag_text) + 1
-
 
         return [start_pos, end_pos]
 
