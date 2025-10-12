@@ -39,3 +39,8 @@
   color: @success_color;
   background-color: alpha(@success_color, .25);
 }
+
+.state_icon.accent {
+  color: var(--accent-color);
+  background-color: alpha(var(--accent-color), .25);
+}
