@@ -1,0 +1,29 @@
+using Gtk 4.0;
+using Adw 1;
+
+
+template $NotifButton : Gtk.Button {
+  state: 2;
+  Gtk.Box {
+    Adw.Spinner notif_spinner {}
+    Gtk.Image notif_state {
+      icon-name: "test-pass-symbolic";
+    }
+    Gtk.Popover notif_popup {
+      default-widget: template ;
+
+      Gtk.ScrolledWindow {
+        min-content-width: 300;
+        min-content-height: 200;
+        Gtk.ListBox notif_list {
+          margin-end: 5;
+          margin-start: 5;
+          margin-top: 5;
+          margin-bottom: 5;
+          styles ["boxed-list-separate"]
+          selection-mode: none;
+        }
+      }
+    }
+  }
+}

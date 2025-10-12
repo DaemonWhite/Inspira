@@ -28,12 +28,13 @@ from .window import InspiraWindow
 
 from .widgets.modals.preferences import PreferencesModal
 
-from .core.manager import Manager
-from .core.imgData import ImgData
+from .core import DownloadManager, ImgData, Manager
 
 from config import VERSION, NAME, pkgdatadir, URI, URI_PATH
 from .utils.load_apis import load_apis, creat_config_path, load_config_api, save_config_api
+from .utils.tags_storage import TagsStorage
 from .utils.gtk_settings import InspiraSettings
+
 
 class InspiraApplication(Adw.Application):
     """The main application singleton class."""
@@ -60,6 +61,9 @@ class InspiraApplication(Adw.Application):
 
         self.win = None
         self.manager = Manager()
+        self.download_manager = DownloadManager()
+        self.tags_manager = TagsStorage()
+        self.tags_manager.load_tags()
         self.load_apis()
 
     def load_apis(self):

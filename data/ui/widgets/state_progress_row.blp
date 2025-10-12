@@ -1,0 +1,36 @@
+using Gtk 4.0;
+using Adw 1;
+
+template $StatesProgressRow : Adw.ActionRow {
+  [prefix]
+  Gtk.Box color {
+    valign: center;
+    halign: center;
+    vexpand: true;
+    hexpand: true;
+    styles ["state_icon", "error"]
+    Gtk.Image icon {
+      valign: center;
+      halign: center;
+      margin-top: 5;
+      margin-bottom: 5;
+      margin-end: 5;
+      margin-start: 5;
+      icon-name: "minus-large-circle-outline-symbolic";
+      icon-size: large;
+      width-request: 32;
+      height-request: 32;
+    }
+    Adw.Spinner progress {
+      visible: false;
+      margin-top: 5;
+      margin-bottom: 5;
+      margin-end: 5;
+      margin-start: 5;
+      valign: center;
+      halign: center;
+      width-request: 32;
+      height-request: 32;
+    }
+  }
+}

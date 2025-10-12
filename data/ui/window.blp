@@ -9,11 +9,14 @@ template $InspiraWindow : Adw.ApplicationWindow {
     [top]
     Adw.HeaderBar {
       [end]
-      Gtk.MenuButton {
-        primary: true;
-        icon-name: "open-menu-symbolic";
-        tooltip-text: _("Main Menu");
-        menu-model: primary_menu ;
+      Gtk.Box {
+        $NotifButton notif_download {}
+        Gtk.MenuButton {
+          primary: true;
+          icon-name: "open-menu-symbolic";
+          tooltip-text: _("Main Menu");
+          menu-model: primary_menu ;
+        }
       }
     }
     Gtk.Box {
@@ -76,29 +79,6 @@ template $InspiraWindow : Adw.ApplicationWindow {
             vexpand: true;
             switch_last_add_image: true;
           };
-        }
-      }
-
-      Gtk.Box work_box {
-        hexpand: true;
-        vexpand: true;
-        orientation: vertical;
-        spacing: 12;
-
-        Gtk.Label {
-          valign: center;
-          halign: center;
-          justify: center;
-          label: _("Load New Image");
-          styles ["title-1"]
-        }
-
-        Adw.Spinner work_spinner {
-          valign: center;
-          halign: center;
-
-          width-request: 100;
-          height-request: 100;
         }
       }
     }

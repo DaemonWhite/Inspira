@@ -17,61 +17,84 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 from gi.repository import Gio, GObject
-from enum import Enum
+
+from ..utils.state_progress import StateProgress
 
 from .imgData import ImgData
 from .infoRequest import InfoRequest
 
 
-class DownloadState(Enum):
-    WAIT = 0
-    DOWNLOAD = 1
-    FINISH = 2
-
-
 class DownloadItemStates(GObject.GObject):
     data = GObject.Property(type=object)
-    state = GObject.Property(type=object)
-    lenght = GObject.Property(type=int)
-    advanced = GObject.Property(type=int)
-    imgs =  GObject.Property(type=object)
+    status = GObject.Property(type=object)
+    length = GObject.Property(type=int)
+    imgs = GObject.Property(type=object)
 
     def __init__(self, info_request: InfoRequest):
         super().__init__()
-        self.state = DownloadState.WAIT
+        self._status = StateProgress.WAITING
         self.data = info_request
         self.imgs = self.data.extact_imgs_request()
-        self.lenght = len(self.imgs)
-        self.advanced = 0
+        self.length = len(self.imgs)
+        self._progress = 0
 
     def download(self):
-        self.state = DownloadState.DOWNLOAD
-        self.imgs[0].download()
-        self.state = DownloadState.FINISH
-        print("end")
+        self.status = StateProgress.DOWNLOADING
+        for img in self.imgs:
+            img.download()
+            self.progress = self.progress + 1
+        self.status = StateProgress.SUCCESS
+
+    @GObject.Property(type=object)
+    def status(self):
+        return self._status
+
+    @status.setter
+    def status(self, value):
+        self._status = value
+        self.notify('status')
+
+    @GObject.Property(type=int)
+    def progress(self):
+        return self._progress
+
+    @progress.setter
+    def progress(self, value):
+        self._progress = value
+        self.notify('progress')
 
 
-class DownloadManager():
+class DownloadManager(GObject.GObject):
 
     def __init__(self):
         super().__init__()
-        self.downloaded = False
+        self._downloading = False
         self.queue: Gio.ListStore = Gio.ListStore()
         self.end_queue: Gio.ListStore = Gio.ListStore()
 
     def append(self, info_request: InfoRequest):
         self.queue.append(DownloadItemStates(info_request))
 
+    @GObject.Property(type=bool, default=False)
+    def downloading(self):
+        return self._downloading
+
+    @downloading.setter
+    def downloading(self, value: bool):
+        self._downloading = value
+        self.notify('downloading')
+
     def downloads(self):
         if self.queue.get_n_items() < 1:
-            self.downloaded = False
+            self.downloading = False
             return
 
-        if self.downloaded:
+        if self.downloading:
             return
 
-        self.downloaded = True
+        self.downloading = True
         self.queue.get_item(0).download()
-        self.end_queue = self.queue.get_item(0)
+        self.end_queue.append(self.queue.get_item(0))
         self.queue.remove(0)
+        self.downloading = False
         self.downloads()
