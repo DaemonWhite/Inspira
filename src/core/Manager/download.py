@@ -18,10 +18,9 @@
 # SPDX-License-Identifier: GPL-3.0-or-later
 from gi.repository import Gio, GObject
 
-from ..utils.state_progress import StateProgress
+from ...utils.state_progress import StateProgress
 
-from .imgData import ImgData
-from .infoRequest import InfoRequest
+from ..Api import ImgData, InfoRequest
 
 
 class DownloadItemStates(GObject.GObject):

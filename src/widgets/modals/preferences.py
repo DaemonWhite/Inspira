@@ -25,7 +25,7 @@ from ...utils.load_apis import save_config_api
 
 from config import URI_PATH
 
-from ...core.manager import Manager
+from ...core import Manager
 from ..switch_info_row import SwitchInfoRow
 
 from ...utils.gtk_settings import InspiraSettings
@@ -50,7 +50,7 @@ class PreferencesModal(Adw.PreferencesDialog):
     def __init__(self, app, **kwargs):
         super().__init__(**kwargs)
         self.__app = app
-        self.__manager: Manager = app.manager
+        self.__manager: Manager.Api = app.manager
         self.__settings: InspiraSettings = app.settings
         self.connect("closed", self.on_close_request)
 

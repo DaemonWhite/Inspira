@@ -8,7 +8,7 @@ import config
 
 from gi.repository import GLib
 
-from ..core.ApiInterface import ApiInterface
+from ..core.Api import ApiInterface
 
 
 def load_apis(full_path: str, package:str):

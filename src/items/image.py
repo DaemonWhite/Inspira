@@ -1,5 +1,5 @@
 from gi.repository import GObject
-from ..core.imgData import ImgData
+from ..core.Api.imgData import ImgData
 
 
 class ImageItem(GObject.GObject):

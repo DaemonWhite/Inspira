@@ -17,10 +17,9 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-from ..core.ApiInterface import ApiInterface
-from ..core.capability import EndPointCapability, TagCapability
-from ..core.infoRequest import InfoRequest
-from ..core.imgData import ImgData
+from ..core.Api import ApiInterface, ImgData, InfoRequest
+
+from ..core.Api.capability import EndPointCapability, TagCapability
 
 
 class WaifuIm(ApiInterface):

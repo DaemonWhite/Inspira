@@ -17,13 +17,11 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-from .infoRequest import InfoRequest
-
-from .ApiInterface import ApiInterface
-from ..utils import add_without_duplicate
+from ..Api import ApiInterface, InfoRequest
+from ...utils import add_without_duplicate
 
 
-class Manager(object):
+class Api(object):
     def __init__(self):
         self.plugins: dict[str, dict[str, object]] = {}
 

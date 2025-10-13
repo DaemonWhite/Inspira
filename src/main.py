@@ -28,7 +28,7 @@ from .window import InspiraWindow
 
 from .widgets.modals.preferences import PreferencesModal
 
-from .core import DownloadManager, ImgData, Manager
+from .core import Manager, Api
 
 from config import VERSION, NAME, pkgdatadir, URI, URI_PATH
 from .utils.load_apis import load_apis, creat_config_path, load_config_api, save_config_api
@@ -60,8 +60,8 @@ class InspiraApplication(Adw.Application):
         self.store_images: Gio.ListStore = Gio.ListStore()
 
         self.win = None
-        self.manager = Manager()
-        self.download_manager = DownloadManager()
+        self.manager = Manager.Api()
+        self.download_manager = Manager.DownloadManager()
         self.tags_manager = TagsStorage()
         self.tags_manager.load_tags()
         self.load_apis()
