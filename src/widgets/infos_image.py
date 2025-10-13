@@ -21,7 +21,7 @@ from gi.repository import Gtk, Adw
 
 from config import URI_PATH
 
-from ..core.imgData import ImgData
+from ..core.Api import ImgData
 from .tag import Tag
 from .states_row import StatesRow, RowState
 

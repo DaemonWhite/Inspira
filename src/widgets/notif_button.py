@@ -26,8 +26,8 @@ from gi.repository import GObject
 
 from config import URI_PATH
 
-from ..core.imgData import ImgData
-from ..core.download_manager import DownloadItemStates, DownloadManager
+from ..core.Api import ImgData
+from ..core.Manager import DownloadItemStates, DownloadManager
 
 from ..utils.state_progress import StateProgress
 

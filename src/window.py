@@ -28,7 +28,7 @@ from config import devel, URI_PATH
 
 from .items.image import ImageItem
 
-from .core.imgData import ImgData
+from .core.Api import ImgData
 
 from .widgets.infos_image import InfosImage
 from .widgets.notif_button import NotifButton
@@ -182,3 +182,4 @@ class InspiraWindow(Adw.ApplicationWindow):
     def asyncLoadImage(self, args=None):
         t = threading.Thread(target=self.loadImage, args=[args])
         t.start()
+

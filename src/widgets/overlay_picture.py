@@ -21,7 +21,7 @@ from gi.repository import Adw, Gtk, GLib, Gdk, Gio, GObject
 
 from config import URI_PATH
 
-from ..core.imgData import ImgData
+from ..core.Api import ImgData
 
 
 @Gtk.Template(resource_path=URI_PATH+'/ui/widgets/overlay_picture.ui')

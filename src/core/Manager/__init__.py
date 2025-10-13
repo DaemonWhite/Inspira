@@ -1,4 +1,5 @@
 from .api import Api
-from .download import DownloadManager
+from .download import DownloadManager, DownloadItemStates
 
-__all__ = ["Api", "DownloadManager"]
+__all__ = ["Api", "DownloadManager", "DownloadItemStates"]
+
