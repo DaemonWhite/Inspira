@@ -1,7 +1,7 @@
 class UniqueList(list):
     def append(self, item):
-        if item not in self:
-            super().append(item)
+        if item.lower() not in self:
+            super().append(item.lower())
         else:
             raise ValueError(f"'{item}' existe is present in list")
 
