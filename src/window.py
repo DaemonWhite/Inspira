@@ -139,9 +139,7 @@ class InspiraWindow(Adw.ApplicationWindow):
             if img.success:
                 GLib.idle_add(self._updateImage, img)
             else:
-                self.loadedImage()
                 print(img.error)
-
 
     def is_nsfw_enabled(self) -> bool:
         if "nsfw" == self.search_nsfw.get_active_name():
@@ -174,7 +172,6 @@ class InspiraWindow(Adw.ApplicationWindow):
         # else:
         #     self.loadedImage()
         #     print(data.error)
-
 
     def _updateImage(self, content):
         try:
