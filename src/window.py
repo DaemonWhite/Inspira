@@ -150,7 +150,6 @@ class InspiraWindow(Adw.ApplicationWindow):
 
     def loadImage(self, args):
         if self.image_drop_down.get_model().get_n_items() < 1:
-            self.loadedImage()
             print("Error not api enabled")
             return
         selected_api = self.image_drop_down.get_selected_item().get_string()
