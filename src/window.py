@@ -157,6 +157,9 @@ class InspiraWindow(Adw.ApplicationWindow):
             nsfw=self.is_nsfw_enabled(),
             tags=self.wrap_tags.get_tags()
         )
+        if not data.success > 0:
+            print("request failled : ", data)
+            return
 
         self.app.download_manager.append(data)
         self.app.download_manager.downloads()
