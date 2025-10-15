@@ -26,7 +26,7 @@ gi.require_version('Adw', '1')
 from gi.repository import Gio, Adw, GObject
 from .window import InspiraWindow
 
-from .widgets.modals import PreferencesModal, SearchModal
+from .widgets.modals import PreferencesModal
 
 from .core import Manager, Api
 
@@ -136,3 +136,4 @@ def main(version):
     """The application's entry point."""
     app = InspiraApplication()
     return app.run(sys.argv)
+
