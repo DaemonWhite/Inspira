@@ -26,7 +26,7 @@ gi.require_version('Adw', '1')
 from gi.repository import Gio, Adw, GObject
 from .window import InspiraWindow
 
-from .widgets.modals.preferences import PreferencesModal
+from .widgets.modals import PreferencesModal, SearchModal
 
 from .core import Manager, Api
 
