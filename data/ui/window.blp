@@ -21,47 +21,71 @@ template $InspiraWindow : Adw.ApplicationWindow {
     sidebar:  Adw.ToolbarView {
     [top]
       Adw.HeaderBar {
-        show-title: false;
+        title-widget: Adw.ViewSwitcher {
+          stack: search_stack;
+          policy: wide;
+        };
       }
-      Gtk.Box search_box {
-        halign: center;
-        orientation: vertical;
-        spacing: 5;
-        Gtk.Button {
-          label: _("Search");
-          styles ["suggested-action"]
-          action-name: "app.newpicture";
-        }
-        Gtk.DropDown image_drop_down {}
-        Adw.ToggleGroup search_nsfw {
-          active-name: "sfw";
-          Adw.Toggle {
-            label: "SFW";
-            name: "sfw";
-            tooltip: _("Safe For Work (no adult content)");
-          }
-          Adw.Toggle {
-            label: "NSFW";
-            name: "nsfw";
-            tooltip: _("No Safe For Work (no adult content)");
-          }
-        }
-        Gtk.Box {
-          styles ["linked"]
-          $SearchTagAutocomplet search_tags_entry {
-            placeholder-text: _("Ex: tag1,tag2");
-          }
-          Gtk.Button search_add_tags {
-            label: _("Add");
-            icon-name: "tag-outline-add-symbolic";
-            tooltip-text: _("Add tags filter");
-          }
-        }
 
-        $WrapTags wrap_tags {
+    Adw.ViewStack search_stack {
+      Adw.ViewStackPage {
+        name: "random";
+        title: _("Random");
+        icon-name: "playlist-shuffle-symbolic";
+        child: Gtk.Box search_box {
           halign: center;
-        }
+          orientation: vertical;
+          spacing: 5;
+          Gtk.Button {
+            label: _("Search");
+            styles ["suggested-action"]
+            action-name: "app.newpicture";
+          }
+          Gtk.DropDown image_drop_down {}
+          Adw.ToggleGroup search_nsfw {
+            active-name: "sfw";
+            Adw.Toggle {
+              label: "SFW";
+              name: "sfw";
+              tooltip: _("Safe For Work (no adult content)");
+            }
+            Adw.Toggle {
+              label: "NSFW";
+              name: "nsfw";
+              tooltip: _("No Safe For Work (adult content)");
+            }
+          }
+          Gtk.Box {
+            styles ["linked"]
+            $SearchTagAutocomplet search_tags_entry {
+              placeholder-text: _("Ex: tag1,tag2");
+            }
+            Gtk.Button search_add_tags {
+              label: _("Add");
+              icon-name: "tag-outline-add-symbolic";
+              tooltip-text: _("Add tags filter");
+            }
+          }
+
+          $WrapTags wrap_tags {
+            halign: center;
+          }
+        };
       }
+      Adw.ViewStackPage {
+        name: "search";
+        title: _("Search");
+        icon-name: "search-global-symbolic";
+        child: Gtk.Box {
+          orientation: vertical;
+          Gtk.Button {
+            label: _("Search");
+            styles ["suggested-action"]
+            action-name: "app.newpicture";
+          }
+        };
+      }
+    }
     };
     content: Adw.ToolbarView {
       [top]

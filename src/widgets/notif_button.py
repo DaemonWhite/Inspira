@@ -116,3 +116,4 @@ class NotifButton(Gtk.Button):
             self.notif_spinner.set_visible(False)
             self.notif_state.set_visible(True)
             self.notif_state.set_from_icon_name("test-pass-symbolic")
+
