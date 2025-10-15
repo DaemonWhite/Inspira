@@ -59,7 +59,6 @@ class NotifButton(Gtk.Button):
     @state.setter
     def state(self, value):
         self._state = value
-        print(value)
         if self.get_realized():
             self._update_state()
 
