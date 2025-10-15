@@ -33,7 +33,6 @@ class Api(object):
 
     def enable(self, name: str):
         if name in self.plugins.keys():
-            print("active")
             self.plugins[name]["active"] = True
 
     def disable(self, name: str):

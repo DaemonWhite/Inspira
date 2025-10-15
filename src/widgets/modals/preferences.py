@@ -54,8 +54,6 @@ class PreferencesModal(Adw.PreferencesDialog):
         self.__settings: InspiraSettings = app.settings
         self.connect("closed", self.on_close_request)
 
-        print("je suis créer")
-
         self._binding()
 
         self._load_apis()
@@ -129,4 +127,3 @@ class PreferencesModal(Adw.PreferencesDialog):
     def on_close_request(self, _):
         save_config_api(self.__manager.list_plugins())
         self.__app.load_apis()
-

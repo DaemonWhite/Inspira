@@ -29,7 +29,6 @@ def get_conf_api_path():
 
 
 def creat_config_path():
-    print("")
     config_path = GLib.get_user_config_dir()
     if not os.path.exists(config_path):
         print("Error: xdg config")
