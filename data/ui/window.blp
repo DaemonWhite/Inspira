@@ -5,83 +5,111 @@ template $InspiraWindow : Adw.ApplicationWindow {
   title: _("Inspira");
   default-width: 800;
   default-height: 600;
-  Adw.ToolbarView {
+
+  Adw.Breakpoint {
+    condition ("max-width: 500sp")
+
+    setters {
+      search_view.collapsed: true;
+    }
+  }
+
+  Adw.OverlaySplitView search_view {
+    collapsed: false;
+    sidebar-position: start;
+    show-sidebar: true;
+    sidebar:  Adw.ToolbarView {
     [top]
-    Adw.HeaderBar {
-      [end]
-      Gtk.Box {
-        $NotifButton notif_download {}
-        Gtk.MenuButton {
-          primary: true;
-          icon-name: "open-menu-symbolic";
-          tooltip-text: _("Main Menu");
-          menu-model: primary_menu ;
+      Adw.HeaderBar {
+        show-title: false;
+      }
+      Gtk.Box search_box {
+        halign: center;
+        orientation: vertical;
+        spacing: 5;
+        Gtk.Button {
+          label: _("Search");
+          styles ["suggested-action"]
+          action-name: "app.newpicture";
+        }
+        Gtk.DropDown image_drop_down {}
+        Adw.ToggleGroup search_nsfw {
+          active-name: "sfw";
+          Adw.Toggle {
+            label: "SFW";
+            name: "sfw";
+            tooltip: _("Safe For Work (no adult content)");
+          }
+          Adw.Toggle {
+            label: "NSFW";
+            name: "nsfw";
+            tooltip: _("No Safe For Work (no adult content)");
+          }
+        }
+        Gtk.Box {
+          styles ["linked"]
+          $SearchTagAutocomplet search_tags_entry {
+            placeholder-text: _("Ex: tag1,tag2");
+          }
+          Gtk.Button search_add_tags {
+            label: _("Add");
+            icon-name: "tag-outline-add-symbolic";
+            tooltip-text: _("Add tags filter");
+          }
+        }
+
+        $WrapTags wrap_tags {
+          halign: center;
         }
       }
-    }
-    Gtk.Box {
-      vexpand: true;
-      hexpand: true;
-      spacing: 12;
-      orientation: vertical;
-      Gtk.Box search_box {
-          halign: center;
-          spacing: 5;
-          Gtk.DropDown image_drop_down {
+    };
+    content: Adw.ToolbarView {
+      [top]
+      Adw.HeaderBar {
+        [start]
+        Gtk.ToggleButton {
+          icon-name: "search-global-symbolic";
+          action-name: "win.togglesearchview";
+          active: bind search_view.show-sidebar bidirectional;
+        }
+        [end]
+        Gtk.Box {
+          $NotifButton notif_download {}
+          Gtk.MenuButton {
+            primary: true;
+            icon-name: "open-menu-symbolic";
+            tooltip-text: _("Main Menu");
+            menu-model: primary_menu ;
           }
-          Adw.ToggleGroup search_nsfw {
-            active-name: "sfw";
-            Adw.Toggle {
-              label: "SFW";
-              name: "sfw";
-              tooltip: _("Safe For Work (no adult content)");
-            }
-            Adw.Toggle {
-              label: "NSFW";
-              name: "nsfw";
-              tooltip: _("No Safe For Work (no adult content)");
-            }
-          }
-          Gtk.Box {
-            styles ["linked"]
-            $SearchTagAutocomplet search_tags_entry {
-              placeholder-text: _("Ex: tag1,tag2");
-            }
-            Gtk.Button search_add_tags {
-              label: _("Add");
-              icon-name: "tag-outline-add-symbolic";
-              tooltip-text: _("Add tags filter");
-            }
-          }
-          Gtk.Button {
-            label: _("Search");
-            action-name: "app.newpicture";
-          }
+        }
       }
-      $WrapTags wrap_tags {
-        halign: center;
-      }
-      Gtk.Box image_box {
+      Gtk.Box {
         vexpand: true;
         hexpand: true;
+        spacing: 12;
+        orientation: vertical;
+        Gtk.Box image_box {
+          vexpand: true;
+          hexpand: true;
 
-        Adw.OverlaySplitView overlay_image {
-          sidebar-position: end;
-          show-sidebar: false;
-          max-sidebar-width: 280;
-          min-sidebar-width: 280;
-          sidebar: $InfosImage infos_image {
-            vexpand: true;
-            hexpand: true;
-          };
-          content: $OverlayPicture  image {
-            hexpand: true;
-            vexpand: true;
-            switch_last_add_image: true;
-          };
+          Adw.OverlaySplitView overlay_image {
+            sidebar-position: end;
+            show-sidebar: false;
+            max-sidebar-width: 280;
+            min-sidebar-width: 280;
+            sidebar: $InfosImage infos_image {
+              vexpand: true;
+              hexpand: true;
+            };
+            content: $OverlayPicture  image {
+              hexpand: true;
+              vexpand: true;
+              switch_last_add_image: true;
+            };
+          }
         }
       }
-    }
+    };
   }
 }
 

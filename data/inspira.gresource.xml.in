@@ -8,6 +8,8 @@
     <file preprocess="xml-stripblanks" alias="tag-outline-add-symbolic.svg">icons/scalable/actions/tag-outline-add-symbolic.svg</file>
     <file preprocess="xml-stripblanks" alias="test-pass-symbolic.svg">icons/scalable/actions/test-pass-symbolic.svg</file>
     <file preprocess="xml-stripblanks" alias="pause-symbolic.svg">icons/scalable/actions/pause-symbolic.svg</file>
+    <file preprocess="xml-stripblanks" alias="playlist-shuffle-symbolic.svg">icons/scalable/actions/playlist-shuffle-symbolic.svg</file>
+    <file preprocess="xml-stripblanks" alias="search-global-symbolic.svg">icons/scalable/actions/search-global-symbolic.svg</file>
     <file preprocess="xml-stripblanks" alias="puzzle-piece-symbolic.svg">icons/scalable/actions/puzzle-piece-symbolic.svg</file>
     <file preprocess="xml-stripblanks" alias="user-trash-symbolic.svg">icons/scalable/actions/user-trash-symbolic.svg</file>
     <file preprocess="xml-stripblanks" alias="warning-outline-symbolic.svg">icons/scalable/actions/warning-outline-symbolic.svg</file>
@@ -15,6 +17,7 @@
   </gresource>
   <gresource prefix="@URI_PATH@">
     <file preprocess="xml-stripblanks">ui/widgets/modals/preferences.ui</file>
+    <file preprocess="xml-stripblanks">ui/widgets/modals/search.ui</file>
     <file preprocess="xml-stripblanks">ui/widgets/infos_image.ui</file>
     <file preprocess="xml-stripblanks">ui/widgets/overlay_picture.ui</file>
     <file preprocess="xml-stripblanks">ui/widgets/notif_button.ui</file>

@@ -51,6 +51,8 @@ class InspiraWindow(Adw.ApplicationWindow):
     image_box: Gtk.Box = Gtk.Template.Child()
     image_drop_down: Gtk.DropDown = Gtk.Template.Child()
 
+    search_view: Adw.OverlaySplitView = Gtk.Template.Child()
+
     notif_download: NotifButton = Gtk.Template.Child()
 
     overlay_image: Adw.OverlaySplitView = Gtk.Template.Child()
@@ -62,7 +64,13 @@ class InspiraWindow(Adw.ApplicationWindow):
         self.app.create_action(
             'newpicture',
             self.on_load_image,
-            ['<primary>r']
+            ['<primary><shift>r']
+        )
+
+        self.create_action(
+            'togglesearchview',
+            self._on_toggle_search_view,
+            ['F9']
         )
 
         self.bind_events()
@@ -110,6 +118,11 @@ class InspiraWindow(Adw.ApplicationWindow):
         )
 
         self.notif_download.connect_download_manager(self.app.download_manager)
+
+    def _on_toggle_search_view(self, action, _):
+        self.search_view.set_show_sidebar(
+            not self.search_view.get_show_sidebar()
+        )
 
     def _on_load_api(self):
         self.api_store.remove_all()
@@ -185,4 +198,19 @@ class InspiraWindow(Adw.ApplicationWindow):
     def asyncLoadImage(self, args=None):
         t = threading.Thread(target=self.loadImage, args=[args])
         t.start()
+
+    def create_action(self, name, callback, shortcuts=None):
+        """Add an application action.
+
+        Args:
+            name: the name of the action
+            callback: the function to be called when the action is
+              activated
+            shortcuts: an optional list of accelerators
+        """
+        action = Gio.SimpleAction.new(name, None)
+        action.connect("activate", callback)
+        self.add_action(action)
+        if shortcuts:
+            self.app.set_accels_for_action(f"win.{name}", shortcuts)
 
