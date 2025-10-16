@@ -40,7 +40,8 @@ jobs:
             mingw-w64-ucrt-x86_64-python-pillow mingw-w64-ucrt-x86_64-desktop-file-utils
             mingw-w64-ucrt-x86_64-ca-certificates mingw-w64-ucrt-x86_64-meson
             git mingw-w64-ucrt-x86_64-gettext mingw-w64-ucrt-x86_64-gettext
-            mingw-w64-ucrt-x86_64-gettext # mingw-w64-ucrt-x86_64-blueprint-compiler
+            mingw-w64-ucrt-x86_64-gettext
+          # mingw-w64-ucrt-x86_64-blueprint-compiler
 
       - name: Setup Blueprint
         shell: msys2 {0}
