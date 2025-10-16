@@ -17,7 +17,6 @@
   </gresource>
   <gresource prefix="@URI_PATH@">
     <file preprocess="xml-stripblanks">ui/widgets/modals/preferences.ui</file>
-    <file preprocess="xml-stripblanks">ui/widgets/modals/search.ui</file>
     <file preprocess="xml-stripblanks">ui/widgets/infos_image.ui</file>
     <file preprocess="xml-stripblanks">ui/widgets/overlay_picture.ui</file>
     <file preprocess="xml-stripblanks">ui/widgets/notif_button.ui</file>
