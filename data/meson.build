@@ -2,21 +2,32 @@ gnome = import('gnome')
 pkgdatadir = get_option('prefix') / get_option('datadir') / meson.project_name()
 
 
+
+blueprint_file = [
+	'ui/widgets/modals/preferences.blp',
+  	'ui/widgets/infos_image.blp',
+  	'ui/widgets/notif_button.blp',
+  	'ui/widgets/overlay_picture.blp',
+  'ui/widgets/search_tag_autocomplet.blp',
+  'ui/widgets/states_row.blp',
+  'ui/widgets/state_progress_row.blp',
+  'ui/widgets/switch_info_row.blp',
+  	'ui/widgets/tag.blp',
+  'ui/widgets/wrap_tags.blp',
+  'ui/window.blp',
+]
+
+ui_pref = ''
+
+if host_machine.system() == 'linux'
+  blueprint_file += ['ui/shortcuts-dialog.blp']
+  ui_pref = '<file preprocess="xml-stripblanks" alias="shortcuts-dialog.ui">ui/shortcuts-dialog.ui</file>'
+else
+  warning('MSYS 2 Not support Libadwaita 1.8 Disable preference page')
+endif
+
 blueprints = custom_target('blueprints',
-  input: files(
-  		'ui/widgets/modals/preferences.blp',
-  		'ui/widgets/infos_image.blp',
-  		'ui/widgets/notif_button.blp',
-  		'ui/widgets/overlay_picture.blp',
-    'ui/widgets/search_tag_autocomplet.blp',
-    'ui/widgets/states_row.blp',
-    'ui/widgets/state_progress_row.blp',
-    'ui/widgets/switch_info_row.blp',
-    	'ui/widgets/tag.blp',
-    'ui/widgets/wrap_tags.blp',
-    'ui/shortcuts-dialog.blp',
-    'ui/window.blp',
-  ),
+  input: files(blueprint_file),
   output: '.',
   command: [find_program('blueprint-compiler'), 'batch-compile', '@OUTPUT@', '@CURRENT_SOURCE_DIR@', '@INPUT@'],
 )
@@ -24,6 +35,7 @@ blueprints = custom_target('blueprints',
 conf = configuration_data()
 conf.set('URI', uri)
 conf.set('URI_PATH', uri_path)
+conf.set('UI_PREF', ui_pref)
 
 gresource = configure_file(
   input: 'inspira.gresource.xml.in',
