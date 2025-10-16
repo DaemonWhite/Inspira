@@ -22,15 +22,14 @@
 import os
 import sys
 import signal
-import locale
 import gettext
 
 from config import NAME, VERSION, pkgdatadir, localedir
 
 sys.path.insert(1, pkgdatadir)
 signal.signal(signal.SIGINT, signal.SIG_DFL)
-locale.bindtextdomain(NAME, localedir)
-locale.textdomain(NAME)
+gettext.bindtextdomain(NAME, localedir)
+gettext.textdomain(NAME)
 gettext.install(NAME, localedir)
 
 if __name__ == '__main__':
