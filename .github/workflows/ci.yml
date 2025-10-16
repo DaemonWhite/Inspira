@@ -67,7 +67,7 @@ jobs:
           timeout 2 inspira; [ "$?" -eq "124" ]
 
       - name: Inno Setup
-        run: iscc ".\build-aux\windows\Inspira.iss"
+        run: iscc ".\build_aux\windows\Inspira.iss"
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
