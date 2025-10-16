@@ -8,12 +8,15 @@ import config
 
 from gi.repository import GLib
 
+from config import pkgdatadir
+
 from ..core.Api import ApiInterface
 
 
 def load_apis(full_path: str, package:str):
     plugins = []
-    for name, module_name, finder in pkgutil.iter_modules(["/app/share/inspira/inspira/apis"]):
+    api_path = os.path.join(pkgdatadir, 'inspira/apis')
+    for name, module_name, finder in pkgutil.iter_modules([api_path]):
         print(f"Module find : {name}, Package : {module_name}")
 
         module = importlib.import_module(f".apis.{module_name}", package=package)
