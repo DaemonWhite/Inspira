@@ -70,7 +70,7 @@ jobs:
         run: choco install innosetup -y
 
       - name: Inno Setup
-        run: iscc ".\build_aux\windows\Inspira.iss"
+        run: iscc ".\_build\build_aux\windows\Inspira.iss"
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
