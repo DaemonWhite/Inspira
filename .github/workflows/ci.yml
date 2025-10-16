@@ -18,7 +18,7 @@ jobs:
       - name: Flatpak Builder
         uses: flatpak/flatpak-github-actions/flatpak-builder@v6.5
         with:
-          bundle: fr.daemonwhite.Inspira.devel.json
+          bundle: fr.daemonwhite.Inspira.devel.flatpak
           manifest-path: flatpak/fr.daemonwhite.Inspira.devel.json
 
   windows:
