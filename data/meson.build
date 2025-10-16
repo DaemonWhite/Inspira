@@ -26,16 +26,13 @@ else
   warning('MSYS 2 Not support Libadwaita 1.8 Disable preference page')
 endif
 
+conf.set('UI_PREF', ui_pref)
+
 blueprints = custom_target('blueprints',
   input: files(blueprint_file),
   output: '.',
   command: [find_program('blueprint-compiler'), 'batch-compile', '@OUTPUT@', '@CURRENT_SOURCE_DIR@', '@INPUT@'],
 )
-
-conf = configuration_data()
-conf.set('URI', uri)
-conf.set('URI_PATH', uri_path)
-conf.set('UI_PREF', ui_pref)
 
 gresource = configure_file(
   input: 'inspira.gresource.xml.in',

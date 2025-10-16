@@ -1,6 +1,6 @@
 #define MyAppName "Inspira"
-#define MyAppVersion "0.1.0"
-#define MyAppPublisher "kramo"
+#define MyAppVersion "@VERSION@"
+#define MyAppPublisher "DaemonWhite"
 #define MyAppURL "https://github.com/DaemonWhite/Inspira/"
 #define MyAppExeName "pythonw.exe"
 
@@ -15,10 +15,10 @@ AppSupportURL=https://github.com/DaemonWhite/Inspira/issues
 AppUpdatesURL={#MyAppURL}
 DefaultDirName={autopf64}\{#MyAppName}
 DisableProgramGroupPage=yes
-LicenseFile=..\..\COPYING
+LicenseFile=..\..\..\COPYING
 PrivilegesRequiredOverridesAllowed=dialog
 OutputBaseFilename=Inspira Windows
-SetupIconFile=.\icon.ico
+SetupIconFile=..\..\..\build-aux\windows\icon.ico
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern
