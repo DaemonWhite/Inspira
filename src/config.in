@@ -1,8 +1,10 @@
+import os
+
 VERSION = '@VERSION@'
 NAME = '@NAME@'
 devel = @devel@
-pkgdatadir = '@pkgdatadir@'
-localedir = '@localedir@'
+pkgdatadir = os.path.normpath('@pkgdatadir@')
+localedir = os.path.normpath('@localedir@')
 
 URI = '@URI@'
 URI_PATH = '@URI_PATH@'

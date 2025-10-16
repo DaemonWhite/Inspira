@@ -15,7 +15,7 @@ from ..core.Api import ApiInterface
 
 def load_apis(full_path: str, package:str):
     plugins = []
-    api_path = os.path.join(pkgdatadir, 'inspira/apis')
+    api_path = os.path.join(pkgdatadir, os.path.normpath('inspira/apis'))
     for name, module_name, finder in pkgutil.iter_modules([api_path]):
         print(f"Module find : {name}, Package : {module_name}")
 

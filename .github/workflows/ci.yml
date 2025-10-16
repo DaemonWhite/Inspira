@@ -60,11 +60,11 @@ jobs:
           ninja -C _build install
           pacman --noconfirm -Rs mingw-w64-ucrt-x86_64-desktop-file-utils mingw-w64-ucrt-x86_64-meson git
 
-      # - name: Test
-      #   shell: msys2 {0}
-      #   run: |
-      #     set +e
-      #     timeout 2 inspira; [ "$?" -eq "124" ]
+      - name: Test
+        shell: msys2 {0}
+        run: |
+          set +e
+          timeout 2 inspira; [ "$?" -eq "124" ]
 
       - name: Install Inno Setup
         run: choco install innosetup -y
