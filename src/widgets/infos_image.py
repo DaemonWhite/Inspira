@@ -22,7 +22,7 @@ from gi.repository import Gtk, Adw
 from config import URI_PATH
 
 from ..core.Api import ImgData
-from .tag import Tag
+from .wrap_tags import WrapTags
 from .states_row import StatesRow, RowState
 
 
@@ -33,10 +33,10 @@ class InfosImage(Adw.Bin):
     nswf_image_row: StatesRow = Gtk.Template.Child()
     url_image_row: Adw.ActionRow = Gtk.Template.Child()
     autor_image_row: Adw.ActionRow = Gtk.Template.Child()
-    tags_image_row: Adw.WrapBox = Gtk.Template.Child()
+    tags_image_row: WrapTags = Gtk.Template.Child()
     len_tags_image_row: Gtk.Label = Gtk.Template.Child()
 
-    tags_api_row: Adw.WrapBox = Gtk.Template.Child()
+    tags_api_row: WrapTags = Gtk.Template.Child()
     len_tags_api_row: Gtk.Label = Gtk.Template.Child()
 
     api_tag_row: Adw.ActionRow = Gtk.Template.Child()
@@ -53,8 +53,8 @@ class InfosImage(Adw.Bin):
         self.url_image_row.set_subtitle(image_data.url)
         self.autor_image_row.set_subtitle(image_data.author)
 
-        for tag in image_data.img_tags:
-            self.tags_image_row.append(Tag(label=tag))
+        self.tags_image_row.add_tags(image_data.img_tags)
+
         self.len_tags_image_row.set_label(
             f"{len(image_data.img_tags)}"
         )
@@ -64,8 +64,8 @@ class InfosImage(Adw.Bin):
         self.api_tag_row.set_title(image_data.api_name)
         self.nswf_tag_row.state = self.__state_row_nsfw(image_data.request.nsfw)
 
-        for tag in image_data.request.search_tags:
-            self.tags_api_row.append(Tag(label=tag))
+        self.tags_api_row.add_tags(image_data._info_request.search_tags)
+
         self.len_tags_api_row.set_label(
             f"{len(image_data.request.search_tags)}"
         )
