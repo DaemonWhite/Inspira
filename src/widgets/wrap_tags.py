@@ -67,7 +67,7 @@ class WrapTags(Adw.WrapBox):
         self.remove(tag)
 
     def remove_all(self):
-        if "windows" == OS:
+        if "linux" == OS:
             super().remove_all()
         else:
             for tag in self._ref_tags:
