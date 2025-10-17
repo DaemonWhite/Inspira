@@ -17,7 +17,7 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-from gi.repository import Gtk, Adw, GLib
+from gi.repository import Gtk, Adw, GLib, GObject
 
 from config import URI_PATH, OS
 
@@ -27,14 +27,25 @@ from .tag import Tag
 @Gtk.Template(resource_path=URI_PATH+'/ui/widgets/wrap_tags.ui')
 class WrapTags(Adw.WrapBox):
     __gtype_name__ = 'WrapTags'
-
+    _tag_removable = True
     def __init__(self,):
         super().__init__()
         self._know_tags = []
         self._ref_tags = []
 
+    @GObject.Property(type=bool, default=True)
+    def tag_removable(self):
+        return self._tag_removable
+
+    @tag_removable.setter
+    def tag_removable(self, value: bool):
+        self._tag_removable = value
+        for tag in self._ref_tags:
+            tag.removable = self._tag_removable
+        self.notify('tag_removable')
+
     def add_tag(self, tag_name: str):
-        tag = Tag(label=tag_name)
+        tag = Tag(label=tag_name, removable = self.tag_removable)
         tag.close.connect("clicked", self._remove_tag, tag)
         if tag_name not in self._know_tags and len(tag_name) > 1:
             self.append(tag)

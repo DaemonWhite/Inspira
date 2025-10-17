@@ -17,7 +17,7 @@
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
 
-from gi.repository import Gtk
+from gi.repository import Gtk, GObject
 
 from config import URI_PATH
 
@@ -29,7 +29,18 @@ class Tag(Gtk.Box):
     tag_name: Gtk.Label = Gtk.Template.Child()
     close: Gtk.Button = Gtk.Template.Child()
 
-    def __init__(self, label: str):
+    def __init__(self, label: str, removable: bool = True):
         super().__init__()
         self.tag_name.set_label(label)
+        self.removable = removable
+
+    @GObject.Property(type=bool, default=True)
+    def removable(self):
+        return self._removable
+
+    @removable.setter
+    def removable(self, value: bool):
+        self._removable = value
+        self.close.set_visible(self._removable)
+        self.notify('removable')
 
