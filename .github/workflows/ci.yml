@@ -6,7 +6,7 @@ on:
 
 jobs:
   flatpak:
-    name: Flatpak
+    name: Linux - Flatpak
     runs-on: ubuntu-latest
     container:
       image: ghcr.io/flathub-infra/flatpak-github-actions:gnome-49
@@ -56,8 +56,9 @@ jobs:
       - name: Compile
         shell: msys2 {0}
         run: |
-          meson setup _build
-          ninja -C _build install
+          meson setup _build -Ddevel=true
+          meson compile -C _build
+          meson install -C _build
           pacman --noconfirm -Rs mingw-w64-ucrt-x86_64-desktop-file-utils mingw-w64-ucrt-x86_64-meson git
 
       - name: Test
