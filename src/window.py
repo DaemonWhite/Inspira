@@ -24,7 +24,7 @@ from gi.repository import Gtk
 from gi.repository import GLib
 from gi.repository import Gio
 
-from config import devel, URI_PATH
+from config import devel, URI_PATH, OS
 
 from .items.image import ImageItem
 
@@ -58,6 +58,8 @@ class InspiraWindow(Adw.ApplicationWindow):
     overlay_image: Adw.OverlaySplitView = Gtk.Template.Child()
     infos_image: InfosImage = Gtk.Template.Child()
 
+    key_action: Gio.Menu = Gtk.Template.Child()
+
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.app = self.get_application()
@@ -71,6 +73,16 @@ class InspiraWindow(Adw.ApplicationWindow):
             'togglesearchview',
             self._on_toggle_search_view,
             ['F9']
+        )
+
+        shotcut_menu_action = "app.shortcuts"
+
+        if OS == "windows":
+            shotcut_menu_action = "win.show-help-overlay"
+
+        self.key_action.insert_item(
+            1,
+            Gio.MenuItem.new(_("_Keyboard Shortcuts"), shotcut_menu_action)
         )
 
         self.bind_events()

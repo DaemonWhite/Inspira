@@ -6,5 +6,7 @@ devel = @devel@
 pkgdatadir = os.path.normpath('@pkgdatadir@')
 localedir = os.path.normpath('@localedir@')
 
+OS = '@OS@'
+
 URI = '@URI@'
 URI_PATH = '@URI_PATH@'

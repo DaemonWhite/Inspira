@@ -19,10 +19,12 @@ blueprint_file = [
 
 ui_pref = ''
 
-if host_machine.system() == 'linux'
-  blueprint_file += ['ui/shortcuts-dialog.blp']
-  ui_pref = '<file preprocess="xml-stripblanks" alias="shortcuts-dialog.ui">ui/shortcuts-dialog.ui</file>'
+if host_machine.system() == 'windows'
+  blueprint_file += ['ui/help-overlay.blp']
+  ui_pref = '<file preprocess="xml-stripblanks" alias="gtk/help-overlay.ui">ui/help-overlay.ui</file>'
 else
+	blueprint_file += ['ui/shortcuts-dialog.blp']
+  ui_pref = '<file preprocess="xml-stripblanks" alias="shortcuts-dialog.ui">ui/shortcuts-dialog.ui</file>'
   warning('MSYS 2 Not support Libadwaita 1.8 Disable preference page')
 endif
 

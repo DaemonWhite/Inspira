@@ -29,6 +29,7 @@ conf.set('PYTHON', python.find_installation('python3').full_path())
 conf.set('PYTHON_VERSION', python.find_installation('python3').language_version())
 conf.set('VERSION', meson.project_version())
 conf.set('NAME', meson.project_name())
+conf.set('OS', host_machine.system())
 conf.set('devel', get_option('devel'))
 
 if host_machine.system() == 'windows'
