@@ -29,8 +29,6 @@ import config
 
 from config import NAME, VERSION, pkgdatadir, localedir, OS
 
-print("Locale actuelle:", locale.getdefaultlocale())
-
 if "windows" == config.OS:
     path_script = os.path.abspath(sys.argv[0])
     dir_script = os.path.dirname(path_script)
@@ -41,9 +39,10 @@ from inspira.utils import language
 
 if "windows" == config.OS:
     gettext_env = language.windows_gettext(locale.getdefaultlocale())
-    os.environ["LANGUAGE"] = gettext_env[2]
-    os.environ["LC_ALL"] = gettext_env[1]
-    os.environ["LANG"] = gettext_env[0]
+    if gettext_env is not None
+        os.environ["LANGUAGE"] = gettext_env[2]
+        os.environ["LC_ALL"] = gettext_env[1]
+        os.environ["LANG"] = gettext_env[0]
 
 signal.signal(signal.SIGINT, signal.SIG_DFL)
 gettext.bindtextdomain(config.NAME, config.localedir)
