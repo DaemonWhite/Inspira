@@ -2,7 +2,10 @@
 
 echo "----- CLEANING -----"
 
-rm -r _build
-rm -r _install
+path="$(dirname "$0")/.."
+path="$(realpath $path)"
+
+rm -r $path/_build
+rm -r $path/_install
 
 echo "----- END CLEANING -----"

@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 ## Original script https://github.com/Jeffser/Alpaca/
 set -euo pipefail
-cd "$(dirname "$0")/.."
+path="$(dirname "$0")/.."
+path="$(realpath $path)"
+cd $path
 
 # Always regenerate the template first
 xgettext --output=po/inspira.pot --files-from=po/POTFILES --from-code=UTF-8 --add-comments --keyword=_ --keyword=C_:1c,2

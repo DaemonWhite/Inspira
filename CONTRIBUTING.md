@@ -49,21 +49,14 @@ cd Inspira
 
 ## Alternative IDE Configuration
 
-Three helper scripts are provided in the `tools` directory for use with MSYS2:
+Three helper scripts are provided in the `tools` directory for use with MSYS2 
+but works in linux:
 
 ```bash
-./tools/configure.sh  # Downloads project dependencies
+./tools/configure.sh  # Downloads project dependencies and create meson conf
 ./tools/run.sh        # Compiles and runs the program
 ./tools/clean.sh      # Cleans the build directory
 ```
-
-> [!WARNING]
-> `./tools/configure.sh` is designed for **Windows with MSYS2**.
-> 
-> On **Linux**, use this command instead:
-> ```sh
-> meson setup _build --prefix=$(pwd)/_install
-> ```
 
 ---
 
