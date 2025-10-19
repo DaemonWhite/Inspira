@@ -1,6 +1,5 @@
-## Original script https://github.com/Jeffser/Alpaca/
-
 #!/usr/bin/env bash
+## Original script https://github.com/Jeffser/Alpaca/
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
