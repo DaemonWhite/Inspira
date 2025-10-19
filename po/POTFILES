@@ -11,6 +11,6 @@ data/ui/widgets/modals/preferences.blp
 data/ui/shortcuts-dialog.blp
 
 src/main.py
-src/core/imgData.py
+src/core/Api/imgData.py
 src/window.py
 src/widgets/modals/preferences.py

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-04 23:15+0200\n"
+"POT-Creation-Date: 2025-10-19 14:34+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -79,7 +79,7 @@ msgstr ""
 msgid "Infos Image"
 msgstr ""
 
-#: data/ui/widgets/infos_image.blp:14 data/ui/widgets/infos_image.blp:54
+#: data/ui/widgets/infos_image.blp:14 data/ui/widgets/infos_image.blp:55
 msgid "NSFW"
 msgstr ""
 
@@ -91,19 +91,19 @@ msgstr ""
 msgid "Author"
 msgstr ""
 
-#: data/ui/widgets/infos_image.blp:24 data/ui/widgets/infos_image.blp:58
+#: data/ui/widgets/infos_image.blp:24 data/ui/widgets/infos_image.blp:59
 msgid "tags"
 msgstr ""
 
-#: data/ui/widgets/infos_image.blp:27 data/ui/widgets/infos_image.blp:61
+#: data/ui/widgets/infos_image.blp:27 data/ui/widgets/infos_image.blp:62
 msgid "0"
 msgstr ""
 
-#: data/ui/widgets/infos_image.blp:49
+#: data/ui/widgets/infos_image.blp:50
 msgid "Info API Request"
 msgstr ""
 
-#: data/ui/widgets/infos_image.blp:51
+#: data/ui/widgets/infos_image.blp:52
 msgid "API Name"
 msgstr ""
 
@@ -119,51 +119,48 @@ msgstr ""
 msgid "Download"
 msgstr ""
 
-#: data/ui/window.blp:15
-msgid "Main Menu"
+#: data/ui/window.blp:33 src/widgets/modals/preferences.py:105
+msgid "Random"
 msgstr ""
 
-#: data/ui/window.blp:34
-msgid "Safe For Work (no adult content)"
-msgstr ""
-
-#: data/ui/window.blp:39
-msgid "No Safe For Work (no adult content)"
-msgstr ""
-
-#: data/ui/window.blp:45
-msgid "Ex: tag1,tag2"
-msgstr ""
-
-#: data/ui/window.blp:48
-msgid "Add"
-msgstr ""
-
-#: data/ui/window.blp:50
-msgid "Add tags filter"
-msgstr ""
-
-#: data/ui/window.blp:54 src/widgets/modals/preferences.py:104
+#: data/ui/window.blp:40 data/ui/window.blp:77 data/ui/window.blp:82
+#: src/widgets/modals/preferences.py:108
 msgid "Search"
 msgstr ""
 
-#: data/ui/window.blp:87 data/ui/shortcuts-dialog.blp:12
-msgid "Load New Image"
+#: data/ui/window.blp:50
+msgid "Safe For Work (no adult content)"
 msgstr ""
 
-#: data/ui/window.blp:106
+#: data/ui/window.blp:55
+msgid "No Safe For Work (adult content)"
+msgstr ""
+
+#: data/ui/window.blp:61
+msgid "Ex: tag1,tag2"
+msgstr ""
+
+#: data/ui/window.blp:64
+msgid "Add"
+msgstr ""
+
+#: data/ui/window.blp:66
+msgid "Add tags filter"
+msgstr ""
+
+#: data/ui/window.blp:105
+msgid "Main Menu"
+msgstr ""
+
+#: data/ui/window.blp:143
 msgid "_Preferences"
 msgstr ""
 
-#: data/ui/window.blp:110
-msgid "_Keyboard Shortcuts"
-msgstr ""
-
-#: data/ui/window.blp:114
+#: data/ui/window.blp:147
 msgid "_Load New Picture"
 msgstr ""
 
-#: data/ui/window.blp:118
+#: data/ui/window.blp:151
 msgid "_About Inspira"
 msgstr ""
 
@@ -239,19 +236,23 @@ msgstr ""
 msgid "Show Shortcuts"
 msgstr ""
 
+#: data/ui/shortcuts-dialog.blp:12
+msgid "Load New Image"
+msgstr ""
+
 #: data/ui/shortcuts-dialog.blp:16
 msgid "Quit"
 msgstr ""
 
 #. Translators: Replace "translator-credits" with your name/username, and optionally an email or URL.
-#: src/main.py:85
+#: src/main.py:109
 msgid "translator-credits"
 msgstr ""
 
-#: src/core/imgData.py:41
+#: src/core/Api/imgData.py:41
 msgid "Unknown"
 msgstr ""
 
-#: src/widgets/modals/preferences.py:101
-msgid "Random"
+#: src/window.py:85
+msgid "_Keyboard Shortcuts"
 msgstr ""

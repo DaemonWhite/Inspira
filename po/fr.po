@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE_VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-04 23:15+0200\n"
-"PO-Revision-Date: 2025-10-01 23:18+0200\n"
+"POT-Creation-Date: 2025-10-19 14:34+0200\n"
+"PO-Revision-Date: 2025-10-19 14:40+0200\n"
 "Last-Translator: DaemonWhite <daemonwhites@vivaldi.net>\n"
 "Language-Team: French\n"
 "Language: fr\n"
@@ -62,6 +62,7 @@ msgstr "Sauvegarde les tags non connue pour l'autocomplétion"
 #: data/ui/widgets/modals/preferences.blp:29
 msgid "If the image scrolling is horizontal or vertical. False=horizontal"
 msgstr ""
+"Si l'image se déplace verticalement ou horizontalement. Faux=horizontal"
 
 #: data/fr.daemonwhite.Inspira.gschema.xml.in:16
 #: data/ui/widgets/modals/preferences.blp:14
@@ -70,7 +71,7 @@ msgstr "Affiche la possibilité d'activer le contenu NSFW"
 
 #: data/fr.daemonwhite.Inspira.gschema.xml.in:21
 msgid "Focus on last image download"
-msgstr ""
+msgstr "Focus sur la denière image télècharger"
 
 #: data/fr.daemonwhite.Inspira.gschema.xml.in:26
 #: data/ui/widgets/modals/preferences.blp:39
@@ -80,93 +81,90 @@ msgstr ""
 
 #: data/ui/widgets/infos_image.blp:12
 msgid "Infos Image"
-msgstr ""
+msgstr "Info sur l'image"
 
-#: data/ui/widgets/infos_image.blp:14 data/ui/widgets/infos_image.blp:54
+#: data/ui/widgets/infos_image.blp:14 data/ui/widgets/infos_image.blp:55
 msgid "NSFW"
-msgstr ""
+msgstr "NSFW"
 
 #: data/ui/widgets/infos_image.blp:17
 msgid "url"
-msgstr ""
+msgstr "url"
 
 #: data/ui/widgets/infos_image.blp:20
 msgid "Author"
-msgstr ""
+msgstr "Auteur"
 
-#: data/ui/widgets/infos_image.blp:24 data/ui/widgets/infos_image.blp:58
+#: data/ui/widgets/infos_image.blp:24 data/ui/widgets/infos_image.blp:59
 msgid "tags"
-msgstr ""
+msgstr "tags"
 
-#: data/ui/widgets/infos_image.blp:27 data/ui/widgets/infos_image.blp:61
+#: data/ui/widgets/infos_image.blp:27 data/ui/widgets/infos_image.blp:62
 msgid "0"
 msgstr ""
 
-#: data/ui/widgets/infos_image.blp:49
+#: data/ui/widgets/infos_image.blp:50
 msgid "Info API Request"
-msgstr ""
+msgstr "Info Requête API"
 
-#: data/ui/widgets/infos_image.blp:51
+#: data/ui/widgets/infos_image.blp:52
 msgid "API Name"
-msgstr ""
+msgstr "Nom API"
 
 #: data/ui/widgets/overlay_picture.blp:31
 msgid "Delete"
-msgstr ""
+msgstr "Supprimer"
 
 #: data/ui/widgets/overlay_picture.blp:36
 msgid "Info"
-msgstr ""
+msgstr "Info"
 
 #: data/ui/widgets/overlay_picture.blp:41
 msgid "Download"
-msgstr ""
+msgstr "Télécharger"
 
-#: data/ui/window.blp:15
-msgid "Main Menu"
-msgstr "Menu principal"
+#: data/ui/window.blp:33 src/widgets/modals/preferences.py:105
+msgid "Random"
+msgstr "Aléatoire"
 
-#: data/ui/window.blp:34
-msgid "Safe For Work (no adult content)"
-msgstr "Safe For Work (pas de contenu mature)"
-
-#: data/ui/window.blp:39
-msgid "No Safe For Work (no adult content)"
-msgstr "No Safe For Work (contenu mature)"
-
-#: data/ui/window.blp:45
-msgid "Ex: tag1,tag2"
-msgstr "Ex: tag1,tag2"
-
-#: data/ui/window.blp:48
-msgid "Add"
-msgstr "Ajouter"
-
-#: data/ui/window.blp:50
-msgid "Add tags filter"
-msgstr "Ajoute un tag de filtrage"
-
-#: data/ui/window.blp:54 src/widgets/modals/preferences.py:104
+#: data/ui/window.blp:40 data/ui/window.blp:77 data/ui/window.blp:82
+#: src/widgets/modals/preferences.py:108
 msgid "Search"
 msgstr "Rechercher"
 
-#: data/ui/window.blp:87 data/ui/shortcuts-dialog.blp:12
-msgid "Load New Image"
-msgstr "Chargement Nouvelle Image"
+#: data/ui/window.blp:50
+msgid "Safe For Work (no adult content)"
+msgstr "Safe For Work (pas de contenu mature)"
 
-#: data/ui/window.blp:106
+#: data/ui/window.blp:55
+msgid "No Safe For Work (adult content)"
+msgstr "No Safe For Work (contenue mature)"
+
+#: data/ui/window.blp:61
+msgid "Ex: tag1,tag2"
+msgstr "Ex: tag1,tag2"
+
+#: data/ui/window.blp:64
+msgid "Add"
+msgstr "Ajouter"
+
+#: data/ui/window.blp:66
+msgid "Add tags filter"
+msgstr "Ajoute un tag de filtrage"
+
+#: data/ui/window.blp:105
+msgid "Main Menu"
+msgstr "Menu principal"
+
+#: data/ui/window.blp:143
 msgid "_Preferences"
 msgstr "Préfèrences"
 
-#: data/ui/window.blp:110
-msgid "_Keyboard Shortcuts"
-msgstr "Raccourcis clavier"
-
-#: data/ui/window.blp:114
+#: data/ui/window.blp:147
 msgid "_Load New Picture"
 msgstr "Chargement de la nouvelle Image"
 
-#: data/ui/window.blp:118
+#: data/ui/window.blp:151
 msgid "_About Inspira"
 msgstr "À propos d'Inspira"
 
@@ -176,7 +174,7 @@ msgstr "Principale"
 
 #: data/ui/widgets/modals/preferences.blp:10
 msgid "Filter display"
-msgstr ""
+msgstr "Filtre d'affichage"
 
 #: data/ui/widgets/modals/preferences.blp:13
 msgid "Activate NSFW content"
@@ -184,19 +182,19 @@ msgstr "Activer le contenu NSFW"
 
 #: data/ui/widgets/modals/preferences.blp:20
 msgid "Image control"
-msgstr ""
+msgstr "Contrôle d'image"
 
 #: data/ui/widgets/modals/preferences.blp:23
 msgid "Focus on last image add"
-msgstr ""
+msgstr "Focus sur la denière image ajouter"
 
 #: data/ui/widgets/modals/preferences.blp:24
 msgid "Directly displays the last downloaded image"
-msgstr ""
+msgstr "Voir directement la dernière image"
 
 #: data/ui/widgets/modals/preferences.blp:28
 msgid "Carousel Image is vertical"
-msgstr ""
+msgstr "Le caroussel d'image est vertical ? "
 
 #: data/ui/widgets/modals/preferences.blp:35
 msgid "Downloads options"
@@ -242,22 +240,29 @@ msgstr "Raccourcis"
 msgid "Show Shortcuts"
 msgstr "Voir les raccourcis"
 
+#: data/ui/shortcuts-dialog.blp:12
+msgid "Load New Image"
+msgstr "Chargement Nouvelle Image"
+
 #: data/ui/shortcuts-dialog.blp:16
 msgid "Quit"
 msgstr "Quitter"
 
 #. Translators: Replace "translator-credits" with your name/username, and optionally an email or URL.
-#: src/main.py:85
+#: src/main.py:109
 msgid "translator-credits"
 msgstr "DaemonWhite"
 
-#: src/core/imgData.py:41
+#: src/core/Api/imgData.py:41
 msgid "Unknown"
-msgstr ""
+msgstr "Inconnue"
 
-#: src/widgets/modals/preferences.py:101
-msgid "Random"
-msgstr "Aléatoire"
+#: src/window.py:85
+msgid "_Keyboard Shortcuts"
+msgstr "Raccourcis clavier"
+
+#~ msgid "No Safe For Work (no adult content)"
+#~ msgstr "No Safe For Work (contenu mature)"
 
 #~ msgid "+ Add"
 #~ msgstr "+ Ajouter"
