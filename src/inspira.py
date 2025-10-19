@@ -1,5 +1,4 @@
 #!@PYTHON@
-
 # inspira.in
 #
 # Copyright 2025 DaemonWhite
@@ -18,7 +17,6 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
-
 import os
 import locale
 import sys
@@ -35,29 +33,63 @@ if "windows" == config.OS:
     os.chdir(dir_script)
 
 sys.path.insert(1, config.pkgdatadir)
+signal.signal(signal.SIGINT, signal.SIG_DFL)
+
 from inspira.utils import language
 
+## Apply translate 
+
 if "windows" == config.OS:
-    gettext_env = language.windows_gettext(locale.getdefaultlocale())
+    gettext_env = language.windows_gettext(locale.getlocale())
     if gettext_env is not None:
         os.environ["LANGUAGE"] = gettext_env[2]
         os.environ["LC_ALL"] = gettext_env[1]
         os.environ["LANG"] = gettext_env[0]
-
-signal.signal(signal.SIGINT, signal.SIG_DFL)
-locale.bindtextdomain(config.NAME, config.localedir)
-locale.textdomain(config.NAME)
-gettext.bindtextdomain(config.NAME, config.localedir)
-gettext.textdomain(config.NAME)
-gettext.install(config.NAME, config.localedir)
+        
+        # Installer la traduction Python
+        trans = gettext.translation(
+            config.NAME, 
+            localedir=config.localedir, 
+            languages=[gettext_env[0]],
+            fallback=True
+        )
+        trans.install()
+        
+        # Configuration de libintl pour GTK
+        try:
+            import ctypes
+            libintl = ctypes.cdll.LoadLibrary("libintl-8.dll")
+            
+            # Convertir les chemins en bytes avec l'encodage approprié
+            name_bytes = config.NAME.encode('utf-8')
+            localedir_bytes = config.localedir.encode('utf-8')
+            utf8_bytes = b'UTF-8'
+            
+            # Appeler les fonctions de libintl
+            libintl.bindtextdomain(name_bytes, localedir_bytes)
+            libintl.bind_textdomain_codeset(name_bytes, utf8_bytes)
+            libintl.textdomain(name_bytes)
+            
+        except Exception as e:
+            print(f"Warning: Could not configure libintl: {e}", file=sys.stderr)
+    else:
+        # Pas de traduction disponible, installer une fonction _ basique
+        import builtins
+        builtins._ = lambda s: s
+else:
+    # Configuration Unix/Linux
+    locale.bindtextdomain(config.NAME, config.localedir)
+    locale.textdomain(config.NAME)
+    gettext.bindtextdomain(config.NAME, config.localedir)
+    gettext.textdomain(config.NAME)
+    gettext.install(config.NAME, config.localedir)
 
 if __name__ == '__main__':
     import gi
-
     from gi.repository import Gio
+
     resource = Gio.Resource.load(os.path.join(config.pkgdatadir, 'inspira.gresource'))
     resource._register()
 
     from inspira import main
     sys.exit(main.main(config.VERSION))
-
