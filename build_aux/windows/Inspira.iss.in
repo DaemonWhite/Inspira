@@ -45,10 +45,13 @@ Source: "D:\a\_temp\msys64\ucrt64\lib\gdk-pixbuf-2.0\*"; DestDir: "{app}\lib\gdk
 Source: "D:\a\_temp\msys64\ucrt64\lib\girepository-1.0\*"; DestDir: "{app}\lib\girepository-1.0"; Flags: recursesubdirs ignoreversion
 Source: "D:\a\_temp\msys64\ucrt64\lib\python@PYTHON_VERSION@\*"; DestDir: "{app}\lib\python@PYTHON_VERSION@"; Excludes: "__pycache__"; Flags: recursesubdirs ignoreversion
 
-Source: "D:\a\_temp\msys64\ucrt64\share\inspira\*"; DestDir: "{app}\share\inspira"; Excludes: "__pycache__"; Flags: recursesubdirs ignoreversion
+Source: "D:\a\_temp\msys64\ucrt64\share\dbus-1\*"; DestDir: "{app}\share\dbus-1"; Flags: recursesubdirs ignoreversion
 Source: "D:\a\_temp\msys64\ucrt64\share\icons\*"; DestDir: "{app}\share\icons"; Excludes: "*.png,cursors\*"; Flags: recursesubdirs ignoreversion
 Source: "D:\a\_temp\msys64\ucrt64\share\glib-2.0\*"; DestDir: "{app}\share\glib-2.0"; Flags: recursesubdirs ignoreversion
 Source: "D:\a\_temp\msys64\ucrt64\share\gtk-4.0\*"; DestDir: "{app}\share\gtk-4.0"; Flags: recursesubdirs ignoreversion
+Source: "D:\a\_temp\msys64\ucrt64\share\inspira\*"; DestDir: "{app}\share\inspira"; Excludes: "__pycache__"; Flags: recursesubdirs ignoreversion
+Source: "D:\a\_temp\msys64\ucrt64\share\locale\*"; DestDir: "{app}\share\locale"; Flags: recursesubdirs ignoreversion
+Source: "D:\a\_temp\msys64\ucrt64\share\metainfo\*"; DestDir: "{app}\share\metainfo"; Flags: recursesubdirs ignoreversion
 
 Source: "..\..\..\build_aux\windows\icon.ico"; DestDir: "{app}"; Flags: recursesubdirs ignoreversion
 
