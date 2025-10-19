@@ -24,7 +24,12 @@ import sys
 import signal
 import gettext
 
-from config import NAME, VERSION, pkgdatadir, localedir
+from config import NAME, VERSION, pkgdatadir, localedir, OS
+
+if "windows" == OS:
+    path_script = os.path.abspath(sys.argv[0])
+    dir_script = os.path.dirname(path_script)
+    os.chdir(dir_script)
 
 sys.path.insert(1, pkgdatadir)
 signal.signal(signal.SIGINT, signal.SIG_DFL)
