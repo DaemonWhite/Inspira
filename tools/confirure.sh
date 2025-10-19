@@ -8,7 +8,7 @@ pacman -S mingw-w64-ucrt-x86_64-gtk4 mingw-w64-ucrt-x86_64-libadwaita \
     mingw-w64-ucrt-x86_64-python-pillow mingw-w64-ucrt-x86_64-desktop-file-utils\
     mingw-w64-ucrt-x86_64-ca-certificates mingw-w64-ucrt-x86_64-meson\
     git mingw-w64-ucrt-x86_64-gettext mingw-w64-ucrt-x86_64-gettext\
-    mingw-w64-ucrt-x86_64-gettext --needed
+    mingw-w64-ucrt-x86_64-gettext mingw-w64-ucrt-x86_64-blueprint-compiler --needed
 
 echo "----- CONFIGURING Inspira -----"
 
