@@ -7,7 +7,7 @@ data/fr.daemonwhite.Inspira.gschema.xml.in
 data/ui/widgets/modals/preferences.blp
 data/ui/widgets/infos_image.blp
 data/ui/widgets/overlay_picture.blp
-data/ui/help-overlay
+data/ui/help-overlay.blp
 data/ui/shortcuts-dialog.blp
 data/ui/window.blp
 

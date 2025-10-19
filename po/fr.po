@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE_VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-19 14:34+0200\n"
+"POT-Creation-Date: 2025-10-19 23:20+0200\n"
 "PO-Revision-Date: 2025-10-19 14:40+0200\n"
 "Last-Translator: DaemonWhite <daemonwhites@vivaldi.net>\n"
 "Language-Team: French\n"
@@ -79,95 +79,6 @@ msgid "Delay in seconds. Use -1 for API default timeout"
 msgstr ""
 "Délai en secondes. Utiliser -1 pour prendre la valeur par défaut de l'API"
 
-#: data/ui/widgets/infos_image.blp:12
-msgid "Infos Image"
-msgstr "Info sur l'image"
-
-#: data/ui/widgets/infos_image.blp:14 data/ui/widgets/infos_image.blp:55
-msgid "NSFW"
-msgstr "NSFW"
-
-#: data/ui/widgets/infos_image.blp:17
-msgid "url"
-msgstr "url"
-
-#: data/ui/widgets/infos_image.blp:20
-msgid "Author"
-msgstr "Auteur"
-
-#: data/ui/widgets/infos_image.blp:24 data/ui/widgets/infos_image.blp:59
-msgid "tags"
-msgstr "tags"
-
-#: data/ui/widgets/infos_image.blp:27 data/ui/widgets/infos_image.blp:62
-msgid "0"
-msgstr ""
-
-#: data/ui/widgets/infos_image.blp:50
-msgid "Info API Request"
-msgstr "Info Requête API"
-
-#: data/ui/widgets/infos_image.blp:52
-msgid "API Name"
-msgstr "Nom API"
-
-#: data/ui/widgets/overlay_picture.blp:31
-msgid "Delete"
-msgstr "Supprimer"
-
-#: data/ui/widgets/overlay_picture.blp:36
-msgid "Info"
-msgstr "Info"
-
-#: data/ui/widgets/overlay_picture.blp:41
-msgid "Download"
-msgstr "Télécharger"
-
-#: data/ui/window.blp:33 src/widgets/modals/preferences.py:105
-msgid "Random"
-msgstr "Aléatoire"
-
-#: data/ui/window.blp:40 data/ui/window.blp:77 data/ui/window.blp:82
-#: src/widgets/modals/preferences.py:108
-msgid "Search"
-msgstr "Rechercher"
-
-#: data/ui/window.blp:50
-msgid "Safe For Work (no adult content)"
-msgstr "Safe For Work (pas de contenu mature)"
-
-#: data/ui/window.blp:55
-msgid "No Safe For Work (adult content)"
-msgstr "No Safe For Work (contenue mature)"
-
-#: data/ui/window.blp:61
-msgid "Ex: tag1,tag2"
-msgstr "Ex: tag1,tag2"
-
-#: data/ui/window.blp:64
-msgid "Add"
-msgstr "Ajouter"
-
-#: data/ui/window.blp:66
-msgid "Add tags filter"
-msgstr "Ajoute un tag de filtrage"
-
-#: data/ui/window.blp:105
-msgid "Main Menu"
-msgstr "Menu principal"
-
-#: data/ui/window.blp:143
-msgid "_Preferences"
-msgstr "Préfèrences"
-
-#: data/ui/window.blp:147
-msgid "_Load New Picture"
-msgstr "Chargement de la nouvelle Image"
-
-#: data/ui/window.blp:151
-msgid "_About Inspira"
-msgstr "À propos d'Inspira"
-
 #: data/ui/widgets/modals/preferences.blp:7
 msgid "Main"
 msgstr "Principale"
@@ -232,6 +143,60 @@ msgstr "Liste des tags connu"
 msgid "Add or delete tags"
 msgstr "Ajoute ou supprime des tags"
 
+#: data/ui/widgets/infos_image.blp:12
+msgid "Infos Image"
+msgstr "Info sur l'image"
+
+#: data/ui/widgets/infos_image.blp:14 data/ui/widgets/infos_image.blp:55
+msgid "NSFW"
+msgstr "NSFW"
+
+#: data/ui/widgets/infos_image.blp:17
+msgid "url"
+msgstr "url"
+
+#: data/ui/widgets/infos_image.blp:20
+msgid "Author"
+msgstr "Auteur"
+
+#: data/ui/widgets/infos_image.blp:24 data/ui/widgets/infos_image.blp:59
+msgid "tags"
+msgstr "tags"
+
+#: data/ui/widgets/infos_image.blp:27 data/ui/widgets/infos_image.blp:62
+msgid "0"
+msgstr ""
+
+#: data/ui/widgets/infos_image.blp:50
+msgid "Info API Request"
+msgstr "Info Requête API"
+
+#: data/ui/widgets/infos_image.blp:52
+msgid "API Name"
+msgstr "Nom API"
+
+#: data/ui/widgets/overlay_picture.blp:31
+msgid "Delete"
+msgstr "Supprimer"
+
+#: data/ui/widgets/overlay_picture.blp:36
+msgid "Info"
+msgstr "Info"
+
+#: data/ui/widgets/overlay_picture.blp:41
+msgid "Download"
+msgstr "Télécharger"
+
+#: data/ui/help-overlay.blp:11
+msgctxt "shortcut window"
+msgid "Show Shortcut"
+msgstr ""
+
+#: data/ui/help-overlay.blp:15
+msgctxt "shortcut window"
+msgid "Exit"
+msgstr ""
+
 #: data/ui/shortcuts-dialog.blp:6
 msgid "Shortcuts"
 msgstr "Raccourcis"
@@ -247,6 +212,51 @@ msgstr "Chargement Nouvelle Image"
 #: data/ui/shortcuts-dialog.blp:16
 msgid "Quit"
 msgstr "Quitter"
+
+#: data/ui/window.blp:33 src/widgets/modals/preferences.py:105
+msgid "Random"
+msgstr "Aléatoire"
+
+#: data/ui/window.blp:40 data/ui/window.blp:77 data/ui/window.blp:82
+#: src/widgets/modals/preferences.py:108
+msgid "Search"
+msgstr "Rechercher"
+
+#: data/ui/window.blp:50
+msgid "Safe For Work (no adult content)"
+msgstr "Safe For Work (pas de contenu mature)"
+
+#: data/ui/window.blp:55
+msgid "No Safe For Work (adult content)"
+msgstr "No Safe For Work (contenue mature)"
+
+#: data/ui/window.blp:61
+msgid "Ex: tag1,tag2"
+msgstr "Ex: tag1,tag2"
+
+#: data/ui/window.blp:64
+msgid "Add"
+msgstr "Ajouter"
+
+#: data/ui/window.blp:66
+msgid "Add tags filter"
+msgstr "Ajoute un tag de filtrage"
+
+#: data/ui/window.blp:105
+msgid "Main Menu"
+msgstr "Menu principal"
+
+#: data/ui/window.blp:143
+msgid "_Preferences"
+msgstr "Préfèrences"
+
+#: data/ui/window.blp:147
+msgid "_Load New Picture"
+msgstr "Chargement de la nouvelle Image"
+
+#: data/ui/window.blp:151
+msgid "_About Inspira"
+msgstr "À propos d'Inspira"
 
 #. Translators: Replace "translator-credits" with your name/username, and optionally an email or URL.
 #: src/main.py:109

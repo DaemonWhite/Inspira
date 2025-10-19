@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-19 14:34+0200\n"
+"POT-Creation-Date: 2025-10-19 23:20+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -75,95 +75,6 @@ msgstr ""
 msgid "Delay in seconds. Use -1 for API default timeout"
 msgstr ""
 
-#: data/ui/widgets/infos_image.blp:12
-msgid "Infos Image"
-msgstr ""
-
-#: data/ui/widgets/infos_image.blp:14 data/ui/widgets/infos_image.blp:55
-msgid "NSFW"
-msgstr ""
-
-#: data/ui/widgets/infos_image.blp:17
-msgid "url"
-msgstr ""
-
-#: data/ui/widgets/infos_image.blp:20
-msgid "Author"
-msgstr ""
-
-#: data/ui/widgets/infos_image.blp:24 data/ui/widgets/infos_image.blp:59
-msgid "tags"
-msgstr ""
-
-#: data/ui/widgets/infos_image.blp:27 data/ui/widgets/infos_image.blp:62
-msgid "0"
-msgstr ""
-
-#: data/ui/widgets/infos_image.blp:50
-msgid "Info API Request"
-msgstr ""
-
-#: data/ui/widgets/infos_image.blp:52
-msgid "API Name"
-msgstr ""
-
-#: data/ui/widgets/overlay_picture.blp:31
-msgid "Delete"
-msgstr ""
-
-#: data/ui/widgets/overlay_picture.blp:36
-msgid "Info"
-msgstr ""
-
-#: data/ui/widgets/overlay_picture.blp:41
-msgid "Download"
-msgstr ""
-
-#: data/ui/window.blp:33 src/widgets/modals/preferences.py:105
-msgid "Random"
-msgstr ""
-
-#: data/ui/window.blp:40 data/ui/window.blp:77 data/ui/window.blp:82
-#: src/widgets/modals/preferences.py:108
-msgid "Search"
-msgstr ""
-
-#: data/ui/window.blp:50
-msgid "Safe For Work (no adult content)"
-msgstr ""
-
-#: data/ui/window.blp:55
-msgid "No Safe For Work (adult content)"
-msgstr ""
-
-#: data/ui/window.blp:61
-msgid "Ex: tag1,tag2"
-msgstr ""
-
-#: data/ui/window.blp:64
-msgid "Add"
-msgstr ""
-
-#: data/ui/window.blp:66
-msgid "Add tags filter"
-msgstr ""
-
-#: data/ui/window.blp:105
-msgid "Main Menu"
-msgstr ""
-
-#: data/ui/window.blp:143
-msgid "_Preferences"
-msgstr ""
-
-#: data/ui/window.blp:147
-msgid "_Load New Picture"
-msgstr ""
-
-#: data/ui/window.blp:151
-msgid "_About Inspira"
-msgstr ""
-
 #: data/ui/widgets/modals/preferences.blp:7
 msgid "Main"
 msgstr ""
@@ -228,6 +139,60 @@ msgstr ""
 msgid "Add or delete tags"
 msgstr ""
 
+#: data/ui/widgets/infos_image.blp:12
+msgid "Infos Image"
+msgstr ""
+
+#: data/ui/widgets/infos_image.blp:14 data/ui/widgets/infos_image.blp:55
+msgid "NSFW"
+msgstr ""
+
+#: data/ui/widgets/infos_image.blp:17
+msgid "url"
+msgstr ""
+
+#: data/ui/widgets/infos_image.blp:20
+msgid "Author"
+msgstr ""
+
+#: data/ui/widgets/infos_image.blp:24 data/ui/widgets/infos_image.blp:59
+msgid "tags"
+msgstr ""
+
+#: data/ui/widgets/infos_image.blp:27 data/ui/widgets/infos_image.blp:62
+msgid "0"
+msgstr ""
+
+#: data/ui/widgets/infos_image.blp:50
+msgid "Info API Request"
+msgstr ""
+
+#: data/ui/widgets/infos_image.blp:52
+msgid "API Name"
+msgstr ""
+
+#: data/ui/widgets/overlay_picture.blp:31
+msgid "Delete"
+msgstr ""
+
+#: data/ui/widgets/overlay_picture.blp:36
+msgid "Info"
+msgstr ""
+
+#: data/ui/widgets/overlay_picture.blp:41
+msgid "Download"
+msgstr ""
+
+#: data/ui/help-overlay.blp:11
+msgctxt "shortcut window"
+msgid "Show Shortcut"
+msgstr ""
+
+#: data/ui/help-overlay.blp:15
+msgctxt "shortcut window"
+msgid "Exit"
+msgstr ""
+
 #: data/ui/shortcuts-dialog.blp:6
 msgid "Shortcuts"
 msgstr ""
@@ -242,6 +207,51 @@ msgstr ""
 
 #: data/ui/shortcuts-dialog.blp:16
 msgid "Quit"
+msgstr ""
+
+#: data/ui/window.blp:33 src/widgets/modals/preferences.py:105
+msgid "Random"
+msgstr ""
+
+#: data/ui/window.blp:40 data/ui/window.blp:77 data/ui/window.blp:82
+#: src/widgets/modals/preferences.py:108
+msgid "Search"
+msgstr ""
+
+#: data/ui/window.blp:50
+msgid "Safe For Work (no adult content)"
+msgstr ""
+
+#: data/ui/window.blp:55
+msgid "No Safe For Work (adult content)"
+msgstr ""
+
+#: data/ui/window.blp:61
+msgid "Ex: tag1,tag2"
+msgstr ""
+
+#: data/ui/window.blp:64
+msgid "Add"
+msgstr ""
+
+#: data/ui/window.blp:66
+msgid "Add tags filter"
+msgstr ""
+
+#: data/ui/window.blp:105
+msgid "Main Menu"
+msgstr ""
+
+#: data/ui/window.blp:143
+msgid "_Preferences"
+msgstr ""
+
+#: data/ui/window.blp:147
+msgid "_Load New Picture"
+msgstr ""
+
+#: data/ui/window.blp:151
+msgid "_About Inspira"
 msgstr ""
 
 #. Translators: Replace "translator-credits" with your name/username, and optionally an email or URL.
