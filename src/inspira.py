@@ -27,7 +27,7 @@ import gettext
 
 import config
 
-from config import NAME, VERSION, pkgdatadir, localedir, OS
+from config import NAME, VERSION, pkgdatadir, localedir, OS, URI
 
 if "windows" == config.OS:
     path_script = os.path.abspath(sys.argv[0])
@@ -45,6 +45,8 @@ if "windows" == config.OS:
         os.environ["LANG"] = gettext_env[0]
 
 signal.signal(signal.SIGINT, signal.SIG_DFL)
+locale.bindtextdomain(config.NAME, config.localedir)
+locale.textdomain(config.NAME)
 gettext.bindtextdomain(config.NAME, config.localedir)
 gettext.textdomain(config.NAME)
 gettext.install(config.NAME, config.localedir)
@@ -58,3 +60,4 @@ if __name__ == '__main__':
 
     from inspira import main
     sys.exit(main.main(config.VERSION))
+
