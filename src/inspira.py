@@ -39,7 +39,7 @@ from inspira.utils import language
 
 if "windows" == config.OS:
     gettext_env = language.windows_gettext(locale.getdefaultlocale())
-    if gettext_env is not None
+    if gettext_env is not None:
         os.environ["LANGUAGE"] = gettext_env[2]
         os.environ["LC_ALL"] = gettext_env[1]
         os.environ["LANG"] = gettext_env[0]
