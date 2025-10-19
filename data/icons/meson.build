@@ -13,7 +13,7 @@ install_data(
 )
 
 
-scalable_dir_action = scalable_dir / 'scalable' / 'actions'
+scalable_dir_action = 'scalable' / 'actions'
 
 install_subdir(
 	scalable_dir_action,
