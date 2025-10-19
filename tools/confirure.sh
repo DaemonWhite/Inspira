@@ -12,4 +12,4 @@ pacman -S mingw-w64-ucrt-x86_64-gtk4 mingw-w64-ucrt-x86_64-libadwaita \
 
 echo "----- CONFIGURING Inspira -----"
 
-meson setup _build --prefix=$(pwd)/_install
+meson setup _build --prefix=$(pwd)/_install -Ddevel=true
