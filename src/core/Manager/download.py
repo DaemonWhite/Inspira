@@ -16,7 +16,10 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #
 # SPDX-License-Identifier: GPL-3.0-or-later
-from gi.repository import Gio, GObject
+import queue
+import threading
+
+from gi.repository import Gio, GObject, GLib
 
 from ...utils.state_progress import StateProgress
 
@@ -38,11 +41,19 @@ class DownloadItemStates(GObject.GObject):
         self._progress = 0
 
     def download(self):
-        self.status = StateProgress.DOWNLOADING
+        GLib.idle_add(self._update_status, StateProgress.DOWNLOADING)
         for img in self.imgs:
             img.download()
-            self.progress = self.progress + 1
+            GLib.idle_add(self._update_progress, self._progress + 1)
         self.status = StateProgress.SUCCESS
+
+    def _update_status(self, new_status):
+        self.status = new_status
+        return False
+
+    def _update_progress(self, new_progress):
+        self.progress = new_progress
+        return False
 
     @GObject.Property(type=object)
     def status(self):
@@ -65,14 +76,39 @@ class DownloadItemStates(GObject.GObject):
 
 class DownloadManager(GObject.GObject):
 
+    __gsignals__ = {
+        'add-item': (GObject.SignalFlags.RUN_FIRST, None, (object,)),
+    }
+
     def __init__(self):
         super().__init__()
         self._downloading = False
-        self.queue: Gio.ListStore = Gio.ListStore()
+
         self.end_queue: Gio.ListStore = Gio.ListStore()
 
+        self._work_queue = queue.Queue()
+
+        self._pending_items = []
+        self._pending_lock = threading.Lock()
+
+        self._stop_event = threading.Event()
+
+        self._worker = threading.Thread(target=self._worker_thread, name="DownloadWorker")
+        self._worker.start()
+
     def append(self, info_request: InfoRequest):
-        self.queue.append(DownloadItemStates(info_request))
+        item = DownloadItemStates(info_request)
+
+        with self._pending_lock:
+            self._pending_items.append(item)
+
+        self._work_queue.put(item)
+
+        GLib.idle_add(self._emit_add_item, item)
+
+    def _emit_add_item(self, item):
+        self.emit('add-item', item)
+        return False
 
     @GObject.Property(type=bool, default=False)
     def downloading(self):
@@ -83,17 +119,71 @@ class DownloadManager(GObject.GObject):
         self._downloading = value
         self.notify('downloading')
 
-    def downloads(self):
-        if self.queue.get_n_items() < 1:
+    def _worker_thread(self):
+        while not self._stop_event.is_set():
+            try:
+                item = self._work_queue.get(timeout=0.5)
+            except queue.Empty:
+                continue
+
+            if item is None:
+                break
+
+            GLib.idle_add(self._set_downloading, True)
+
+            try:
+                item.download()
+                GLib.idle_add(self._on_download_complete, item)
+            except Exception as e:
+                print(f"Error download: {e}")
+                GLib.idle_add(self._on_download_error, item, str(e))
+            finally:
+                self._work_queue.task_done()
+
+        print("Worker thread success end proccess")
+
+    def shutdown(self):
+        print("Down DownloadManager...")
+        self._stop_event.set()
+        self._work_queue.put(None)
+        self._worker.join(timeout=5.0)
+
+        if self._worker.is_alive():
+            print("Warning: Donwload manager butal force down")
+        else:
+            print("DownloadManager success down")
+
+    def _set_downloading(self, value):
+        self.downloading = value
+        return False  # Ne pas répéter l'appel
+
+    def _on_download_complete(self, item):
+
+        self.end_queue.append(item)
+
+        if self._work_queue.empty():
             self.downloading = False
-            return
 
-        if self.downloading:
-            return
+        return False
 
-        self.downloading = True
-        self.queue.get_item(0).download()
-        self.end_queue.append(self.queue.get_item(0))
-        self.queue.remove(0)
+    def _on_download_error(self, item, error):
+        print(f"Error Download: {error}")
+
+        item.status = StateProgress.FAILED
+
+        self.end_queue.append(item)
+
+        if self._work_queue.empty():
+            self.downloading = False
+
+        return False
+
+    def cancel_all(self):
+        while not self._work_queue.empty():
+            try:
+                self._work_queue.get_nowait()
+                self._work_queue.task_done()
+            except queue.Empty:
+                break
+
         self.downloading = False
-        self.downloads()

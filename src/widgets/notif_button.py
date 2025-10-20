@@ -64,17 +64,13 @@ class NotifButton(Gtk.Button):
 
     def connect_download_manager(self, download_manager: DownloadManager):
         download_manager.connect("notify::downloading", self._on_donwloading)
-        download_manager.queue.connect("items_changed", self._on_add_items)
+        download_manager.connect("add-item", self._on_add_items)
 
     def _on_donwloading(self, download_manager: DownloadManager, _):
         self.notif_spinner.set_visible(download_manager.downloading)
         self.notif_state.set_visible(not download_manager.downloading)
 
-    def _on_add_items(self, model, position, removed, added):
-        if added < 1:
-            return
-
-        item: DownloadItemStates = model.get_item(position)
+    def _on_add_items(self, _, item: DownloadItemStates):
 
         row = StatesProgressRow()
         row.set_title(item.data.api_name)
@@ -92,7 +88,6 @@ class NotifButton(Gtk.Button):
         )
 
         self.notif_list.prepend(row)
-
 
     def _on_button(self, _widget):
         self.notif_popup.popup()
