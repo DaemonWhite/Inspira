@@ -129,6 +129,11 @@ class InspiraWindow(Adw.ApplicationWindow):
             self.on_download_image
         )
 
+        self.connect(
+            "close-request",
+            lambda _: self.app.download_manager.shutdown()
+        );
+
         self.notif_download.connect_download_manager(self.app.download_manager)
 
     def _on_toggle_search_view(self, action, _):
@@ -187,19 +192,6 @@ class InspiraWindow(Adw.ApplicationWindow):
             return
 
         self.app.download_manager.append(data)
-        self.app.download_manager.downloads()
-
-        # if data.success:
-        #     imgs = data.extact_imgs_request()
-        #     imgs[0].download()
-        #     if imgs[0].success:
-        #         GLib.idle_add(self._updateImage, imgs[0])
-        #     else:
-        #         self.loadedImage()
-        #         print(imgs[0].error)
-        # else:
-        #     self.loadedImage()
-        #     print(data.error)
 
     def _updateImage(self, content):
         try:
