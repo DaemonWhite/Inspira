@@ -89,14 +89,12 @@ class OverlayPicture(Gtk.Overlay):
         texture = Gdk.Texture.new_from_bytes(bytes_data)
         self.lists_image.append(Gtk.Picture.new_for_paintable(texture))
 
-        if self.switch_last_add_image:
-            pos = self.lists_image.get_n_pages() - 1
+        last_pos = self.lists_image.get_n_pages() - 1
+
+        if self.switch_last_add_image or last_pos == 1:
             self.lists_image.scroll_to(
-                self.lists_image.get_nth_page(pos), True
-            )
-        elif self.lists_image.get_n_pages() == 1:
-            self.lists_image.scroll_to(
-                self.lists_image.get_nth_page(0), True
+                self.lists_image.get_nth_page(last_pos),
+                True
             )
 
     def get_image_selected(self) -> ImgData | None:
