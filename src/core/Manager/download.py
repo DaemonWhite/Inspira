@@ -88,9 +88,6 @@ class DownloadManager(GObject.GObject):
 
         self._work_queue = queue.Queue()
 
-        self._pending_items = []
-        self._pending_lock = threading.Lock()
-
         self._stop_event = threading.Event()
 
         self._worker = threading.Thread(target=self._worker_thread, name="DownloadWorker")
@@ -98,9 +95,6 @@ class DownloadManager(GObject.GObject):
 
     def append(self, info_request: InfoRequest):
         item = DownloadItemStates(info_request)
-
-        with self._pending_lock:
-            self._pending_items.append(item)
 
         self._work_queue.put(item)
 
