@@ -28,7 +28,6 @@ from ..Api import ImgData, InfoRequest
 
 class DownloadItemStates(GObject.GObject):
     data = GObject.Property(type=object)
-    status = GObject.Property(type=object)
     length = GObject.Property(type=int)
     imgs = GObject.Property(type=object)
 
@@ -45,7 +44,7 @@ class DownloadItemStates(GObject.GObject):
         for img in self.imgs:
             img.download()
             GLib.idle_add(self._update_progress, self._progress + 1)
-        
+
         GLib.idle_add(self._update_status, StateProgress.SUCCESS)
 
     def _update_status(self, new_status):
@@ -91,7 +90,11 @@ class DownloadManager(GObject.GObject):
 
         self._stop_event = threading.Event()
 
-        self._worker = threading.Thread(target=self._worker_thread, name="DownloadWorker")
+        self._worker = threading.Thread(
+            target=self._worker_thread,
+            name="DownloadWorker"
+        )
+
         self._worker.start()
 
     def append(self, info_request: InfoRequest):
