@@ -45,7 +45,8 @@ class DownloadItemStates(GObject.GObject):
         for img in self.imgs:
             img.download()
             GLib.idle_add(self._update_progress, self._progress + 1)
-        self.status = StateProgress.SUCCESS
+        
+        GLib.idle_add(self._update_status, StateProgress.SUCCESS)
 
     def _update_status(self, new_status):
         self.status = new_status
@@ -163,7 +164,7 @@ class DownloadManager(GObject.GObject):
     def _on_download_error(self, item, error):
         print(f"Error Download: {error}")
 
-        item.status = StateProgress.FAILED
+        item.status = StateProgress.ERROR
 
         self.end_queue.append(item)
 
