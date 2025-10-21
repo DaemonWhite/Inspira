@@ -51,6 +51,7 @@ class InspiraWindow(Adw.ApplicationWindow):
     image: OverlayPicture = Gtk.Template.Child()
     image_box: Gtk.Box = Gtk.Template.Child()
     image_drop_down: Gtk.DropDown = Gtk.Template.Child()
+    image_spin: Gtk.Spinner = Gtk.Template.Child()
 
     search_view: Adw.OverlaySplitView = Gtk.Template.Child()
 
@@ -142,7 +143,7 @@ class InspiraWindow(Adw.ApplicationWindow):
         self.connect(
             "close-request",
             lambda _: self.app.download_manager.shutdown()
-        );
+        )
 
         self.notif_download.connect_download_manager(self.app.download_manager)
 
@@ -201,6 +202,17 @@ class InspiraWindow(Adw.ApplicationWindow):
             self.search_nsfw.set_visible(False)
             self.search_nsfw.set_active_name("sfw")
 
+        adjustement = Gtk.Adjustment.new(
+            value=self.image_spin.get_value(),
+            lower=capability_mode.limit_min,
+            upper=capability_mode.limit_max,
+            step_increment=1,
+            page_increment=1,
+            page_size=0
+        )
+
+        self.image_spin.set_adjustment(adjustement)
+
     def is_nsfw_enabled(self) -> bool:
         if "nsfw" == self.search_nsfw.get_active_name():
             return True
@@ -214,6 +226,7 @@ class InspiraWindow(Adw.ApplicationWindow):
 
         data = self.manager.random(
             selected_api,
+            count=int(self.image_spin.get_value()),
             nsfw=self.is_nsfw_enabled(),
             tags=self.wrap_tags.get_tags()
         )
