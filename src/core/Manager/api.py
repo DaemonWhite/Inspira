@@ -52,6 +52,9 @@ class Api(object):
             for n, data in self.plugins.items()
         ]
 
+    def get_plugin(self, name_api) -> ApiInterface:
+        return self.plugins[name_api]["instance"]
+
     def random(
             self,
             plugins_name: str,

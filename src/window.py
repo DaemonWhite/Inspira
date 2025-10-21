@@ -28,6 +28,7 @@ from config import devel, URI_PATH, OS
 
 from .items.image import ImageItem
 
+from .core import Api, Manager
 from .core.Api import ImgData
 
 from .widgets.infos_image import InfosImage
@@ -63,6 +64,8 @@ class InspiraWindow(Adw.ApplicationWindow):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.app = self.get_application()
+        self.manager:  Manager.Api = self.app.manager
+
         self.app.create_action(
             'newpicture',
             self.on_load_image,
@@ -98,12 +101,19 @@ class InspiraWindow(Adw.ApplicationWindow):
         self._on_load_api()
         self.app.connect("loaded_api", lambda _: self._on_load_api())
 
-        self.search_tags_entry.add_tags(self.app.manager.get_all_tags())
+        self.search_tags_entry.add_tags(self.manager.get_all_tags())
+
+        self.select_view_capability_api()
 
         self.is_nsfw_enabled()
         self.asyncLoadImage()
 
     def bind_events(self):
+        self.image_drop_down.connect(
+            "notify::selected",
+            lambda _widget, _param: self.select_view_capability_api()
+        )
+
         self.image.info.connect("clicked", self.on_view_info_image)
         self.image.lists_image.connect(
             "page_changed", lambda _, index: self.infos_image.set_infos_image(
@@ -143,7 +153,7 @@ class InspiraWindow(Adw.ApplicationWindow):
 
     def _on_load_api(self):
         self.api_store.remove_all()
-        for plugin in self.app.manager.list_plugins():
+        for plugin in self.manager.list_plugins():
             if plugin["active"]:
                 self.api_store.append(Gtk.StringObject.new(plugin["name"]))
 
@@ -163,13 +173,33 @@ class InspiraWindow(Adw.ApplicationWindow):
     def on_download_image(self, model: Gio.ListStore, position, remove, added):
         if added < 1:
             return
-        imgs: ImgData = model.get_item(position).imgs
+        imgs: Api.ImgData = model.get_item(position).imgs
 
         for img in imgs:
             if img.success:
                 GLib.idle_add(self._updateImage, img)
             else:
                 print(img.error)
+
+    def select_view_capability_api(self):
+        if self.image_drop_down.get_model().get_n_items() < 1:
+            print("Error not api available")
+            return
+        selected_api = self.image_drop_down.get_selected_item().get_string()
+        api: Api.ApiInterface = self.manager.get_plugin(selected_api)
+
+        # Random or serach
+        capability_mode = api.randomCapability
+
+        self.search_tags_entry.set_visible(capability_mode.tag.present)
+        self.search_add_tags.set_visible(capability_mode.tag.present)
+        self.wrap_tags.set_visible(capability_mode.tag.present)
+
+        if self.app.settings.global_nsfw:
+            self.search_nsfw.set_visible(capability_mode.nsfw)
+        else:
+            self.search_nsfw.set_visible(False)
+            self.search_nsfw.set_active_name("sfw")
 
     def is_nsfw_enabled(self) -> bool:
         if "nsfw" == self.search_nsfw.get_active_name():
@@ -178,11 +208,11 @@ class InspiraWindow(Adw.ApplicationWindow):
 
     def loadImage(self, args):
         if self.image_drop_down.get_model().get_n_items() < 1:
-            print("Error not api enabled")
+            print("Error not api available")
             return
         selected_api = self.image_drop_down.get_selected_item().get_string()
 
-        data = self.app.manager.random(
+        data = self.manager.random(
             selected_api,
             nsfw=self.is_nsfw_enabled(),
             tags=self.wrap_tags.get_tags()
