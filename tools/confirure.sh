@@ -2,7 +2,7 @@
 
 echo "----- INSTALL Package -----"
 
-if [ -n "$(grep -qi msys2 /etc/os-release)" ]; then
+if [ -z "$(grep -qi msys2 /etc/os-release)" ]; then
 
 pacman -S mingw-w64-ucrt-x86_64-gtk4 mingw-w64-ucrt-x86_64-libadwaita \
     mingw-w64-ucrt-x86_64-python-pip mingw-w64-ucrt-x86_64-python-gobject \
