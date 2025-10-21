@@ -3,7 +3,7 @@ using Adw 1;
 
 Adw.ShortcutsDialog shortcuts_dialog {
   Adw.ShortcutsSection {
-    title: _("Shortcuts");
+    title: _("General");
     Adw.ShortcutsItem {
       title: _("Show Shortcuts");
       action-name: "app.shortcuts";
@@ -15,6 +15,17 @@ Adw.ShortcutsDialog shortcuts_dialog {
     Adw.ShortcutsItem {
       title: _("Quit");
       action-name: "app.quit";
+    }
+  }
+  Adw.ShortcutsSection {
+    title: _("Caroussel control");
+    Adw.ShortcutsItem {
+      title: _("Next Image");
+      action-name: "win.next-image";
+    }
+    Adw.ShortcutsItem {
+      title: _("Previous Image");
+      action-name: "win.previous-image";
     }
   }
 }

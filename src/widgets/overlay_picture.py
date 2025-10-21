@@ -52,7 +52,6 @@ class OverlayPicture(Gtk.Overlay):
         self.delete.connect("clicked", lambda _: self.delete_image_selected())
         self.download.connect("clicked", lambda _: self.save_image_selected())
 
-
     @GObject.Property
     def vertical(self):
         "Read only property."
@@ -75,7 +74,6 @@ class OverlayPicture(Gtk.Overlay):
             self.dots_lists_image.set_orientation(Gtk.Orientation.HORIZONTAL)
             self.lists_image.set_orientation(Gtk.Orientation.HORIZONTAL)
 
-
     def set_store(self, store: Gio.ListStore):
         if self.store is None:
             self.store = store
@@ -83,6 +81,28 @@ class OverlayPicture(Gtk.Overlay):
                 "items_changed",
                 self._on_store_images_changed
             )
+
+    def next_image(self):
+        next_pos = self.lists_image.get_position() + 1
+        len_page = self.lists_image.get_n_pages()
+        if len_page <= next_pos:
+            next_pos = next_pos - len_page
+
+        self.lists_image.scroll_to(
+            self.lists_image.get_nth_page(next_pos),
+            True
+        )
+
+    def previous_image(self):
+        next_pos = self.lists_image.get_position() - 1
+        end_page = 0
+        if end_page > next_pos:
+            next_pos = self.lists_image.get_n_pages() + next_pos
+
+        self.lists_image.scroll_to(
+            self.lists_image.get_nth_page(next_pos),
+            True
+        )
 
     def append_images(self, image_data: ImgData):
         bytes_data = GLib.Bytes.new(image_data.img)

@@ -79,6 +79,18 @@ class InspiraWindow(Adw.ApplicationWindow):
             ['F9']
         )
 
+        self.create_action(
+            'next-image',
+            lambda _w, _p: self.image.next_image(),
+            ['<primary>Down', '<primary>Right']
+        )
+
+        self.create_action(
+            'previous-image',
+            lambda _w, _p: self.image.previous_image(),
+            ['<primary>Up', '<primary>Left']
+        )
+
         shotcut_menu_action = "app.shortcuts"
 
         if OS == "windows":

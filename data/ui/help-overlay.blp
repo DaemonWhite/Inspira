@@ -3,17 +3,32 @@ using Gtk 4.0;
 Gtk.ShortcutsWindow help_overlay {
 	modal: true;
 	Gtk.ShortcutsSection {
-		section-name: 'shortcuts';
+		section-name: 'general';
 		max-height: 10;
 		Gtk.ShortcutsGroup {
-			title: 'General';
+			title: _('General');
 			Gtk.ShortcutsShortcut {
 				title: C_("shortcut window", "Show Shortcut");
 				action-name: 'win.show-help-overlay';
 			}
 			Gtk.ShortcutsShortcut {
-				title: C_("shortcut window","Exit");
+				title: C_("shortcut window","Quit");
 				action-name: 'app.quit';
+			}
+		}
+	}
+	Gtk.ShortcutsSection {
+		section-name: 'caroussel';
+		max-height: 10;
+		Gtk.ShortcutsGroup {
+			title: _("Caroussel control");
+			Gtk.ShortcutsShortcut {
+				title: _("Next Image");
+				action-name: 'win.next-image';
+			}
+			Gtk.ShortcutsShortcut {
+				title: _("Previous Image");
+				action-name: 'win.previous-image';
 			}
 		}
 	}
