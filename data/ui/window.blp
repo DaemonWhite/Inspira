@@ -107,7 +107,7 @@ template $InspiraWindow : Adw.ApplicationWindow {
         [start]
         Gtk.ToggleButton {
           icon-name: "search-global-symbolic";
-          action-name: "win.togglesearchview";
+          action-name: "win.toggle-search-view";
           active: bind search_view.show-sidebar bidirectional;
         }
         [end]
@@ -159,7 +159,7 @@ menu primary_menu {
     }
     item {
       label: _("_Load New Picture");
-      action: "app.newpicture";
+      action: "app.new-picture";
     }
     item {
       label: _("_About Inspira");

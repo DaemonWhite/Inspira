@@ -68,13 +68,13 @@ class InspiraWindow(Adw.ApplicationWindow):
         self.manager:  Manager.Api = self.app.manager
 
         self.app.create_action(
-            'newpicture',
+            'new-picture',
             self.on_load_image,
             ['<primary><shift>r']
         )
 
         self.create_action(
-            'togglesearchview',
+            'toggle-search-view',
             self._on_toggle_search_view,
             ['F9']
         )
