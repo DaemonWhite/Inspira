@@ -34,8 +34,8 @@ class DownloadItemStates(GObject.GObject):
     def __init__(self, info_request: InfoRequest):
         super().__init__()
         self._status = StateProgress.WAITING
-        self.data = info_request
-        self.imgs = self.data.extact_imgs_request()
+        self.data: InfoRequest = info_request
+        self.imgs: list[ImgData] = self.data.extact_imgs_request()
         self.length = len(self.imgs)
         self._progress = 0
 
