@@ -43,7 +43,15 @@ class NekoMoe(ApiInterface):
             limit_max=20
         )
 
-    def search(self, count: int, nsfw: bool, tags: list) -> InfoRequest:
+    def search(
+            self,
+            count: int,
+            nsfw: bool,
+            tags_include: list,
+            tags_exlclide: list,
+            sort: str,
+            skip: int
+        ) -> InfoRequest:
         pass
 
     def random(self, count: int, nsfw: bool, tags: list) -> InfoRequest:

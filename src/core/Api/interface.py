@@ -17,7 +17,14 @@ class ApiInterface:
     def name(self) -> str:
         return self._name
 
-    def search(self, count: int, nsfw: bool, tags: list):
+    def search(
+            self,
+            count: int,
+            nsfw: bool,
+            tags_include: list,
+            tags_exlclide: list,
+            sort: str,
+            skip: int) -> InfoRequest:
         raise NotImplementedError("Search must be overridden")
 
     @staticmethod

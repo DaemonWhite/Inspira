@@ -30,6 +30,9 @@ class WaifuIm(ApiInterface):
 
         tag = TagCapability(
             present=True,
+            strict=True,
+            include=True,
+            exclude=True,
             know=[
                 "maid",
                 "waifu",
@@ -66,7 +69,14 @@ class WaifuIm(ApiInterface):
             limit_max=30
         )
 
-    def search(self, count: int, nsfw: bool, tags: list) -> InfoRequest:
+    def search(
+            self,
+            count: int,
+            nsfw: bool,
+            tags_include: list,
+            tags_exlclide: list,
+            sort: str,
+            skip: int) -> InfoRequest:
         pass
 
     def random(self, count: int, nsfw: bool, tags: list) -> InfoRequest:
