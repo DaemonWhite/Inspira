@@ -22,7 +22,7 @@ class ApiInterface:
             count: int,
             nsfw: bool,
             tags_include: list,
-            tags_exlclide: list,
+            tags_exlclude: list,
             sort: str,
             skip: int) -> InfoRequest:
         raise NotImplementedError("Search must be overridden")
