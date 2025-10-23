@@ -250,17 +250,33 @@ class InspiraWindow(Adw.ApplicationWindow):
             return
         selected_api = self.image_drop_down.get_selected_item().get_string()
 
-        data = self.manager.random(
-            selected_api,
-            count=int(self.image_spin.get_value()),
-            nsfw=self.is_nsfw_enabled(),
-            tags=self.wrap_tags.get_tags()
-        )
-        if not data.success > 0:
-            print("request failled : ", data)
-            return
+        api_methode: str = self.toggle_api_methode.get_active_name()
 
-        self.app.download_manager.append(data)
+        data = None
+
+        if api_methode == "search":
+            print("not implemented")
+            # data = self.manager.search(
+            #     selected_api,
+            #     count=int(self.image_spin.get_value()),
+            #     nsfw=self.is_nsfw_enabled(),
+            #     tags_include=self.wrap_tags.get_tags()
+            # )
+        else:
+            data = self.manager.random(
+                selected_api,
+                count=int(self.image_spin.get_value()),
+                nsfw=self.is_nsfw_enabled(),
+                tags=self.wrap_tags.get_tags()
+            )
+            if not data.success > 0:
+                print("request failled : ", data)
+                return
+
+        if data is not None:
+            self.app.download_manager.append(data)
+        else:
+            print("Error: methode request invalide")
 
     def _updateImage(self, content):
         try:
@@ -286,4 +302,3 @@ class InspiraWindow(Adw.ApplicationWindow):
         self.add_action(action)
         if shortcuts:
             self.app.set_accels_for_action(f"win.{name}", shortcuts)
-
