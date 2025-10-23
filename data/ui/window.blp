@@ -18,88 +18,78 @@ template $InspiraWindow : Adw.ApplicationWindow {
     collapsed: false;
     sidebar-position: start;
     show-sidebar: true;
+
+
     sidebar:  Adw.ToolbarView {
     [top]
       Adw.HeaderBar {
-        title-widget: Adw.ViewSwitcher {
-          stack: search_stack;
-          policy: narrow;
-        };
-      }
-
-    Adw.ViewStack search_stack {
-      Adw.ViewStackPage {
-        name: "random";
-        title: _("Random");
-        icon-name: "playlist-shuffle-symbolic";
-        child: Gtk.Box search_box {
-          hexpand: true;
-          vexpand: true;
-          halign: fill;
-          orientation: vertical;
-          spacing: 5;
-          Gtk.Button {
+        title-widget: Adw.ToggleGroup toggle_api_methode {
+          Adw.Toggle {
+            label: _("Random");
+            icon-name: "playlist-shuffle-symbolic";
+            name: "random";
+            tooltip: "Random images";
+          }
+          Adw.Toggle {
             label: _("Search");
-            styles ["suggested-action"]
-            action-name: "app.new-picture";
-          }
-          Gtk.DropDown image_drop_down {}
-          Gtk.Box {
-            halign: center;
-            Gtk.Label {
-              label: _("Count:");
-            }
-            Gtk.Separator {
-              styles ["spacer"]
-            }
-            Gtk.SpinButton image_spin {
-
-            }
-          }
-          Adw.ToggleGroup search_nsfw {
-            active-name: "sfw";
-            Adw.Toggle {
-              label: "SFW";
-              name: "sfw";
-              tooltip: _("Safe For Work (no adult content)");
-            }
-            Adw.Toggle {
-              label: "NSFW";
-              name: "nsfw";
-              tooltip: _("No Safe For Work (adult content)");
-            }
-          }
-          Gtk.Box {
-            styles ["linked"]
-            $SearchTagAutocomplet search_tags_entry {
-              placeholder-text: _("Ex: tag1,tag2");
-            }
-            Gtk.Button search_add_tags {
-              label: _("Add");
-              icon-name: "tag-outline-add-symbolic";
-              tooltip-text: _("Add tags filter");
-            }
-          }
-
-          $WrapTags wrap_tags {
-            halign: center;
+            tooltip: _("Search images");
+            name: "search";
+            icon-name: "search-global-symbolic";
           }
         };
       }
-      Adw.ViewStackPage {
-        name: "search";
-        title: _("Search");
-        icon-name: "search-global-symbolic";
-        child: Gtk.Box {
-          orientation: vertical;
-          Gtk.Button {
-            label: _("Search");
-            styles ["suggested-action"]
-            action-name: "app.newpicture";
+
+    Gtk.Box search_box {
+        hexpand: true;
+        vexpand: true;
+        halign: fill;
+        orientation: vertical;
+        spacing: 5;
+        Gtk.Button {
+          label: _("Search");
+          styles ["suggested-action"]
+          action-name: "app.new-picture";
+        }
+        Gtk.DropDown image_drop_down {}
+        Gtk.Box {
+          halign: center;
+          Gtk.Label {
+            label: _("Count:");
           }
-        };
+          Gtk.Separator {
+            styles ["spacer"]
+          }
+          Gtk.SpinButton image_spin {}
+        }
+        Adw.ToggleGroup search_nsfw {
+          active-name: "sfw";
+          Adw.Toggle {
+            label: "SFW";
+            name: "sfw";
+            tooltip: _("Safe For Work (no adult content)");
+          }
+          Adw.Toggle {
+            label: "NSFW";
+            name: "nsfw";
+            tooltip: _("No Safe For Work (adult content)");
+          }
+        }
+        Gtk.Box {
+          styles ["linked"]
+          $SearchTagAutocomplet search_tags_entry {
+            placeholder-text: _("Ex: tag1,tag2");
+          }
+          Gtk.Button search_add_tags {
+            label: _("Add");
+            icon-name: "tag-outline-add-symbolic";
+            tooltip-text: _("Add tags filter");
+          }
+        }
+
+        $WrapTags wrap_tags {
+          halign: center;
+        }
       }
-    }
     };
     content: Adw.ToolbarView {
       [top]

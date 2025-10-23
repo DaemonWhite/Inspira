@@ -53,6 +53,8 @@ class InspiraWindow(Adw.ApplicationWindow):
     image_drop_down: Gtk.DropDown = Gtk.Template.Child()
     image_spin: Gtk.Spinner = Gtk.Template.Child()
 
+    toggle_api_methode: Adw.ToggleGroup = Gtk.Template.Child()
+
     search_view: Adw.OverlaySplitView = Gtk.Template.Child()
 
     notif_download: NotifButton = Gtk.Template.Child()
@@ -127,6 +129,11 @@ class InspiraWindow(Adw.ApplicationWindow):
             lambda _widget, _param: self.select_view_capability_api()
         )
 
+        self.toggle_api_methode.connect(
+            "notify::active",
+            lambda _widget, _param: self.select_view_capability_api()
+        )
+
         self.image.info.connect("clicked", self.on_view_info_image)
         self.image.lists_image.connect(
             "page_changed", lambda _, index: self.infos_image.set_infos_image(
@@ -198,11 +205,18 @@ class InspiraWindow(Adw.ApplicationWindow):
         if self.image_drop_down.get_model().get_n_items() < 1:
             print("Error not api available")
             return
+
+        api_methode: str = self.toggle_api_methode.get_active_name()
+        print(api_methode)
+
         selected_api = self.image_drop_down.get_selected_item().get_string()
         api: Api.ApiInterface = self.manager.get_plugin(selected_api)
 
-        # Random or serach
         capability_mode = api.randomCapability
+
+        # Random or serach
+        if api_methode == "search":
+            capability_mode = api.searchCapability
 
         self.search_tags_entry.set_visible(capability_mode.tag.present)
         self.search_add_tags.set_visible(capability_mode.tag.present)
