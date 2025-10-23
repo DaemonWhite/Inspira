@@ -66,6 +66,25 @@ class Api(object):
         count = ApiInterface.clamp(count, plugin.randomCapability)
         return plugin.random(count, nsfw, tags)
 
+    def search(
+            self,
+            count: int = -1,
+            nsfw: bool = False,
+            tags_include: list[str] = [],
+            tags_exlclude: list[str] = [],
+            sort: str = "",
+            skip: int = 0) -> InfoRequest:
+        plugin = self.plugins[plugins_name]["instance"]
+        count = ApiInterface.clamp(count, plugin.searchCapability)
+        return plugin.search(
+            count,
+            nsfw,
+            tags_include,
+            tags_exlclude,
+            sort,
+            skip
+        )
+
     def get_all_tags(self) -> list:
         tags: list = []
         for name, plugin in self.plugins.items():
