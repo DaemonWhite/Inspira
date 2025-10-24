@@ -74,19 +74,46 @@ template $InspiraWindow : Adw.ApplicationWindow {
             tooltip: _("No Safe For Work (adult content)");
           }
         }
+
+        Label label_include_tags {
+          label: _("Include Tags");
+        }
+
         Gtk.Box {
           styles ["linked"]
-          $SearchTagAutocomplet search_tags_entry {
+          $SearchTagAutocomplet search_include_tags_entry {
             placeholder-text: _("Ex: tag1,tag2");
           }
-          Gtk.Button search_add_tags {
+          Gtk.Button search_include_add_tags {
             label: _("Add");
             icon-name: "tag-outline-add-symbolic";
             tooltip-text: _("Add tags filter");
           }
         }
 
-        $WrapTags wrap_tags {
+
+        $WrapTags wrap_include_tags {
+          halign: center;
+        }
+
+        Label label_exclude_tags {
+          label: _("Exclude Tags");
+        }
+
+        Gtk.Box {
+          styles ["linked"]
+          $SearchTagAutocomplet search_exclude_tags_entry {
+            placeholder-text: _("Ex: tag1,tag2");
+          }
+          Gtk.Button search_exclude_add_tags {
+            label: _("Add");
+            icon-name: "tag-outline-add-symbolic";
+            tooltip-text: _("Add tags filter");
+          }
+        }
+
+
+        $WrapTags wrap_exclude_tags {
           halign: center;
         }
       }

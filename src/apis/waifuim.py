@@ -92,6 +92,9 @@ class WaifuIm(ApiInterface):
         if len(tags_include) > 0:
             params['included_tags'] = tags_include
 
+        if len(tags_exlclude) > 0:
+            params['excluded_tags'] = tags_exlclude
+
         data, error = self._safe_request(
             url,
             params,
@@ -101,7 +104,13 @@ class WaifuIm(ApiInterface):
 
         return self._make_response(tags_include, params, nsfw, data, error)
 
-    def random(self, count: int, nsfw: bool, tags: list) -> InfoRequest:
+    def random(
+        self,
+        count: int,
+        nsfw: bool,
+        tags_include: list[str],
+        tags_exlclude: list[str],
+        ) -> InfoRequest:
         url = self._urlAPI + "search"
 
         params = {}
@@ -110,8 +119,11 @@ class WaifuIm(ApiInterface):
         if count > 1:
             params['limit'] = count
 
-        if len(tags) > 0:
-            params['included_tags'] = tags
+        if len(tags_include) > 0:
+            params['included_tags'] = tags_include
+
+        if len(tags_exlclude) > 0:
+            params['excluded_tags'] = tags_exlclude
 
         data, error = self._safe_request(
             url,
@@ -120,7 +132,7 @@ class WaifuIm(ApiInterface):
             True
         )
 
-        return self._make_response(tags, params, nsfw, data, error)
+        return self._make_response(tags_include, params, nsfw, data, error)
 
     def _img_format(self, info_request: InfoRequest) -> ImgData:
         imgs: list[ImgData] = []

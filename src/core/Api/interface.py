@@ -45,7 +45,13 @@ class ApiInterface:
             count = capability.limit_max
         return count
 
-    def random(self, count: int, nsfw: bool, tags: list[str]) -> InfoRequest:
+    def random(
+        self,
+        count: int,
+        nsfw: bool,
+        tags_include: list[str],
+        tags_exlclude: list[str],
+        ) -> InfoRequest:
         raise NotImplementedError("random must be overridden")
 
     def get_know_tags(self, nsfw=False):

@@ -71,7 +71,13 @@ class NekoMoe(ApiInterface):
 
         return self._make_response(tags_include, params, nsfw, data, error)
 
-    def random(self, count: int, nsfw: bool, tags: list) -> InfoRequest:
+    def random(
+        self,
+        count: int,
+        nsfw: bool,
+        tags_include: list[str],
+        tags_exlclude: list[str],
+        ) -> InfoRequest:
         url = self._urlAPI + "/random/image"
 
         params = {}
@@ -85,7 +91,7 @@ class NekoMoe(ApiInterface):
             True
         )
 
-        return self._make_response(tags, params, nsfw, data, error)
+        return self._make_response(tags_include, params, nsfw, data, error)
 
     def _img_format(self, info_request: InfoRequest) -> ImgData:
         imgs: list[ImgData] = []

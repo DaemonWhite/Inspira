@@ -44,9 +44,16 @@ class InspiraWindow(Adw.ApplicationWindow):
 
     search_box: Gtk.Box = Gtk.Template.Child()
     search_nsfw: Adw.ToggleGroup = Gtk.Template.Child()
-    search_tags_entry: SearchTagAutocomplet = Gtk.Template.Child()
-    search_add_tags: Gtk.Button = Gtk.Template.Child()
-    wrap_tags: WrapTags = Gtk.Template.Child()
+    search_include_tags_entry: SearchTagAutocomplet = Gtk.Template.Child()
+    search_include_add_tags: Gtk.Button = Gtk.Template.Child()
+    search_exclude_tags_entry: SearchTagAutocomplet = Gtk.Template.Child()
+    search_exclude_add_tags: Gtk.Button = Gtk.Template.Child()
+
+
+    label_include_tags: Gtk.Label = Gtk.Template.Child()
+    wrap_include_tags: WrapTags = Gtk.Template.Child()
+    label_exclude_tags: Gtk.Label = Gtk.Template.Child()
+    wrap_exclude_tags: WrapTags = Gtk.Template.Child()
 
     image: OverlayPicture = Gtk.Template.Child()
     image_box: Gtk.Box = Gtk.Template.Child()
@@ -106,8 +113,6 @@ class InspiraWindow(Adw.ApplicationWindow):
         self.bind_events()
         self.image.set_store(self.app.store_images)
 
-        self.search_add_tags.connect("clicked", self._on_add_tags)
-
         if devel:
             self.add_css_class("devel")
 
@@ -116,7 +121,8 @@ class InspiraWindow(Adw.ApplicationWindow):
         self._on_load_api()
         self.app.connect("loaded_api", lambda _: self._on_load_api())
 
-        self.search_tags_entry.add_tags(self.manager.get_all_tags())
+        self.search_include_tags_entry.add_tags(self.manager.get_all_tags())
+        self.search_exclude_tags_entry.add_tags(self.manager.get_all_tags())
 
         self.select_view_capability_api()
 
@@ -127,6 +133,20 @@ class InspiraWindow(Adw.ApplicationWindow):
         self.image_drop_down.connect(
             "notify::selected",
             lambda _widget, _param: self.select_view_capability_api()
+        )
+
+        self.search_include_add_tags.connect(
+            "clicked",
+            lambda _: self.wrap_include_tags.add_tags(
+                self.search_include_tags_entry.get_searched_tag()
+            )
+        )
+
+        self.search_exclude_add_tags.connect(
+            "clicked",
+            lambda _: self.wrap_exclude_tags.add_tags(
+                self.search_exclude_tags_entry.get_searched_tag()
+            )
         )
 
         self.toggle_api_methode.connect(
@@ -179,9 +199,6 @@ class InspiraWindow(Adw.ApplicationWindow):
 
         self.image_drop_down.set_model(self.api_store)
 
-    def _on_add_tags(self, _):
-        self.wrap_tags.add_tags(self.search_tags_entry.get_searched_tag())
-
     def on_load_image(self, widget, _):
         self.asyncLoadImage()
 
@@ -218,9 +235,16 @@ class InspiraWindow(Adw.ApplicationWindow):
         if api_methode == "search":
             capability_mode = api.searchCapability
 
-        self.search_tags_entry.set_visible(capability_mode.tag.present)
-        self.search_add_tags.set_visible(capability_mode.tag.present)
-        self.wrap_tags.set_visible(capability_mode.tag.present)
+        self.label_include_tags.set_visible(capability_mode.tag.include)
+        self.search_include_tags_entry.set_visible(capability_mode.tag.include)
+        self.search_include_add_tags.set_visible(capability_mode.tag.include)
+
+        self.label_exclude_tags.set_visible(capability_mode.tag.exclude)
+        self.search_exclude_tags_entry.set_visible(capability_mode.tag.exclude)
+        self.search_exclude_add_tags.set_visible(capability_mode.tag.exclude)
+
+        self.wrap_exclude_tags.set_visible(capability_mode.tag.exclude)
+        self.wrap_exclude_tags.set_visible(capability_mode.tag.exclude)
 
         if self.app.settings.global_nsfw:
             self.search_nsfw.set_visible(capability_mode.nsfw)
@@ -254,19 +278,23 @@ class InspiraWindow(Adw.ApplicationWindow):
 
         data = None
 
+        print(self.wrap_exclude_tags)
+
         if api_methode == "search":
             data = self.manager.search(
                 selected_api,
                 count=int(self.image_spin.get_value()),
                 nsfw=self.is_nsfw_enabled(),
-                tags_include=self.wrap_tags.get_tags(),
+                tags_include=self.wrap_include_tags.get_tags(),
+                tags_exlclude=self.wrap_exclude_tags.get_tags()
             )
         else:
             data = self.manager.random(
                 selected_api,
                 count=int(self.image_spin.get_value()),
                 nsfw=self.is_nsfw_enabled(),
-                tags=self.wrap_tags.get_tags()
+                tags_include=self.wrap_include_tags.get_tags(),
+                tags_exlclude=self.wrap_exclude_tags.get_tags()
             )
 
         if data is not None:
