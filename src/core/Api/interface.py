@@ -87,8 +87,7 @@ class ApiInterface:
             if is_get:
                 r = requests.get(url, params=params, timeout=timeout)
             else:
-                r = requests.post(url, params=params, timeout=timeout)
-
+                r = requests.post(url, json=params, timeout=timeout)
             if r.status_code == 200:
                 return r.json(), None
             else:
