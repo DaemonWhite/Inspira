@@ -40,7 +40,8 @@ class NekoMoe(ApiInterface):
             nsfw=True,
             tag=TagCapability(present=True),
             limit_min=1,
-            limit_max=20
+            limit_max=20,
+            sorts=["newest", "likes", "oldest", "relevance"]
         )
 
     def search(
@@ -48,11 +49,27 @@ class NekoMoe(ApiInterface):
             count: int,
             nsfw: bool,
             tags_include: list,
-            tags_exlclide: list,
+            tags_exlclude: list,
             sort: str,
             skip: int
         ) -> InfoRequest:
-        pass
+        url = self._urlAPI + "/images/search"
+
+        params = {}
+        params["nsfw"] = ApiInterface.str_bool(nsfw)
+        params["tags"] = tags_include
+        params["limit"] = count
+        params["sort"] = sort
+        params["skip"] = skip
+
+        data, error = self._safe_request(
+            url,
+            params,
+            self.randomCapability.timeout,
+            False
+        )
+
+        return self._make_response(tags_include, params, nsfw, data, error)
 
     def random(self, count: int, nsfw: bool, tags: list) -> InfoRequest:
         url = self._urlAPI + "/random/image"

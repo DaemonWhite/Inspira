@@ -60,10 +60,12 @@ class WaifuIm(ApiInterface):
             nsfw=True,
             tag=tag,
             limit_min=1,
-            limit_max=30
+            limit_max=30,
+            sorts=["FAVORITES", "UPLOADED_AT", "RANDOM"]
         )
         self.searchCapability = EndPointCapability(
             present=False,
+            tag=tag,
             nsfw=True,
             limit_min=1,
             limit_max=30
@@ -74,14 +76,33 @@ class WaifuIm(ApiInterface):
             count: int,
             nsfw: bool,
             tags_include: list,
-            tags_exlclide: list,
+            tags_exlclude: list,
             sort: str,
             skip: int) -> InfoRequest:
-        pass
+        url = self._urlAPI + "search"
+
+        params = {}
+        params["is_nsfw"] = nsfw
+
+        if sort != "":
+            params["order_by"] = "LIKED_AT"
+
+        if count > 1:
+            params['limit'] = count
+
+        if len(tags_include) > 0:
+            params['included_tags'] = tags_include
+
+        data, error = self._safe_request(
+            url,
+            params,
+            self.randomCapability.timeout,
+            True
+        )
+
+        return self._make_response(tags_include, params, nsfw, data, error)
 
     def random(self, count: int, nsfw: bool, tags: list) -> InfoRequest:
-        count = self.clamp(count, self.randomCapability)
-
         url = self._urlAPI + "search"
 
         params = {}
