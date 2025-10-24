@@ -29,7 +29,6 @@ class WaifuIm(ApiInterface):
         self._urlAPI = "https://api.waifu.im/"
 
         tag = TagCapability(
-            present=True,
             strict=True,
             include=True,
             exclude=True,

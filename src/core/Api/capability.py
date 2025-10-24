@@ -22,9 +22,8 @@ from dataclasses import dataclass, field
 
 @dataclass(frozen=True)
 class TagCapability:
-    present: bool = False
     strict: bool = False
-    include: bool = True
+    include: bool = False
     exclude: bool = False
     know: list = field(default_factory=list)
     know_nsfw: list = field(default_factory=list)

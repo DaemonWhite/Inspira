@@ -38,7 +38,7 @@ class NekoMoe(ApiInterface):
         self.searchCapability = EndPointCapability(
             present=True,
             nsfw=True,
-            tag=TagCapability(present=True),
+            tag=TagCapability(include=True),
             limit_min=1,
             limit_max=20,
             sorts=["newest", "likes", "oldest", "relevance"]
