@@ -68,6 +68,7 @@ class Api(object):
 
     def search(
             self,
+            plugins_name: str,
             count: int = -1,
             nsfw: bool = False,
             tags_include: list[str] = [],
