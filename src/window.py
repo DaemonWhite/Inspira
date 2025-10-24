@@ -255,13 +255,12 @@ class InspiraWindow(Adw.ApplicationWindow):
         data = None
 
         if api_methode == "search":
-            print("not implemented")
-            # data = self.manager.search(
-            #     selected_api,
-            #     count=int(self.image_spin.get_value()),
-            #     nsfw=self.is_nsfw_enabled(),
-            #     tags_include=self.wrap_tags.get_tags()
-            # )
+            data = self.manager.search(
+                selected_api,
+                count=int(self.image_spin.get_value()),
+                nsfw=self.is_nsfw_enabled(),
+                tags_include=self.wrap_tags.get_tags(),
+            )
         else:
             data = self.manager.random(
                 selected_api,
@@ -269,11 +268,11 @@ class InspiraWindow(Adw.ApplicationWindow):
                 nsfw=self.is_nsfw_enabled(),
                 tags=self.wrap_tags.get_tags()
             )
+
+        if data is not None:
             if not data.success > 0:
                 print("request failled : ", data)
                 return
-
-        if data is not None:
             self.app.download_manager.append(data)
         else:
             print("Error: methode request invalide")
